@@ -4,7 +4,8 @@ DOK::DOK(size_t n)
     _n = n;
     _m = 0;
 }
-
+//TP1 crea e inicializa matriz de punteros a paginas. TODO: analizar si se puede adaptar a 
+// TP3 sino eliminar
 DOK::DOK(const char* input)
 {
 
@@ -20,10 +21,10 @@ DOK::DOK(const char* input)
         infile >> from >> to;
         _mat[to-1][from-1] = 1;
         _m++;
-    }
-
+    } 
 }
 
+// crea e inicializa una matriz diagonal
 DOK::DOK(size_t n, double val)
 {
     _n = n;
@@ -34,36 +35,45 @@ DOK::DOK(size_t n, double val)
     }
 }
 
-DOK DOK::multiplicarMatriz(DOK &m)
+DOK DOK::multiplicarMatriz(DOK &B)
 {
+    size_t filasA = this->_n;
+    double acum=0.0; //acumulador de fila x columna
+
     DOK C(this->_n);
-    for (size_t i=0; i < this->size(); ++i)
-            for (size_t j=0; j < this->size(); ++j)
+    for (size_t i=0; i < filasA; ++i)
+            for (size_t j=0; j < B._m; ++j)
             {
-                if(_mat[i].count(j))
-                    for (size_t k=0; k < this->size(); ++k)
+                // inicializar el acumulador en cero
+                acum = 0.0;
+                for (size_t k=0; k < this->_m; ++k)
+                {
+                    // si los elementos de A[i][k] y B[k][j] no son cero multiplicarlos y acumular el resultado
+                    if ( (_mat[i].count(k) > 0) && (B._mat[k].count(j) > 0) )
                     {
-                        if (m._mat[k].count(j) > 0)
-                        {
-                            if (C._mat[j].count(j) > 0)
-                                C._mat[i][j] += this->_mat[i][k] * m._mat[k][j];
-                            else
-                                C._mat[i][j] = this->_mat[i][k] * m._mat[k][j];
-                        }
+                        acum += _mat[i][k] * B._mat[k][j];
                     }
+                }
+                // si el acumulador es mayor a cero agregamos el elemento en la matriz resultado
+                if (acum != 0)
+                {
+                    C._mat[i][j] = acum;
+                }
             }
     return C;
 }
+
 void DOK::restarMatrices(DOK& m)
 {
     m.multiplicarConstante(-1.0);
     sumarMatrices(m);
 }
+
 void DOK::sumarMatrices(DOK& m)
 {
     for (int i = 0; i < _n; i++)
     {
-        for (int j = 0; j < _n; j++)
+        for (int j = 0; j < _m; j++)
         {
             if (_mat[i].count(j) > 0)
             {
@@ -89,12 +99,11 @@ void DOK::multiplicarConstante(double c)
 
     for (int i = 0; i <size(); i++)
     {
-            for (int j = 0; j < size(); j++)
+            for (int j = 0; j < _m; j++)
             {
                 if (_mat[i].count(j) > 0){
                     _mat[i][j] = c * _mat[i][j];
                 }
-
             }
     }
 }
@@ -118,9 +127,42 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
     }
     for (int k = 0; k < n-1 ; k++) //filas pivote
     {
-        // controlar que el pivote no sea cero
-        // por seguridad: la estructura de la matriz nos garantiza que no va a pasar
+        // TP3: Pivoteo parcial
+        if (_mat[k].count(k) == 0)
+        {
+            // recorrer las filas de abajo buscando un pivote y permutar
+            for (int i = k+1 ; i < n ; i++) //filas a eliminar
+            {
+                if (_mat[i].count(k) != 0) //encontramos nuevo pivote.
+                {
+                    // Permutar: auxiliar=k,  k=i, i=auxiliar.
+                    double auxiliar = 0.0;
+                    for (int c = 0 ; c <= n ; ++c)  // OJO c <= n para incluir el termino independiente
+                    {
+                        if (_mat[k].count(c) != 0.0)
+                        {
+                            auxiliar = _mat[k][c];
+                            _mat[k].erase(c);
+                        }
+                        if (_mat[i].count(c) != 0.0)
+                        {
+                            _mat[k][c]=_mat[i][c];
+                            _mat[i].erase(c);
+                        }
+                        if (auxiliar != 0.0)
+                        {
+                            _mat[i][c] = auxiliar;
+                            auxiliar = 0.0;
+                        }                            
+                    }
+                    break;
+                }
+                else{
+                    //falla Gauss
+                }
+            }
 
+        }
         for (int i = k+1 ; i < n ; i++) //filas a eliminar
         {
             // verificar que en la primera columna de la fila a eliminar no haya cero
@@ -149,7 +191,6 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
                             double ij = matij - mult * matkj;
                             if (fabs(ij) < eps)
                             {
-
                                 _mat[i].erase(j);
                             }
                             else
