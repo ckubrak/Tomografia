@@ -108,6 +108,91 @@ void DOK::multiplicarConstante(double c)
     }
 }
 
+/* 
+Cuadrados Minimos:
+Parametros de entrada:
+- Matriz esparza sobredeterminada de _n x _m (matriz de rayos una fila x rayo, una columna por celda, al inicio contiene unos y ceros)
+- Vector b (contiene los tiempos totales de cada rayo: _n (cantidad de rayos))
+- Salida: Vector de tiempos de cada celda (_m cantidad de celdas)
+LLama: funcion productoAtraspuestaPorA, eliminacionGauss
+
+*/
+Vector DOK::CuadradosMinimos(Vector b)
+{
+    Vector x(_m-1, 0.0);
+    Vector auxb(_m - 1, 0.0);
+
+    auxb = matrizTraspuestaXVector(b);
+    // (At * A) * x = At b
+    x = eliminacionGauss(auxb, EPSILON_EG);
+    return x;
+}
+
+
+Vector DOK::matrizTraspuestaXVector(Vector &b)
+{
+    size_t filasA = _n;
+    size_t columnasA = _m;
+    double acum=0.0; //acumulador de fila x columna
+
+    // At * b tiene dimension columnasA * 1
+    Vector Rta(_m);
+    for (size_t i=0; i < columnasA; ++i)
+    {
+        // inicializar el acumulador en cero
+        acum = 0.0;
+        for (size_t k=0; k < filasA; ++k)
+        {
+            // si el elemento de At[i][k] no es cero multiplicarlo por el correspondiente de b y acumular el resultado
+            // (At[i][k] = A[k][i])
+            if ( _mat[k].count(i) > 0)
+            {
+                acum += _mat[k][i] * b[k];
+            }
+        }
+        // si el acumulador es mayor a cero agregamos el elemento en la matriz resultado
+        Rta[i] = acum;
+    }
+    return Rta;    
+}
+
+
+
+// parametros: de entrada: matriz A esparza rectangular
+// Salida: A traspuesta * A, esparza cuadrada
+DOK DOK::productoAtraspuestaPorA(DOK& m)
+{
+    size_t filasA = this->_n;
+    size_t columnasA = this->_m;
+    double acum=0.0; //acumulador de fila x columna
+
+    // At * A tiene dimension columnasA * columnasA
+    DOK C(this->_m);
+    for (size_t i=0; i < columnasA; ++i)
+            for (size_t j=0; j < columnasA; ++j)
+            {
+                // inicializar el acumulador en cero
+                acum = 0.0;
+                for (size_t k=0; k < filasA; ++k)
+                {
+                    // si los elementos de At[i][k] y A[k][j] no son cero multiplicarlos y acumular el resultado
+                    // (At[i][k] = A[k][i])
+                    if ( (_mat[k].count(i) > 0) && (_mat[k].count(j) > 0) )
+                    {
+                        acum += _mat[k][i] * _mat[k][j];
+                    }
+                }
+                // si el acumulador es mayor a cero agregamos el elemento en la matriz resultado
+                if (acum != 0)
+                {
+                    C._mat[i][j] = acum;
+                }
+            }
+    return C;
+}
+
+
+
 Vector DOK::eliminacionGauss(Vector& b, double eps)
 {
     double mult, matij, matkj;
@@ -208,7 +293,6 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
 
 Vector DOK::resolverSistema()
 {
-
     int n = n-2;
     Vector x(_n-1,0.0);
     for (int i = _n-2; i >= 0; i--)
@@ -265,29 +349,3 @@ void mostrarMatriz(DOK& dok)
     std::cout << "\n";
 }
 
-//Armar la matriz diagonal D, "balance"
-DOK::DOK(DOK& m)
-{
-    _n = m._n;
-    for (int j = 0; j < _n; j++)
-    {
-        int cj = Cj(j,m);
-
-        if(cj != 0)
-        {
-            _mat[j][j] = (1.0 / double(cj));
-        }
-    }
-}
-
-int DOK::Cj(int j, DOK& m){
-	int Cj = 0;
-	for (int i = 0; i < _n; i++) //i son filas, j es la columna fija
-	{
-		if(m._mat[i].count(j) > 0)
-      Cj += 1;
-	}
-	return Cj; //Cj son la cantidad de links salientes de la pagina j
-}
-
-//Caminante aleatorio:

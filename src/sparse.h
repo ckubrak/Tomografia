@@ -12,6 +12,7 @@
 #include <fstream>
 #include <unordered_map>
 
+#define EPSILON_EG 0.00001
 typedef std::vector<double > Vector;
 
 class DOK
@@ -35,6 +36,8 @@ public:
 
     void multiplicarConstante(double c);
     DOK multiplicarMatriz(DOK& m);
+    DOK productoAtraspuestaPorA(DOK& m);
+    Vector CuadradosMinimos(Vector b);
 
     double& operator()(size_t i, size_t j)
     {
@@ -55,6 +58,7 @@ private:
 
     int Cj(int j, DOK& m);
     Vector resolverSistema();
+    Vector matrizTraspuestaXVector(Vector &b);
 };
 
 
