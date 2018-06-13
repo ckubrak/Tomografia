@@ -1,0 +1,47 @@
+\subsubsection*{Introducción}
+\par El problema que se nos platea es el de realizar un reconocimiento facial mediante un aprendizaje supervisado. Partimos de una base de datos, a la cual llamaremos \textit{base de entrenamiento},
+que consiste en un conjunto de $N$ personas de las cuales contamos con $M$ fotos diferentes de sus caras. Al recibir una nueva imagen, buscamos identificar
+a qu\'e persona le correspone. 
+\par Para reconocer la nueva cara experimentaremos con dos m\'etodos: el primero usando los $k$ vecinos m\'as cercanos (\textit{kNN}) y 
+el segundo utilizando el an\'alisis de componentes principales (\textit{PCA}) como forma de preprocesar la \textit{base de entrenamiento} para reducir el 
+tama\~{n}o de la imagen y luego correr \textit{kNN}. 
+\par Por \'ultimo, para evaluar los m\'etodos y la correcta elecci\'on de par\'ametros utilizaremos una t\'ecnica de \textit{cross validation} llamado
+\textit{K-fold}.
+
+\subsubsection*{K vecinos m\'as cercanos}
+\par A partir de la \textit{base de entrenamiento} buscamos identificar a qu\'e sujeto pertenece una nueva cara sin identificar.
+Para este algoritmo considera a cada imagen de la \textit{base de entrenamiento} como un vector de dimensi\'on $n$, donde $n = altura*ancho$ asumiendo que
+todas las im\'agenes tienen el mismo tama\~no, para el cual se conoce a cu\'al es el ID de la imagen (i.e.: la persona) para luego mediante el c\'alculo
+de la nomrma de la diferencia, obtener los $k$ elementos m\'as cercanos.\\
+Esta forma de encarar el problema resuta poco pr\'actica cuando la dimensi\'on de la im\'agen es grande, es por esto que en ciertos casos preprocesamos
+la base de datos con el m\'etodo \textit{PCA}.
+
+\subsubsection*{An\'alisis de componentes principales}
+\par Para este algoritmo de preprocesamiento, calculamos $\mu = (\sum_{i=1}^{n})/n$ el promedio de todas la im\'agenes. Luego definimos $X \in {\rm I\!R}^n$ 
+que en i-\'esima fila tiene al vector $(x_i -  \mu)/\sqrt{n -1}$. Para esta matriz $X$, deber\'iamos calcular la matriz de covarianza definida como $M = X^tX$.
+Sea $v_j$ el autovector de $M$ asociado al j-\'esimo autovector (teniendo los autovalores ordenados seg\'un su valor absoluto), definimos para cada
+$i = 1,..,n$ la \textit{transformaci\'on caracter\'istica} de $x_i$ como el vector $tc(x_i) = (v_1x_i,v_2x_2,..,v_\alpha x_i)^t \in {\rm I\!R}^\alpha$,
+donde $\alpha$ es un par\'ametro que fuimos variando para la experimentaci\'on.\\
+A\'un as\'i, por motivos de optimizaci\'on, en vez de calcular la matriz de $M$, calculamos una matriz $\tilde{M} = XX^t$ para luego mediante un cambio de variable
+recuperar los autovectores de $M$.
+
+\subsubsection*{Cross validation} 
+\par Para poder evaluar qu\'e tan bien funciona nuestro algoritmo es necesario realizar una validaci\'on de los resultados. Para esta tarea ultilizamos el
+m\'etodo de \textit{Cross validation} llamado \textit{k-fold}. Subdividimos nuestra \textit{base de entrenamiento} en $k$ subconjuntos con igual cantidad
+de elementos. Uno de estos lo utilizaremos como datos de prueba mientras que los $k-1$ restantes ser\'an la \textit{base de entrenamiento}. A partir de esto
+podemos analizar los resultados ya que contamos la informaci\'on sobre a qu\'e sujeto pertenece cada im commagen de nuestra base de pruebas. Por \'ultimo resta repetir
+el procedimiento para que cada uno de los subconjuntos sea considerado como base de pruebas.
+
+\subsubsection*{Criterios de evaluaci\'on}
+Resulta de vital importancia tener en claro cu\'ales son los criterios a tener en cuenta para ver si nuestra clasificaci\'on es \textit{buena} o no.
+Para poder evaluarla, debemos mirar los \textit{true positives} y \textit{true negatives} (los casos en los cuales el encasillado funcion\'o correctamente)
+como tambi\'en los \textit{false positives} y \textit{false negatives} (casos en los cuales la clasificaci\'on no se comport\'o como se esperaba).\\
+Siendo el caso a analizar no binario (existen m\'as de dos categor\'ias), para cada $i = 1,..,n$  definimos $tp_i$ como
+las muestras que realmente pertenec\'ian a la clase $i$ y fueron exitosamente identificadas como tales
+y $fn_i$ son aquellas muestras que fueron identificadas como pertenecientes a la clase i cuando realmente no lo eran (an\'alogamente definimos $tn_i$ y $fp_i$).
+\par A partir de esto definimos cuatro m\'etricas, a saber:
+$precision_i= \frac{tp_i}{tp_i + fp_i}$ la cual indica qu\'e porcentaje de los datos recuperados cu\'ales son relevantes. 
+El $recall_i= \frac{tp_i}{tp_i + fn_i}$, que indica qu\'e porcentaje de los datos relevantes fueron recuperados.
+El $accuracy_i = \frac{tp_i+tn_i}{tp_i + tn_i + fp_i + fn_i}$ indica la cantidad de aciertos sobre el total de la base de datos.
+Por \'ultimo la media arm\'onica $F_{1_i} = 2\frac{precision_i * recall_i}{precision_i + recall_i}$ permite establecer un compromiso entre en 
+$recall_i$ y el $accuracy_i$.

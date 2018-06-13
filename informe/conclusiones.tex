@@ -1,0 +1,13 @@
+\subsubsection*{Conclusiones}
+
+
+Luego de observar los gráficos anteriores llegamos a algunas conclusiones.
+Por un lado, la cantidad de vecinos cercanos que tomemos no afecta significativamente el tiempo de ejecución, pero lo que sí lo afecta es el $\alpha$ de PCA.
+
+¿A qué se debe esto? Teniendo en cuenta el funcionamiento de nuestro algoritmo, entendemos que lo que ocurre es que una gran parte del tiempo de procesamiento de PCA se consume en el método de la potencia (que se realiza $\alpha$ veces) y en la transformación de los autovectores calculados en los de la verdadera matriz de covarianza de la muestra, que involucran numerosos cálculos matriciales.\newline
+
+Sin embargo, pensamos que en una implementación real estaríamos trabajando con una única training base, y las transformaciones que llevamos a cabo en el PCA las haríamos una única vez al iniciar el programa o cuando sea necesario agregar o quitar alguna imagen de la base de datos (con lo que este costo de tiempo se pagaría solo en esos casos), para luego realizar únicamente el reconocimiento. Usando PCA + KNN tenemos la ventaja de trabajar con imágenes de menor tamaño que las originales con el consiguiente ahorro de espacio.
+
+En ese sentido, si tenemos en cuenta que si por ejemplo utilizamos un $\alpha = 30$ con imagenes con 300 columnas, podríamos reducir la imagen a un décimo de su tamaño original sin perder efectividad, siendo el único sacrificio significativo la necesidad de tener que aplicar nuevamente PCA cada vez que agregamos sujeto/s a la base o al momento de crearla. Creemos que este es un \textit{trade off} bastante positivo.\newline
+ 
+Por último, creemos que por las caracteristicas de los datos con los que estuvimos trabajando no pudimos sacarle todo el provecho a estos métodos. Por ejemplo, con una base de entrenamiento con una cantidad mayor de imagenes por sujeto hubieramos podido aplicar un k-fold con más imagenes de cada sujeto para testear y hacer un proceso de cross-validation más interesante.

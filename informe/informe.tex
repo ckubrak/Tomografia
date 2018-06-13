@@ -1,0 +1,78 @@
+%\documentclass[a4paper]{article}
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc} % para poder usar tildes en archivos UTF-8
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{verbatim}
+\usepackage{clrscode3e}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{pdfpages}
+
+% \usepackage{bibtex}
+
+%\usepackage{a4wide} % márgenes un poco más anchos que lo usual
+
+\usepackage{caratula} % Se puede descargar en ~> https://github.com/bcardiff/dc-tex
+\usepackage[breaklinks=true]{hyperref}
+
+
+\begin{document} % Todo lo que escribamos a partir de aca va a aparecer en el documento.
+
+%fran
+%\sloppy
+
+% Completar los datos de la caratula
+\titulo{Trabajo Práctico 2 - Reconocimiento de Imagenes} 
+\fecha{\today}
+\materia{Métodos Numéricos}
+\grupo{Grupo "Nombre Del Grupo"}
+
+% Completar los integrantes del grupo:)
+%\integrante{Facundo, Araujo}{321/15}{facalj\_velez@hotmail.com}
+\integrante{Cristian, Kubrak}{456/15}{Kubrakcristian@gmail.com}
+\integrante{Marcela Alejandra, Herrera}{1162/84}{marcelaalejandraherrera@yahoo.com.ar}
+\integrante{Luis Fernando, Greco}{150/15}{luifergreco@gmail.com}
+
+
+\maketitle
+
+% Aca comienzan a escribir su informe
+\tableofcontents
+
+\newpage
+
+\section{Introducción}
+\input{introduccion}
+\newpage
+
+% \section{Demostraciones}
+% \newpage
+
+\section{Desarrollo}
+\input{desarrollo}
+\newpage
+
+\section{Experimentación}
+\input{experimentacion}
+\newpage
+
+\section{Resultados}
+\input{resultados}
+\newpage
+
+
+\section{Discusión}
+\input{discusion}
+\newpage
+
+\section{Conclusiones}
+\input{conclusiones}
+\newpage
+
+\section{Apendices}
+\input{apendices}	
+\newpage
+
+\end{document}
+

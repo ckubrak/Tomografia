@@ -1,0 +1,3 @@
+/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles/rebuild_cache.dir
+/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles/edit_cache.dir
+/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles/tp3.dir
