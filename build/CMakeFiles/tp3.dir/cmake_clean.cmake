@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o"
   "CMakeFiles/tp3.dir/src/main.cpp.o"
   "CMakeFiles/tp3.dir/src/sparse.cpp.o"
+  "CMakeFiles/tp3.dir/src/misc.cpp.o"
   "tp3.pdb"
   "tp3"
 )
