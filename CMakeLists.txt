@@ -10,6 +10,9 @@ set(SOURCE_FILES
 	src/main.cpp        
 	src/sparse.cpp
 	src/sparse.h
+	src/rayos.hpp
+	src/misc.h
+	src/misc.cpp
         )
 
 add_executable(tp3 ${SOURCE_FILES})
