@@ -95,3 +95,36 @@ Vector to8bits(Vector &I)
     return I8;
 
 }
+
+
+/*
+    std::string out = argv[1];
+    //TODO cambiar a .out a la hora de entregar
+    out += ".outi";
+    std::ofstream output(out);
+    output << p <<"\n";
+    for (int i =0; i< resultado.size();i++)
+    {
+        output << resultado[i] << "\n";
+    }
+    output.close();
+    return 0;
+
+*/
+
+int grabarPPM8Bits(std::string nombre_archivo, int filas, int columnas, Vector I)
+{
+    size_t cantPixeles = I.size();
+
+    std::ofstream output(nombre_archivo += ".pgm" );
+    output << "P5" << "\n";
+    output << filas <<  " " << columnas << "\n";
+    output << 255 << "\n";
+    // escribir de corrido los unsigned char que representan los valores de la imagen
+    for (int i=0; i<cantPixeles; ++i)
+    {
+        output << (unsigned char) I[i];
+    }
+    output.close();
+    return 0;
+}
