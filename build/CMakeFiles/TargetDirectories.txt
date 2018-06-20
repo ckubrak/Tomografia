@@ -1,3 +1,0 @@
-/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles/rebuild_cache.dir
-/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles/edit_cache.dir
-/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles/tp3.dir
