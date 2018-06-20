@@ -3,7 +3,12 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <map>
+#include <unordered_map>
+
 using namespace std;
+
+
 void pasa(int n, int m, double x, double y, double angulo, vector<pair<int, int>> &solucion)
 //n es cantidad de filas de pixeles
 //m es cantidad de columnas de pixeles
@@ -88,3 +93,25 @@ void pasa(int n, int m, double x, double y, double angulo, vector<pair<int, int>
     }
 
 }
+//ES MUY IMPORTANTE REVISAR EL ORDEN DE LOS PARAMETROS. ESTO SE HIZO SUPONIENDO MATRIZ ESTA COMPUESTA POR UN VECTOR DE COLUMNAS. EN CASO DE SER VECTOR DE FILAS DEBERÉ CAMBIARLO (en particular intercambiar a y b)
+typedef map<size_t, map<size_t , double> > matriz;
+int tiemporayo(int n, int m , matriz velocidad, double x, double y, double angulo)
+{
+    vector<pair<int, int>> solucion;
+    pasa(n, m, x, y, angulo, solucion);
+    int a;
+    int b;
+    int suma=0;
+    for (int i=0;i<solucion.size();i++)
+    {
+        a=solucion[i].first;
+        b=n-1-(solucion[i].second);
+        if ((velocidad.count(a)>0)&&(velocidad[a].count(b)>0))
+        {
+            suma=suma+velocidad[a][b];
+        }
+    }
+    return suma;
+}
+
+
