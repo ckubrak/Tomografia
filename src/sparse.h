@@ -51,6 +51,8 @@ public:
         return _n;
     }
 
+    void cargarCsv(std::string csv);
+
 private:
     matriz _mat;
     size_t _n;
