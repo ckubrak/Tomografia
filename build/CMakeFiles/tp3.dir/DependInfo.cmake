@@ -4,9 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/ppmloader/ppmloader.cpp" "/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o"
-  "/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/src/main.cpp" "/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles/tp3.dir/src/main.cpp.o"
-  "/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/src/sparse.cpp" "/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles/tp3.dir/src/sparse.cpp.o"
+  "/home/sly/Documents/Metnum/TP3-Metodos/ppmloader/ppmloader.cpp" "/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o"
+  "/home/sly/Documents/Metnum/TP3-Metodos/src/main.cpp" "/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles/tp3.dir/src/main.cpp.o"
+  "/home/sly/Documents/Metnum/TP3-Metodos/src/misc.cpp" "/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles/tp3.dir/src/misc.cpp.o"
+  "/home/sly/Documents/Metnum/TP3-Metodos/src/sparse.cpp" "/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles/tp3.dir/src/sparse.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

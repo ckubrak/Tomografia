@@ -8,6 +8,7 @@
 #include <fstream>
 #include "pca.h"
 #include "knn.h"
+#include "sparse.h"
 
 
 
@@ -16,4 +17,8 @@ std::vector<std::pair<int, int>> iFold(baseDeDatos bd, std::vector<int> indices,
 bool apareceEn(Imagen img, std::vector<int> indices);
 int cantidadImagenesPorClase(baseDeDatos& bd);
 int cantidadClases(baseDeDatos& bd);
+
+void agregarRuidoImagen(DOK&,float alpha);
+void agregarRuidoRayo(std::vector<pair<int, double>> vectorRayo,float alpha);
+
 #endif

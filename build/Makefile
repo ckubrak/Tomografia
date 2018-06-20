@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos
+CMAKE_SOURCE_DIR = /home/sly/Documents/Metnum/TP3-Metodos
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build
+CMAKE_BINARY_DIR = /home/sly/Documents/Metnum/TP3-Metodos/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles /home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,6 +177,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/tp3.dir/build.make CMakeFiles/tp3.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/misc.o: src/misc.cpp.o
+
+.PHONY : src/misc.o
+
+# target to build an object file
+src/misc.cpp.o:
+	$(MAKE) -f CMakeFiles/tp3.dir/build.make CMakeFiles/tp3.dir/src/misc.cpp.o
+.PHONY : src/misc.cpp.o
+
+src/misc.i: src/misc.cpp.i
+
+.PHONY : src/misc.i
+
+# target to preprocess a source file
+src/misc.cpp.i:
+	$(MAKE) -f CMakeFiles/tp3.dir/build.make CMakeFiles/tp3.dir/src/misc.cpp.i
+.PHONY : src/misc.cpp.i
+
+src/misc.s: src/misc.cpp.s
+
+.PHONY : src/misc.s
+
+# target to generate assembly for a file
+src/misc.cpp.s:
+	$(MAKE) -f CMakeFiles/tp3.dir/build.make CMakeFiles/tp3.dir/src/misc.cpp.s
+.PHONY : src/misc.cpp.s
+
 src/sparse.o: src/sparse.cpp.o
 
 .PHONY : src/sparse.o
@@ -219,6 +246,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/misc.o"
+	@echo "... src/misc.i"
+	@echo "... src/misc.s"
 	@echo "... src/sparse.o"
 	@echo "... src/sparse.i"
 	@echo "... src/sparse.s"
