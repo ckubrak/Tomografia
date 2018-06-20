@@ -51,6 +51,19 @@ public:
         return _n;
     }
 
+    matriz data()
+    {
+        return _mat;
+    }
+    
+    size_t filas()
+    {
+        return _n;
+    }
+
+
+    void cargarCsv(std::string csv, int n);
+
 private:
     matriz _mat;
     size_t _n;
