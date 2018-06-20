@@ -95,13 +95,13 @@ void pasa(int n, int m, double x, double y, double angulo, vector<pair<int, int>
 }
 //ES MUY IMPORTANTE REVISAR EL ORDEN DE LOS PARAMETROS. ESTO SE HIZO SUPONIENDO MATRIZ ESTA COMPUESTA POR UN VECTOR DE FILAS. EN CASO DE SER VECTOR DE COLUMNAS DEBERÉ CAMBIARLO (en particular intercambiar a y b)
 typedef map<size_t, map<size_t , double> > matriz;
-int tiemporayo(int n, int m , matriz velocidad, double x, double y, double angulo)
+double tiemporayo(int n, int m , matriz velocidad, double x, double y, double angulo)
 {
     vector<pair<int, int>> solucion;
     pasa(n, m, x, y, angulo, solucion);
     int a;
     int b;
-    int suma=0;
+    double suma=0;
     for (int i=0;i<solucion.size();i++)
     {
         b=solucion[i].first;
