@@ -98,18 +98,11 @@ Vector to8bits(Vector &I)
 
 
 /*
-    std::string out = argv[1];
-    //TODO cambiar a .out a la hora de entregar
-    out += ".outi";
-    std::ofstream output(out);
-    output << p <<"\n";
-    for (int i =0; i< resultado.size();i++)
-    {
-        output << resultado[i] << "\n";
-    }
-    output.close();
-    return 0;
-
+Parametros:
+Entrada: string con el nombde del archivo de salida sin extension,
+ cantidad de filas de la imagen,
+ cantidad de columnas de la imagen
+ std::vector conteniendo en cada posicion un valor entre 0 y 255 que representa la intensidad de un pixel.
 */
 
 int grabarPPM8Bits(std::string nombre_archivo, int filas, int columnas, Vector I)
@@ -120,11 +113,58 @@ int grabarPPM8Bits(std::string nombre_archivo, int filas, int columnas, Vector I
     output << "P5" << "\n";
     output << filas <<  " " << columnas << "\n";
     output << 255 << "\n";
-    // escribir de corrido los unsigned char que representan los valores de la imagen
+    // escribir de corrido los unsigned char que representan los valores de intensidad de c/pixel de la imagen
     for (int i=0; i<cantPixeles; ++i)
     {
         output << (unsigned char) I[i];
     }
     output.close();
     return 0;
+}
+
+/*
+Parametros:
+Entrada:
+- I: matriz esparza conteniendo una imagen cuadrada
+- n: cantidad de pixeles x lado de la imagen
+- d: int divisor de n que indica la cantidad de pixeles de cada celda de la discretización
+Salida:
+Vector con el promedio de las intensidades de los pixeles de cada celda
+*/
+Vector promediarIntensidadesXCelda(DOK I, int n, int d)
+{
+    int i=0;
+    int j=0;
+        
+    int celdasXFila=n/d; // asumimos que d es divisor de n, cantidad de celdas por fila
+    int celdasTotales=celdasXFila * celdasXFila;
+
+    Vector R(celdasTotales, 0.0);
+
+    for (int a=0; a<celdasXFila; ++a)
+    {
+        i=a*d; //fila de los pixeles de las celdas de la fila a. Se inicializa en la primera fila de la celda.
+        for (int b=0; b<celdasXFila; ++b)
+        {
+            j=b*d;  //columna de los pixeles de las celdas de la columna b. Se inicializa en la primera columna de la celda.
+            for (int k=0; k<d; ++k) //recorrer las filas de pixeles dentro de la celda
+            {
+                for (int l=0; l<d; ++l)  //recorrer las columnas de pixeles dentro de la celda
+                {
+                    // chequear si existe el elemento [i+k] [j+l] de la imagen (si la intensidad del pixel es mayor a cero)
+                    if (I.data().count(i+k) && (I.data()[i+k]).count(j+l))
+                    {
+                        if (I.data()[i+k][j+l] > 0) // ignorar pixeles sin informacion (valores negativos)
+                            R[a*celdasXFila+b] += I.data()[i+k][j+l];
+                    }
+                }
+            }
+        }
+    }
+    // hallar el promedio de la intensidad de cada celda
+    for (int a=0; a<celdasTotales; ++a)
+    {
+        R[a] = R[a]/(d*d);        
+    }
+    return R;
 }
