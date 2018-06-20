@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos
+CMAKE_SOURCE_DIR = /home/sly/Documents/Metnum/TP3-Metodos
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build
+CMAKE_BINARY_DIR = /home/sly/Documents/Metnum/TP3-Metodos/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tp3.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/tp3.dir/flags.make
 
 CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o: CMakeFiles/tp3.dir/flags.make
 CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o: ../ppmloader/ppmloader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o -c /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/ppmloader/ppmloader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o -c /home/sly/Documents/Metnum/TP3-Metodos/ppmloader/ppmloader.cpp
 
 CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/ppmloader/ppmloader.cpp > CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sly/Documents/Metnum/TP3-Metodos/ppmloader/ppmloader.cpp > CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.i
 
 CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/ppmloader/ppmloader.cpp -o CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sly/Documents/Metnum/TP3-Metodos/ppmloader/ppmloader.cpp -o CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.s
 
 CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o.provides.build: CMakeFiles/tp3.dir/
 
 CMakeFiles/tp3.dir/src/main.cpp.o: CMakeFiles/tp3.dir/flags.make
 CMakeFiles/tp3.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tp3.dir/src/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp3.dir/src/main.cpp.o -c /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tp3.dir/src/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp3.dir/src/main.cpp.o -c /home/sly/Documents/Metnum/TP3-Metodos/src/main.cpp
 
 CMakeFiles/tp3.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp3.dir/src/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/src/main.cpp > CMakeFiles/tp3.dir/src/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sly/Documents/Metnum/TP3-Metodos/src/main.cpp > CMakeFiles/tp3.dir/src/main.cpp.i
 
 CMakeFiles/tp3.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp3.dir/src/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/src/main.cpp -o CMakeFiles/tp3.dir/src/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sly/Documents/Metnum/TP3-Metodos/src/main.cpp -o CMakeFiles/tp3.dir/src/main.cpp.s
 
 CMakeFiles/tp3.dir/src/main.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/tp3.dir/src/main.cpp.o.provides.build: CMakeFiles/tp3.dir/src/main.cp
 
 CMakeFiles/tp3.dir/src/sparse.cpp.o: CMakeFiles/tp3.dir/flags.make
 CMakeFiles/tp3.dir/src/sparse.cpp.o: ../src/sparse.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tp3.dir/src/sparse.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp3.dir/src/sparse.cpp.o -c /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/src/sparse.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tp3.dir/src/sparse.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp3.dir/src/sparse.cpp.o -c /home/sly/Documents/Metnum/TP3-Metodos/src/sparse.cpp
 
 CMakeFiles/tp3.dir/src/sparse.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp3.dir/src/sparse.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/src/sparse.cpp > CMakeFiles/tp3.dir/src/sparse.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sly/Documents/Metnum/TP3-Metodos/src/sparse.cpp > CMakeFiles/tp3.dir/src/sparse.cpp.i
 
 CMakeFiles/tp3.dir/src/sparse.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp3.dir/src/sparse.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/src/sparse.cpp -o CMakeFiles/tp3.dir/src/sparse.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sly/Documents/Metnum/TP3-Metodos/src/sparse.cpp -o CMakeFiles/tp3.dir/src/sparse.cpp.s
 
 CMakeFiles/tp3.dir/src/sparse.cpp.o.requires:
 
@@ -129,11 +129,36 @@ CMakeFiles/tp3.dir/src/sparse.cpp.o.provides: CMakeFiles/tp3.dir/src/sparse.cpp.
 CMakeFiles/tp3.dir/src/sparse.cpp.o.provides.build: CMakeFiles/tp3.dir/src/sparse.cpp.o
 
 
+CMakeFiles/tp3.dir/src/misc.cpp.o: CMakeFiles/tp3.dir/flags.make
+CMakeFiles/tp3.dir/src/misc.cpp.o: ../src/misc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tp3.dir/src/misc.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp3.dir/src/misc.cpp.o -c /home/sly/Documents/Metnum/TP3-Metodos/src/misc.cpp
+
+CMakeFiles/tp3.dir/src/misc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp3.dir/src/misc.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sly/Documents/Metnum/TP3-Metodos/src/misc.cpp > CMakeFiles/tp3.dir/src/misc.cpp.i
+
+CMakeFiles/tp3.dir/src/misc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp3.dir/src/misc.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sly/Documents/Metnum/TP3-Metodos/src/misc.cpp -o CMakeFiles/tp3.dir/src/misc.cpp.s
+
+CMakeFiles/tp3.dir/src/misc.cpp.o.requires:
+
+.PHONY : CMakeFiles/tp3.dir/src/misc.cpp.o.requires
+
+CMakeFiles/tp3.dir/src/misc.cpp.o.provides: CMakeFiles/tp3.dir/src/misc.cpp.o.requires
+	$(MAKE) -f CMakeFiles/tp3.dir/build.make CMakeFiles/tp3.dir/src/misc.cpp.o.provides.build
+.PHONY : CMakeFiles/tp3.dir/src/misc.cpp.o.provides
+
+CMakeFiles/tp3.dir/src/misc.cpp.o.provides.build: CMakeFiles/tp3.dir/src/misc.cpp.o
+
+
 # Object files for target tp3
 tp3_OBJECTS = \
 "CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o" \
 "CMakeFiles/tp3.dir/src/main.cpp.o" \
-"CMakeFiles/tp3.dir/src/sparse.cpp.o"
+"CMakeFiles/tp3.dir/src/sparse.cpp.o" \
+"CMakeFiles/tp3.dir/src/misc.cpp.o"
 
 # External object files for target tp3
 tp3_EXTERNAL_OBJECTS =
@@ -141,9 +166,10 @@ tp3_EXTERNAL_OBJECTS =
 tp3: CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o
 tp3: CMakeFiles/tp3.dir/src/main.cpp.o
 tp3: CMakeFiles/tp3.dir/src/sparse.cpp.o
+tp3: CMakeFiles/tp3.dir/src/misc.cpp.o
 tp3: CMakeFiles/tp3.dir/build.make
 tp3: CMakeFiles/tp3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable tp3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable tp3"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tp3.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -154,6 +180,7 @@ CMakeFiles/tp3.dir/build: tp3
 CMakeFiles/tp3.dir/requires: CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o.requires
 CMakeFiles/tp3.dir/requires: CMakeFiles/tp3.dir/src/main.cpp.o.requires
 CMakeFiles/tp3.dir/requires: CMakeFiles/tp3.dir/src/sparse.cpp.o.requires
+CMakeFiles/tp3.dir/requires: CMakeFiles/tp3.dir/src/misc.cpp.o.requires
 
 .PHONY : CMakeFiles/tp3.dir/requires
 
@@ -162,6 +189,6 @@ CMakeFiles/tp3.dir/clean:
 .PHONY : CMakeFiles/tp3.dir/clean
 
 CMakeFiles/tp3.dir/depend:
-	cd /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build /home/marcela/CsComputacion/metnum/labo/tp3/TP3-Metodos/build/CMakeFiles/tp3.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sly/Documents/Metnum/TP3-Metodos/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sly/Documents/Metnum/TP3-Metodos /home/sly/Documents/Metnum/TP3-Metodos /home/sly/Documents/Metnum/TP3-Metodos/build /home/sly/Documents/Metnum/TP3-Metodos/build /home/sly/Documents/Metnum/TP3-Metodos/build/CMakeFiles/tp3.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/tp3.dir/depend
 

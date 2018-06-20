@@ -7,6 +7,15 @@ CMakeFiles/tp3.dir/ppmloader/ppmloader.cpp.o: ../ppmloader/ppmloader.h
 CMakeFiles/tp3.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/tp3.dir/src/main.cpp.o: ../src/sparse.h
 
+CMakeFiles/tp3.dir/src/misc.cpp.o: ../ppmloader/ppmloader.h
+CMakeFiles/tp3.dir/src/misc.cpp.o: ../src/imagen.h
+CMakeFiles/tp3.dir/src/misc.cpp.o: ../src/kfold.h
+CMakeFiles/tp3.dir/src/misc.cpp.o: ../src/knn.h
+CMakeFiles/tp3.dir/src/misc.cpp.o: ../src/misc.cpp
+CMakeFiles/tp3.dir/src/misc.cpp.o: ../src/misc.h
+CMakeFiles/tp3.dir/src/misc.cpp.o: ../src/pca.h
+CMakeFiles/tp3.dir/src/misc.cpp.o: ../src/sparse.h
+
 CMakeFiles/tp3.dir/src/sparse.cpp.o: ../src/sparse.cpp
 CMakeFiles/tp3.dir/src/sparse.cpp.o: ../src/sparse.h
 
