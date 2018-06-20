@@ -350,18 +350,24 @@ void mostrarMatriz(DOK& dok)
 }
 
 
-void cargarCsv(std::string csv)
+void DOK::cargarCsv(std::string csv, int n)
 {
     std::ifstream infile(csv);
     std::string line;
-    int i = 0;
-    while (std::getline(infile, line))
-        {
-            int j=0;
-            while()
-            for (int j = 0; j < 5; ++j)
+    int temp;
+    _m = 0;
+    _n = n;
+    for (int i = 0; i < n; ++i)
+    {
+            for (int j = 0; j < n; ++j)
             {
-                file >> _mat[i][j];
+                
+                infile >> temp;
+                if (temp > 0)
+                {
+                    _mat[i][j] = temp;
+                    _m++;
+                }
             }
         }
 }
