@@ -168,3 +168,60 @@ Vector promediarIntensidadesXCelda(DOK I, int n, int d)
     }
     return R;
 }
+
+//Recibo el tamano de la imagen y la cantidad de rayos.
+//Supongo que la matriz es de tamano tam*tam
+//Devuelvo el vector que en cada lugar tiene ((coordenadas de salida), anmgulo)
+//La cantidad de rayos posta es cantRayos*4, para no tener problemas de divisibilidad
+Vector<pair<pair<int, int> double>> generarRayosVertices(int tam,int cantRayos){
+	
+	std::vector<pair<int, int>, double> resultado (4*cantRayos);
+
+	std::vector<pair<int, int>> SI = (tam -1, 0); //Extremo Superior Izquierdo
+	std::vector<pair<int, int>> SD = (tam -1, tam -1); //Extremo Superior Derecho
+	std::vector<pair<int, int>> II = (0, 0); //Extremo Inferior Izquierdo
+	std::vector<pair<int, int>> ID = (0, tam -1); //Extremo Inferior Derecho
+
+	double paso = 90/cantRayos;//Cada vertice tiene 90̣̣°. Esto son las particiones que tenemos en cada vertice
+	int i = 0;
+
+	//Armamos los ratos de la parte SI
+	double x = 270 + paso;
+	while(x > 360){
+		resultado[i].first() = SI;
+		resultado[i].second() = x;
+		i++;
+		x = x + paso;
+	}
+
+	//Armamos los ratos de la parte SD
+	double x = 180 + paso;
+	while(x > 270){
+		resultado[i].first() = SD;
+		resultado[i].second() = x;
+		i++;
+		x = x + paso;
+	}
+
+	//Armamos los ratos de la parte II
+	double x = 0 + paso;
+	while(x > 90){
+		resultado[i].first() = II;
+		resultado[i].second() = x;
+		i++;
+		x = x + paso;
+	}
+
+	//Armamos los ratos de la parte ID
+	double x = 90 + paso;
+	while(x > 180){
+		resultado[i].first() = ID;
+		resultado[i].second() = x;
+		i++;
+		x = x + paso;
+	}
+
+	//Para debuggear
+	//Assert( i = tam-1);
+
+}

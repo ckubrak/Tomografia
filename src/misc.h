@@ -14,4 +14,5 @@
 int main_kfold(int pca, int k, int alfa, int kknn);
 double ErrorCuadraticoMedio(Vector &b, Vector &bcalculado);
 int grabarPPM8Bits(std::string nombre_archivo, int filas, int columnas, Vector I);
+Vector<pair<int, int>, double> generarRayosVertices(int tam,int cantRayos);
 #endif
