@@ -33,7 +33,7 @@ CERO_PPM_16 0
 
 Parametros de entrada:
 Vector con las velocidades de cada celda de la imagen discretizada
-Salida: Vector con las intensidades de cada celda de la imagen discretizada 
+Salida: Vector con las intensidades de cada celda de la imagen discretizada
 Procedimiento: Se hallan las inversas de los valores recibidos y se redondean para obtener un entero
 Si hay valores obtenidos estan fuera del rango valido de intensidades, se convierten a un valor dentro del rango
 */
@@ -49,7 +49,7 @@ Vector calcularIntensidad (Vector &v)
         else
             I[i] = MAX_PPM_16;
 
-        if ( I[i] < 0 ) 
+        if ( I[i] < 0 )
             I[i]=0;
         else if (I[i] > MAX_PPM_16)
                 I[i] = MAX_PPM_16;
@@ -86,7 +86,7 @@ Vector to8bits(Vector &I)
 
         // opcion 2: tomar el minimo como cero y el maximo como 255
         I8[i] = round( (I[i]-min_val) * 255 / (max_val-min_val));
-        
+
         if ( I8[i] > 255 ) // analizar si realmente puede irse de rango al redondear, lo ponemos x las dudas
         {
             I8[i]=255;
@@ -135,7 +135,7 @@ Vector promediarIntensidadesXCelda(DOK I, int n, int d)
 {
     int i=0;
     int j=0;
-        
+
     int celdasXFila=n/d; // asumimos que d es divisor de n, cantidad de celdas por fila
     int celdasTotales=celdasXFila * celdasXFila;
 
@@ -164,7 +164,77 @@ Vector promediarIntensidadesXCelda(DOK I, int n, int d)
     // hallar el promedio de la intensidad de cada celda
     for (int a=0; a<celdasTotales; ++a)
     {
-        R[a] = R[a]/(d*d);        
+        R[a] = R[a]/(d*d);
     }
     return R;
+}
+
+//Recibo el tamano de la imagen y la cantidad de rayos.
+//Supongo que la matriz es de tamano tam*tam
+//Devuelvo el vector que en cada lugar tiene ((coordenadas de salida), anmgulo)
+//La cantidad de rayos posta es cantRayos*4, para no tener problemas de divisibilidad
+vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int cantRayos){
+
+	std::vector<pair<pair<double, double>, double>> resultado (4*cantRayos);
+
+	int aux = tam -1;
+	pair<double, double> SI;// = (tam -1, 0) Extremo Superior Izquierdo
+	SI.first = aux;
+	SI.second = 0;
+
+	pair<double, double> SD;// = (tam -1, tam -1) Extremo Superior Derecho
+	SD.first = aux;
+	SD.second = aux;
+
+	pair<double, double> II;// = (0, 0) Extremo Inferior Izquierdo
+	II.first = 0;
+	II.second = 0;
+
+	pair<double, double> ID;// = (0, tam -1) Extremo Inferior Derecho
+	ID.first = 0;
+	ID.second = aux;
+
+
+	double paso = 90/cantRayos;//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
+	int i = 0;
+
+	//Armamos los ratos de la parte SI
+	double x = 270 + paso;
+	while(x > 360){
+		resultado[i].first = SI;
+		resultado[i].second = x;
+		i++;
+		x = x + paso;
+	}
+
+	//Armamos los ratos de la parte SD
+	x = 180 + paso;
+	while(x > 270){
+		resultado[i].first = SD;
+		resultado[i].second = x;
+		i++;
+		x = x + paso;
+	}
+
+	//Armamos los ratos de la parte II
+	x = 0 + paso;
+	while(x > 90){
+		resultado[i].first = II;
+		resultado[i].second = x;
+		i++;
+		x = x + paso;
+	}
+
+	//Armamos los ratos de la parte ID
+	x = 90 + paso;
+	while(x > 180){
+		resultado[i].first = ID;
+		resultado[i].second = x;
+		i++;
+		x = x + paso;
+	}
+
+	//Para debuggear
+	//Assert( i = tam-1);
+
 }
