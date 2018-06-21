@@ -105,7 +105,7 @@ Entrada: string con el nombde del archivo de salida sin extension,
  std::vector conteniendo en cada posicion un valor entre 0 y 255 que representa la intensidad de un pixel.
 */
 
-int grabarPPM8Bits(std::string nombre_archivo, int filas, int columnas, Vector I)
+void grabarPPM8Bits(std::string nombre_archivo, int filas, int columnas, Vector I)
 {
     size_t cantPixeles = I.size();
 
@@ -119,7 +119,7 @@ int grabarPPM8Bits(std::string nombre_archivo, int filas, int columnas, Vector I
         output << (unsigned char) I[i];
     }
     output.close();
-    return 0;
+    return;
 }
 
 /*
@@ -131,11 +131,13 @@ Entrada:
 Salida:
 Vector con el promedio de las intensidades de los pixeles de cada celda
 */
-Vector promediarIntensidadesXCelda(DOK I, int n, int d)
+//Vector promediarIntensidadesXCelda(DOK I, int n, int d)
+Vector promediarIntensidadesXCelda(DOK &I, int d)
 {
     int i=0;
     int j=0;
 
+    int n = I.size();
     int celdasXFila=n/d; // asumimos que d es divisor de n, cantidad de celdas por fila
     int celdasTotales=celdasXFila * celdasXFila;
 
