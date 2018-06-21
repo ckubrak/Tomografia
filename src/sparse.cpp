@@ -1,52 +1,49 @@
 #include "sparse.h"
+// Crea una matriz cuadrada
 DOK::DOK(size_t n)
 {
     _n = n;
+    _c = n;
     _m = 0;
 }
-//TP1 crea e inicializa matriz de punteros a paginas. TODO: analizar si se puede adaptar a 
-// TP3 sino eliminar
-DOK::DOK(const char* input)
+DOK::DOK(size_t n, size_t c)
 {
-
-    int from,to;
-    std::ifstream infile(input);
-    std::string line;
-    infile >> _n;
-    infile >> _m;
-
-    for( std::string line; std::getline( infile, line ); )
-
-    {
-        infile >> from >> to;
-        _mat[to-1][from-1] = 1;
-        _m++;
-    } 
+    _n = n;
+    _c = c;
+    _m = 0;
 }
 
+
+/*
 // crea e inicializa una matriz diagonal
 DOK::DOK(size_t n, double val)
 {
     _n = n;
+    _c = n;
     for (int i = 0; i < _n; i++)
     {
         _mat[i][i] = val;
         _m ++;
     }
 }
+*/
 
+/*
+// Producto de matrices (pueden ser rectangulares)
 DOK DOK::multiplicarMatriz(DOK &B)
 {
     size_t filasA = this->_n;
+    size_t columnasA = this->_c;
+    size_t columnasB = B._c;
     double acum=0.0; //acumulador de fila x columna
 
-    DOK C(this->_n);
+    DOK C(filasA, columnasB);
     for (size_t i=0; i < filasA; ++i)
-            for (size_t j=0; j < B._m; ++j)
+            for (size_t j=0; j < columnasB; ++j)
             {
                 // inicializar el acumulador en cero
                 acum = 0.0;
-                for (size_t k=0; k < this->_m; ++k)
+                for (size_t k=0; k < columnasA; ++k)
                 {
                     // si los elementos de A[i][k] y B[k][j] no son cero multiplicarlos y acumular el resultado
                     if ( (_mat[i].count(k) > 0) && (B._mat[k].count(j) > 0) )
@@ -62,7 +59,8 @@ DOK DOK::multiplicarMatriz(DOK &B)
             }
     return C;
 }
-
+*/
+/*
 void DOK::restarMatrices(DOK& m)
 {
     m.multiplicarConstante(-1.0);
@@ -73,7 +71,7 @@ void DOK::sumarMatrices(DOK& m)
 {
     for (int i = 0; i < _n; i++)
     {
-        for (int j = 0; j < _m; j++)
+        for (int j = 0; j < _c; j++)
         {
             if (_mat[i].count(j) > 0)
             {
@@ -92,14 +90,14 @@ void DOK::sumarMatrices(DOK& m)
         }
     }
 }
-
+*/
 
 void DOK::multiplicarConstante(double c)
 {
 
     for (int i = 0; i <size(); i++)
     {
-            for (int j = 0; j < _m; j++)
+            for (int j = 0; j < _c; j++)
             {
                 if (_mat[i].count(j) > 0){
                     _mat[i][j] = c * _mat[i][j];
@@ -115,16 +113,16 @@ Parametros de entrada:
 - Vector b (contiene los tiempos totales de cada rayo: _n (cantidad de rayos))
 - Salida: Vector de tiempos de cada celda (_m cantidad de celdas)
 LLama: funcion productoAtraspuestaPorA, eliminacionGauss
-
 */
 Vector DOK::CuadradosMinimos(Vector b)
 {
-    Vector x(_m-1, 0.0);
-    Vector auxb(_m - 1, 0.0);
+    Vector x(_c - 1, 0.0);
+    Vector auxb(_c - 1, 0.0);
 
-    auxb = matrizTraspuestaXVector(b);
     // (At * A) * x = At b
-    x = eliminacionGauss(auxb, EPSILON_EG);
+    auxb = matrizTraspuestaXVector(b);
+    x = productoAtraspuestaPorA().eliminacionGauss(auxb, EPSILON_EG);
+    
     return x;
 }
 
@@ -132,7 +130,7 @@ Vector DOK::CuadradosMinimos(Vector b)
 Vector DOK::matrizTraspuestaXVector(Vector &b)
 {
     size_t filasA = _n;
-    size_t columnasA = _m;
+    size_t columnasA = _c;
     double acum=0.0; //acumulador de fila x columna
 
     // At * b tiene dimension columnasA * 1
@@ -145,7 +143,7 @@ Vector DOK::matrizTraspuestaXVector(Vector &b)
         {
             // si el elemento de At[i][k] no es cero multiplicarlo por el correspondiente de b y acumular el resultado
             // (At[i][k] = A[k][i])
-            if ( _mat[k].count(i) > 0)
+            if ( _mat.count(k) > 0 && _mat[k].count(i) > 0)
             {
                 acum += _mat[k][i] * b[k];
             }
@@ -160,14 +158,14 @@ Vector DOK::matrizTraspuestaXVector(Vector &b)
 
 // parametros: de entrada: matriz A esparza rectangular
 // Salida: A traspuesta * A, esparza cuadrada
-DOK DOK::productoAtraspuestaPorA(DOK& m)
+DOK DOK::productoAtraspuestaPorA()
 {
     size_t filasA = this->_n;
-    size_t columnasA = this->_m;
+    size_t columnasA = this->_c;
     double acum=0.0; //acumulador de fila x columna
 
     // At * A tiene dimension columnasA * columnasA
-    DOK C(this->_m);
+    DOK C(columnasA);
     for (size_t i=0; i < columnasA; ++i)
             for (size_t j=0; j < columnasA; ++j)
             {
@@ -177,7 +175,7 @@ DOK DOK::productoAtraspuestaPorA(DOK& m)
                 {
                     // si los elementos de At[i][k] y A[k][j] no son cero multiplicarlos y acumular el resultado
                     // (At[i][k] = A[k][i])
-                    if ( (_mat[k].count(i) > 0) && (_mat[k].count(j) > 0) )
+                    if ( (_mat.count(k)>0) && (_mat[k].count(i) > 0) && (_mat[k].count(j) > 0) )
                     {
                         acum += _mat[k][i] * _mat[k][j];
                     }
@@ -213,7 +211,7 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
     for (int k = 0; k < n-1 ; k++) //filas pivote
     {
         // TP3: Pivoteo parcial
-        if (_mat[k].count(k) == 0)
+        if (_mat.count(k) == 0 ||_mat[k].count(k) == 0)
         {
             // recorrer las filas de abajo buscando un pivote y permutar
             for (int i = k+1 ; i < n ; i++) //filas a eliminar
@@ -314,7 +312,7 @@ Vector DOK::resolverSistema()
 std::vector<Vector> DOK::matrizCompleta()
 {
     std::vector<Vector> res(_n);
-    std::vector<double> ceros(_n,0.0);
+    std::vector<double> ceros(_c,0.0);
     // Creo una matriz nula
     for (int i = 0; i < _n; i++)
     {
@@ -324,7 +322,7 @@ std::vector<Vector> DOK::matrizCompleta()
 
     for (int i = 0; i < _n; i++)
     {
-        for (int j = 0; j < _n; j++)
+        for (int j = 0; j < _c; j++)
         {
             if (_mat[i].count(j) > 0)
                 res[i][j] += _mat[i][j];
@@ -349,7 +347,7 @@ void mostrarMatriz(DOK& dok)
     std::cout << "\n";
 }
 
-
+// carga en una matriz esparza una imagen cuadrada de nxn pixeles desde un archivo csv
 void DOK::cargarCsv(std::string csv, int n)
 {
     std::ifstream infile(csv);
@@ -357,6 +355,7 @@ void DOK::cargarCsv(std::string csv, int n)
     int temp;
     _m = 0;
     _n = n;
+    _c = n; // se asume que los datos a cargar corresponden a una matriz cuadrada
     for (int i = 0; i < n; ++i)
     {
             for (int j = 0; j < n; ++j)

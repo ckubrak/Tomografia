@@ -25,7 +25,8 @@ public:
     typedef columnas::iterator iter_col;
 
     DOK (size_t n);
-    DOK (size_t n, double val); // Crea matriz diagonal
+    DOK (size_t n, size_t c);   // Crea una matriz de n filas por c columnas
+//    DOK (size_t n, double val); // Crea matriz diagonal
     DOK(const char* input);
     DOK(DOK& m);
 
@@ -36,7 +37,7 @@ public:
 
     void multiplicarConstante(double c);
     DOK multiplicarMatriz(DOK& m);
-    DOK productoAtraspuestaPorA(DOK& m);
+    DOK productoAtraspuestaPorA();
     Vector CuadradosMinimos(Vector b);
 
     double& operator()(size_t i, size_t j)
@@ -46,6 +47,7 @@ public:
 
     std::vector<Vector> matrizCompleta();
     DOK crearD();
+
     size_t size()
     {
         return _n;
@@ -56,18 +58,18 @@ public:
         return _mat;
     }
     
-    size_t filas()
+    size_t cols()
     {
-        return _n;
+        return _c;
     }
-
 
     void cargarCsv(std::string csv, int n);
 
 private:
     matriz _mat;
-    size_t _n;
-    size_t _m; // Cantidad de links
+    size_t _n; // cantidad de filas
+    size_t _c; // cantidad de columnas
+    size_t _m; // Cantidad de links, elementos no nulos
 
     int Cj(int j, DOK& m);
     Vector resolverSistema();
