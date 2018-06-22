@@ -179,7 +179,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	std::vector<pair<pair<double, double>, double>> resultado (4*cantRayos);
 
-	int aux = tam -1;
+	double aux = tam -1;
 	pair<double, double> SI;// = (tam -1, 0) Extremo Superior Izquierdo
 	SI.first = aux;
 	SI.second = 0;
@@ -196,13 +196,12 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	ID.first = 0;
 	ID.second = aux;
 
-
-	double paso = 90/cantRayos;//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
+	int paso = 90/(cantRayos+1);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
 	int i = 0;
 
 	//Armamos los ratos de la parte SI
-	double x = 270 + paso;
-	while(x > 360){
+	int x = 270 + paso;
+	while(x < 360){
 		resultado[i].first = SI;
 		resultado[i].second = x;
 		i++;
@@ -211,7 +210,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Armamos los ratos de la parte SD
 	x = 180 + paso;
-	while(x > 270){
+	while(x < 270){
 		resultado[i].first = SD;
 		resultado[i].second = x;
 		i++;
@@ -220,7 +219,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Armamos los ratos de la parte II
 	x = 0 + paso;
-	while(x > 90){
+	while(x < 90){
 		resultado[i].first = II;
 		resultado[i].second = x;
 		i++;
@@ -229,12 +228,13 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Armamos los ratos de la parte ID
 	x = 90 + paso;
-	while(x > 180){
+	while(x < 180){
 		resultado[i].first = ID;
 		resultado[i].second = x;
 		i++;
 		x = x + paso;
 	}
+	return resultado;
 
 	//Para debuggear
 	//Assert( i = tam-1);
