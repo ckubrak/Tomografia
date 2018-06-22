@@ -66,7 +66,10 @@ int main (int argc, char** argv)
 
     // generar los rayos, guardar pto origen y angulo para cada rayo. Luis: 
     //Vector<pair<int, int>, double> generarRayosVertices(int tam,int cantRayos)
-    std::vector <pair<pair<double, double>, double>> rayos(cantRayos*cantEmisores);
+  
+  //vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int cantRayos){
+    //std::vector <pair<pair<double, double>, double>> rayos(cantRayos*cantEmisores);
+    std::vector <pair<pair<double, double>, double>> rayos;
     rayos = generarRayosVertices(n,cantRayos);
 
     //vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int cantRayos){
