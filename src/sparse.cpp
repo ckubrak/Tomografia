@@ -353,6 +353,7 @@ void DOK::cargarCsv(std::string csv, int n)
     std::ifstream infile(csv);
     std::string line;
     int temp;
+    char coma;
     _m = 0;
     _n = n;
     _c = n; // se asume que los datos a cargar corresponden a una matriz cuadrada
@@ -362,6 +363,7 @@ void DOK::cargarCsv(std::string csv, int n)
             {
                 
                 infile >> temp;
+                infile >> coma;
                 if (temp > 0)
                 {
                     _mat[i][j] = temp;
