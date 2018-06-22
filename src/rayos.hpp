@@ -116,8 +116,7 @@ double tiemporayo(int n, int m , matriz velocidad, double x, double y, double an
 
 
 typedef vector <pair<pair<double,double>,double>> info;
-typedef vector<vector<int>> matrix;
-void distancia(int n, int m, int a, int b, info rayos, matrix& salida)
+void distancia(int n, int m, int a, int b, info rayos, DOK& salida)
 //importante que matrix debe ser una matriz de las dimensiones adecuadas con todos los valores incializados en 0. crear con vector<vector<int>> salida(rayos.size(), vector<int>(n/a*m/b));
 {
     //n es cantidad de filas de pixeles en imagen total
@@ -135,7 +134,10 @@ void distancia(int n, int m, int a, int b, info rayos, matrix& salida)
             int c=solucion[j].first; //numero de columna
             int d=n-1-(solucion[j].second); //numero de fila
             int auxiliar=(d/a)*(m/b)+c/b; // d/a seria numero de fila de superdeldas . m/b seria cantidad de columnas de superceldas. c/b seria numero de columna de superceldas
-            salida[i][auxiliar]++;
+            if (salida.data().count(i) == 0 || salida.data()[i].count(auxiliar) == 0)
+                salida.data()[i][auxiliar] = 1;
+            else
+                salida.data()[i][auxiliar]++ ;
         }
     }
 

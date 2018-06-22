@@ -6,7 +6,6 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "pca.h"
 #include "knn.h"
 #include "sparse.h"
 
