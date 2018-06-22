@@ -19,6 +19,6 @@ int cantidadImagenesPorClase(baseDeDatos& bd);
 int cantidadClases(baseDeDatos& bd);
 
 void agregarRuidoImagen(DOK&,float alpha);
-void agregarRuidoRayo(std::vector<pair<int, double>> vectorRayo,float alpha);
+void agregarRuidoRayo(std::vector<double> vectorRayo,float alpha);
 
 #endif
