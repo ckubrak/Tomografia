@@ -63,6 +63,11 @@ public:
         return _c;
     }
 
+    size_t cantidadLinks()
+    {
+        return _m;
+    }
+
     void cargarCsv(std::string csv, int n);
 
 private:
