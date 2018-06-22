@@ -137,29 +137,32 @@ Vector promediarIntensidadesXCelda(DOK &I, int d)
     int i=0;
     int j=0;
 
+    int a;
+    int b;
+
     int n = I.size();
     int celdasXFila=n/d; // asumimos que d es divisor de n, cantidad de celdas por fila
     int celdasTotales=celdasXFila * celdasXFila;
 
     Vector R(celdasTotales, 0.0);
 
-    for (int a=0; a<celdasXFila; ++a)
+    for (int i=0; i<n; ++i)
     {
-        i=a*d; //fila de los pixeles de las celdas de la fila a. Se inicializa en la primera fila de la celda.
-        for (int b=0; b<celdasXFila; ++b)
+        //i=a*d; //fila de los pixeles de las celdas de la fila a. Se inicializa en la primera fila de la celda.
+        for (int j=0; j<n; ++j)
         {
-            j=b*d;  //columna de los pixeles de las celdas de la columna b. Se inicializa en la primera columna de la celda.
-            for (int k=0; k<d; ++k) //recorrer las filas de pixeles dentro de la celda
+            //std::cout << "(I.data().count(i): " << (I.data()).count(i) << " ((I.data())[i])).count(j): " << ((I.data())[i]).count(j) << "\n";
+            if ( (I.data()).count(i) && ( (I.data())[i]).count(j))
             {
-                for (int l=0; l<d; ++l)  //recorrer las columnas de pixeles dentro de la celda
-                {
-                    // chequear si existe el elemento [i+k] [j+l] de la imagen (si la intensidad del pixel es mayor a cero)
-                    if (I.data().count(i+k) && (I.data()[i+k]).count(j+l))
-                    {
-                        if (I.data()[i+k][j+l] > 0) // ignorar pixeles sin informacion (valores negativos)
-                            R[a*celdasXFila+b] += I.data()[i+k][j+l];
-                    }
-                }
+                
+                //if ((I.data())[i][j] > 0) // ignorar pixeles sin informacion (valores negativos)
+                //{
+                //std::cout << "i j valor pixel: " << i << " " << j << " " << (I.data())[i][j] << "\n";
+                    // calcular en que celda esta el pixel
+                    a = i/d;
+                    b = j/d;
+                    R[a*celdasXFila+b] += (I.data())[i][j];
+                //}
             }
         }
     }
