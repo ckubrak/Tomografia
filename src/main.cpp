@@ -3,13 +3,13 @@
 #include <chrono>
 #include "rayos.hpp"
 #include "misc.h"
-#include "kfold.h"
+#include "ruido.h"
 
 //
 //armar vector con los tiempos de todos los rayos
 // una posicion por rayo
 // para cada rayo llamar a tiemporayo y cargar una posicion del vector tiempos
-void armarVectorTiempos(int n, DOK &Imagen, std::vector <pair<pair<double, double>, double>> rayos, Vector &tiempos)
+void armarVectorTiempos(int n, DOK &Imagen, std::vector <pair<pair<double, double>, double>> &rayos, Vector &tiempos)
 {
 
     for (int i=0; i<rayos.size(); ++i)
@@ -66,7 +66,7 @@ int main (int argc, char** argv)
 
     // generar los rayos, guardar pto origen y angulo para cada rayo. Luis: 
     //Vector<pair<int, int>, double> generarRayosVertices(int tam,int cantRayos)
-    std::vector <pair<pair<double, double>, double>> rayos;
+    std::vector <pair<pair<double, double>, double>> rayos(cantRayos*cantEmisores);
     rayos = generarRayosVertices(n,cantRayos);
 
     //vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int cantRayos){
@@ -74,7 +74,7 @@ int main (int argc, char** argv)
 //    calcular la matriz de distancias
     
     DOK mDistancias( (cantRayos*cantEmisores), int ( (n/dimCelda)*(n/dimCelda)) ) ;
-    distancia(n, n, dimCelda, dimCelda, rayos, mDistancias);
+   distancia(n, n, dimCelda, dimCelda, rayos, mDistancias);
 
 // calcular el vector de tiempos exactos de cada rayo
     //Vector vtiempos(cantRayos*cantEmisores);
@@ -85,12 +85,12 @@ int main (int argc, char** argv)
 //Vector promediarIntensidadesXCelda(DOK I, int n, int d)
     Vector intensidadPromedioXCelda( (n/dimCelda)*(n/dimCelda));
     // TODO
-    //intensidadPromedioXCelda = promediarIntensidadesXCelda(Imagen, dimCelda);
+    intensidadPromedioXCelda = promediarIntensidadesXCelda(Imagen, dimCelda);
     
     // se agrega ruido al vector de tiempos de rayos
     //void agregarRuidoRayo(std::vector<double> vectorRayo,float alpha){
     //TODO
-    //agregarRuidoRayo(vtiempos, ruido);
+   agregarRuidoRayo(vtiempos, ruido);
 
 // cuadrados minimos: se llama con el vector de tiempos con ruido y la matriz de distancias
     Vector resultadoCM ((n/dimCelda)*(n/dimCelda));
