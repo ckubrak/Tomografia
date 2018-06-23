@@ -80,8 +80,8 @@ int main (int argc, char** argv)
 
 // calcular el vector de tiempos exactos de cada rayo
     //Vector vtiempos(cantRayos*cantEmisores);
-    //std::vector<double> vtiempos(cantRayos*cantEmisores);
-    std::vector<double> vtiempos;
+    std::vector<double> vtiempos(cantRayos*cantEmisores);
+    //std::vector<double> vtiempos;
     armarVectorTiempos(n, Imagen, rayos, vtiempos);
 
     // Calcular las intensidades promedio de las celdas de la matriz discreta
