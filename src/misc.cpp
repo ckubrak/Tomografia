@@ -182,7 +182,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	std::vector<pair<pair<double, double>, double>> resultado (4*cantRayos);
 
-	double aux = tam;
+	double aux = tam - 1;
 	pair<double, double> SI;// = (tam -1, 0) Extremo Superior Izquierdo
 	SI.first = aux;
 	SI.second = 0;
@@ -199,7 +199,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	ID.first = 0;
 	ID.second = aux;
 
-	int paso = 90/(cantRayos);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
+	int paso = 90/(cantRayos-1);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
 	int i = 0;
 
 	//Armamos los ratos de la parte SI
@@ -241,5 +241,47 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Para debuggear
 	//Assert( i = tam-1);
+
+}
+
+//Esta función lo que hace es generar cantRayos paralelos y equidistantes, tanto en el eje x como en el eje y
+vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int cantRayos){
+
+	std::vector<pair<pair<double, double>, double>> resultado (2*cantRayos);
+
+	double aux = tam - 1;
+
+	int paso = tam/(cantRayos+1);//Supongo matriz cuadrada
+	int x = paso;
+	int i = 0;
+	
+	int pair<double, double> coordenadas;
+	coordenadas.first = 0;
+	coordenadas.second = 0;
+
+	//Acá se generan los rayos del eje y
+	while(x < tam -1){
+		coordenadas.first = x;
+		resultado[i].first = coordenadas;//coordenadas = (x, 0)
+		resultado[i].second = 90;//El ángulo 
+
+		i++;
+		x = x + paso;
+	}
+	
+	x = paso;
+	coordenadas.first = 0;
+	coordenadas.second = 0;
+	//Acá se generan los rayos del eje x
+	while(x < tam-1){
+		coordenadas.second = x;
+		resultado[i].first = coordenadas;//coordenadas = (0, x)
+		resultado[i].second = 0;//Sí, es medio redundante pero lo dejo para que quede claro que estamos haciendo
+		//Podría usar 0 o 180 dependiendo de qué punta salga el rayo
+		i++;
+		x = x + paso;
+	}
+
+
 
 }
