@@ -129,7 +129,7 @@ void distancia(int n, int m, int a, int b, info rayos, DOK& salida)
     //rayos guarda corrdenas de origen y angulo
     //salida guarda para cada rayo por cuantos pixeles pasa en cada supercelda
     for (int i=0;i<rayos.size();i++)
-    { cout<<"got"<<i<<endl;
+    {
         vector<pair<int, int>> solucion;
 
         pasa(n, m, rayos[i].first.first, rayos[i].first.second, rayos[i].second, solucion);

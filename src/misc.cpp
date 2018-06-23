@@ -154,7 +154,7 @@ Vector promediarIntensidadesXCelda(DOK &I, int d)
             //std::cout << "(I.data().count(i): " << (I.data()).count(i) << " ((I.data())[i])).count(j): " << ((I.data())[i]).count(j) << "\n";
             if ( (I.data()).count(i) && ( (I.data())[i]).count(j))
             {
-                
+
                 //if ((I.data())[i][j] > 0) // ignorar pixeles sin informacion (valores negativos)
                 //{
                 //std::cout << "i j valor pixel: " << i << " " << j << " " << (I.data())[i][j] << "\n";
@@ -182,7 +182,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	std::vector<pair<pair<double, double>, double>> resultado (4*cantRayos);
 
-	double aux = tam -1;
+	double aux = tam;
 	pair<double, double> SI;// = (tam -1, 0) Extremo Superior Izquierdo
 	SI.first = aux;
 	SI.second = 0;
@@ -199,7 +199,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	ID.first = 0;
 	ID.second = aux;
 
-	int paso = 90/(cantRayos+1);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
+	int paso = 90/(cantRayos);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
 	int i = 0;
 
 	//Armamos los ratos de la parte SI
