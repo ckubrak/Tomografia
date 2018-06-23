@@ -1,6 +1,7 @@
 #ifndef _PCA_H_
 #define _PCA_H_
 #include "imagen.h"
+#include <time.h>
 typedef std::vector<Imagen> baseDeDatos; //matriz de Imagenes: id, ancho, alto y bytes de cada imagen
 typedef std::vector<double> doubleVector;
 typedef std::vector<doubleVector> doubleMatrix; //matriz para deflacion
