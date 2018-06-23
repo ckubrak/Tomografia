@@ -20,10 +20,13 @@ void pasa(int n, int m, double x, double y, double angulo, vector<pair<int, int>
     double tangent=tan(angulo*3.14159265/180);
     if (abs(tangent)>1) //mas cercano a ser paralelo al eye y que al x
     {
+
         double interseccion=x+(-y)/tangent;
+
         for (int i=1;(i<=n);i++)
         {
             double corte=interseccion+1/tangent;
+
             if (corte==interseccion) //caso especial para que un rayo que pase por los limites de pixeles no sea considerado inexistente
             {
                 int j=floor(corte);
@@ -43,7 +46,7 @@ void pasa(int n, int m, double x, double y, double angulo, vector<pair<int, int>
 
             } else if (corte<interseccion)
             {
-                 for (int j=floor(interseccion);j<=floor(corte);j--)//si el rayo pasa por una esquina entre pixeles ocurren comportamientos interesantes
+                 for (int j=floor(interseccion);j>=floor(corte);j--)//si el rayo pasa por una esquina entre pixeles ocurren comportamientos interesantes
                  {
                       if (j>=0 && j<m)
                         {
@@ -79,7 +82,7 @@ void pasa(int n, int m, double x, double y, double angulo, vector<pair<int, int>
 
             } else if (corte<interseccion)
             {
-                 for (int j=floor(interseccion);j<=floor(corte);j--)//si el rayo pasa por una esquina entre pixeles ocurren comportamientos interesantes
+                 for (int j=floor(interseccion);j>=floor(corte);j--)//si el rayo pasa por una esquina entre pixeles ocurren comportamientos interesantes
                  {
                       if (j>=0 && j<n)
                         {
@@ -126,8 +129,9 @@ void distancia(int n, int m, int a, int b, info rayos, DOK& salida)
     //rayos guarda corrdenas de origen y angulo
     //salida guarda para cada rayo por cuantos pixeles pasa en cada supercelda
     for (int i=0;i<rayos.size();i++)
-    {
+    { cout<<"got"<<i<<endl;
         vector<pair<int, int>> solucion;
+
         pasa(n, m, rayos[i].first.first, rayos[i].first.second, rayos[i].second, solucion);
         for (int j=0;j<solucion.size();j++)
         {
