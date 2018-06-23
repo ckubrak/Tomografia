@@ -134,7 +134,7 @@ Vector DOK::matrizTraspuestaXVector(Vector &b)
     double acum=0.0; //acumulador de fila x columna
 
     // At * b tiene dimension columnasA * 1
-    Vector Rta(_m);
+    Vector Rta(_c);
     for (size_t i=0; i < columnasA; ++i)
     {
         // inicializar el acumulador en cero
@@ -359,16 +359,20 @@ void DOK::cargarCsv(std::string csv, int n)
     _c = n; // se asume que los datos a cargar corresponden a una matriz cuadrada
     for (int i = 0; i < n; ++i)
     {
+            int contador = 0;
             for (int j = 0; j < n; ++j)
             {
-                
+              
                 infile >> temp;
-                infile >> coma;
+
+                ++ contador; //contar los caracteres leido
+                if (contador < _c)
+                    infile >> coma;
                 if (temp > 0)
                 {
                     _mat[i][j] = temp;
                     _m++;
                 }
             }
-        }
+    }
 }
