@@ -145,6 +145,7 @@ Vector promediarIntensidadesXCelda(DOK &I, int d)
     int celdasTotales=celdasXFila * celdasXFila;
 
     Vector R(celdasTotales, 0.0);
+    std::map<size_t, std::map<size_t , double> > data = I.data();
 
     for (int i=0; i<n; ++i)
     {
@@ -152,7 +153,7 @@ Vector promediarIntensidadesXCelda(DOK &I, int d)
         for (int j=0; j<n; ++j)
         {
             //std::cout << "(I.data().count(i): " << (I.data()).count(i) << " ((I.data())[i])).count(j): " << ((I.data())[i]).count(j) << "\n";
-            if ( (I.data()).count(i) && ( (I.data())[i]).count(j))
+            if ( (data).count(i) && ( (data)[i]).count(j))
             {
 
                 //if ((I.data())[i][j] > 0) // ignorar pixeles sin informacion (valores negativos)
@@ -161,7 +162,7 @@ Vector promediarIntensidadesXCelda(DOK &I, int d)
                     // calcular en que celda esta el pixel
                     a = i/d;
                     b = j/d;
-                    R[a*celdasXFila+b] += (I.data())[i][j];
+                    R[a*celdasXFila+b] += (data)[i][j];
                 //}
             }
         }
