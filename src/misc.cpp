@@ -1,4 +1,5 @@
 #include "misc.h"
+#include <math.h>       /* ceil */
 
 double ErrorCuadraticoMedio(Vector &b, Vector &bcalculado)
 {
@@ -182,7 +183,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	std::vector<pair<pair<double, double>, double>> resultado (4*cantRayos);
 
-	double aux = tam - 1;
+	double aux = tam;
 	pair<double, double> SI;// = (tam -1, 0) Extremo Superior Izquierdo
 	SI.first = aux;
 	SI.second = 0;
@@ -199,12 +200,14 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	ID.first = 0;
 	ID.second = aux;
 
-	int paso = 90/(cantRayos-1);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
+	float cantRayosAux = cantRayos;
+	float pasoAux = 90/(cantRayosAux);
+	int paso = ceil(pasoAux);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
 	int i = 0;
 
 	//Armamos los ratos de la parte SI
 	int x = 270 + paso;
-	while(x < 360){
+	while(x <= 360){
 		resultado[i].first = SI;
 		resultado[i].second = x;
 		i++;
@@ -213,7 +216,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Armamos los ratos de la parte SD
 	x = 180 + paso;
-	while(x < 270){
+	while(x <= 270){
 		resultado[i].first = SD;
 		resultado[i].second = x;
 		i++;
@@ -222,7 +225,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Armamos los ratos de la parte II
 	x = 0 + paso;
-	while(x < 90){
+	while(x <= 90){
 		resultado[i].first = II;
 		resultado[i].second = x;
 		i++;
@@ -231,7 +234,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Armamos los ratos de la parte ID
 	x = 90 + paso;
-	while(x < 180){
+	while(x <= 180){
 		resultado[i].first = ID;
 		resultado[i].second = x;
 		i++;
@@ -249,18 +252,26 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 
 	std::vector<pair<pair<double, double>, double>> resultado (2*cantRayos);
 
-	double aux = tam - 1;
+	double aux = tam;
 
-	int paso = tam/(cantRayos+1);//Supongo matriz cuadrada
+	//Hago esto para tener los decimales y hacer el ceil. Si no, puede calcular más rayos de los pedidos.
+	float tamAux = tam;
+	float cantRayosAux = cantRayos;
+	float pasoAux = tamAux/(cantRayosAux+1);
+
+	int paso = ceil(pasoAux);
+
+	//El paso es la cantidad de celdas que hay entre cada rayo. Están más o menos equidistantes
+	//Para que queden bien equidistantes tenemos que pasar (cantRayos+1) que divida a 512. Eso sería lo más recomendable
 	int x = paso;
 	int i = 0;
 	
-	int pair<double, double> coordenadas;
+	pair<double, double> coordenadas;
 	coordenadas.first = 0;
 	coordenadas.second = 0;
 
 	//Acá se generan los rayos del eje y
-	while(x < tam -1){
+	while(x < tam){
 		coordenadas.first = x;
 		resultado[i].first = coordenadas;//coordenadas = (x, 0)
 		resultado[i].second = 90;//El ángulo 
@@ -273,7 +284,7 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	coordenadas.first = 0;
 	coordenadas.second = 0;
 	//Acá se generan los rayos del eje x
-	while(x < tam-1){
+	while(x < tam){
 		coordenadas.second = x;
 		resultado[i].first = coordenadas;//coordenadas = (0, x)
 		resultado[i].second = 0;//Sí, es medio redundante pero lo dejo para que quede claro que estamos haciendo
@@ -281,7 +292,5 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 		i++;
 		x = x + paso;
 	}
-
-
-
+	return resultado;
 }

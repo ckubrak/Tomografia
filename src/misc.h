@@ -18,4 +18,6 @@ void grabarPPM8Bits(std::string nombre_archivo, int filas, int columnas, Vector 
 Vector calcularIntensidad (Vector &v);
 Vector promediarIntensidadesXCelda(DOK &I, int d);
 vector<pair<pair<double, double>, double>> generarRayosVertices(int tam,int cantRayos);
+vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int cantRayos);
+
 #endif
