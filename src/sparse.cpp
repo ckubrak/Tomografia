@@ -376,3 +376,36 @@ void DOK::cargarCsv(std::string csv, int n)
             }
     }
 }
+
+void DOK::distancia(int n, int m, int a, int b, info rayos)
+//importante que matrix debe ser una matriz de las dimensiones adecuadas con todos los valores incializados en 0. crear con vector<vector<int>> salida(rayos.size(), vector<int>(n/a*m/b));
+{
+    //n es cantidad de filas de pixeles en imagen total
+    //m es cantidad de columnas de pixeles en imagen total
+    //a es cantidad de filas de pixeles dentro de una supercelda
+    //b es cantidad de columnas de pixeles dentro de una supercelda
+    //rayos guarda corrdenas de origen y angulo
+    //salida guarda para cada rayo por cuantos pixeles pasa en cada supercelda
+    for (int i=0;i<rayos.size();i++)
+    {
+        std::vector<std::pair<int, int>> solucion;
+
+        pasa(n, m, rayos[i].first.first, rayos[i].first.second, rayos[i].second, solucion);
+        for (int j=0;j<solucion.size();j++)
+        {
+            int c=solucion[j].first; //numero de columna
+            int d=n-1-(solucion[j].second); //numero de fila
+            int auxiliar=(d/a)*(m/b)+c/b; // d/a seria numero de fila de superdeldas . m/b seria cantidad de columnas de superceldas. c/b seria numero de columna de superceldas
+            if (_mat.count(i) == 0 || _mat[i].count(auxiliar) == 0)
+            {
+                _mat[i][auxiliar] = 1;
+                int asd = _mat[i][auxiliar];
+                bool a = true;
+
+            }
+            else
+                _mat[i][auxiliar]++ ;
+        }
+    }
+
+}

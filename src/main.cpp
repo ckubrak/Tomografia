@@ -76,7 +76,7 @@ int main (int argc, char** argv)
 //    calcular la matriz de distancias
     
     DOK mDistancias( (cantRayos*cantEmisores), int ( (n/dimCelda)*(n/dimCelda)) ) ;
-   distancia(n, n, dimCelda, dimCelda, rayos, mDistancias);
+   mDistancias.distancia(n, n, dimCelda, dimCelda, rayos);
 
 // calcular el vector de tiempos exactos de cada rayo
     //Vector vtiempos(cantRayos*cantEmisores);

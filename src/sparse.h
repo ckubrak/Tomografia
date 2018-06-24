@@ -12,9 +12,12 @@
 #include <fstream>
 #include <unordered_map>
 
+#include "rayos.h"
+
 #define EPSILON_EG 0.00001
 typedef std::vector<double > Vector;
 
+typedef std::vector <std::pair<std::pair<double,double>,double>> info;
 class DOK
 {
 public:
@@ -39,6 +42,7 @@ public:
     DOK multiplicarMatriz(DOK& m);
     DOK productoAtraspuestaPorA();
     Vector CuadradosMinimos(Vector b);
+
 
     double& operator()(size_t i, size_t j)
     {
@@ -69,6 +73,8 @@ public:
     }
 
     void cargarCsv(std::string csv, int n);
+
+    void distancia(int n, int m, int a, int b, info rayos);
 
 private:
     matriz _mat;

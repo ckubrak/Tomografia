@@ -96,7 +96,7 @@ void pasa(int n, int m, double x, double y, double angulo, vector<pair<int, int>
     }
 
 }
-//ES MUY IMPORTANTE REVISAR EL ORDEN DE LOS PARAMETROS. ESTO SE HIZO SUPONIENDO MATRIZ ESTA COMPUESTA POR UN VECTOR DE FILAS. EN CASO DE SER VECTOR DE COLUMNAS DEBERÉ CAMBIARLO (en particular intercambiar a y b)
+//ES MUY IMPORTANTE REVISAR EL ORDEN DE LOS PARAMETROS. ESTO SE HIZO SUPONIENDO MATRIZ ESTA COMPUESTA POR UN VECTOR DE FILAS. EN CASO DE SER VECTOR DE COLUMNAS DEBERï¿½ CAMBIARLO (en particular intercambiar a y b)
 typedef map<size_t, map<size_t , double> > matriz;
 double tiemporayo(int n, int m , matriz velocidad, double x, double y, double angulo)
 {
@@ -118,33 +118,5 @@ double tiemporayo(int n, int m , matriz velocidad, double x, double y, double an
 }
 
 
-typedef vector <pair<pair<double,double>,double>> info;
-void distancia(int n, int m, int a, int b, info rayos, DOK& salida)
-//importante que matrix debe ser una matriz de las dimensiones adecuadas con todos los valores incializados en 0. crear con vector<vector<int>> salida(rayos.size(), vector<int>(n/a*m/b));
-{
-    //n es cantidad de filas de pixeles en imagen total
-    //m es cantidad de columnas de pixeles en imagen total
-    //a es cantidad de filas de pixeles dentro de una supercelda
-    //b es cantidad de columnas de pixeles dentro de una supercelda
-    //rayos guarda corrdenas de origen y angulo
-    //salida guarda para cada rayo por cuantos pixeles pasa en cada supercelda
-    for (int i=0;i<rayos.size();i++)
-    {
-        vector<pair<int, int>> solucion;
-
-        pasa(n, m, rayos[i].first.first, rayos[i].first.second, rayos[i].second, solucion);
-        for (int j=0;j<solucion.size();j++)
-        {
-            int c=solucion[j].first; //numero de columna
-            int d=n-1-(solucion[j].second); //numero de fila
-            int auxiliar=(d/a)*(m/b)+c/b; // d/a seria numero de fila de superdeldas . m/b seria cantidad de columnas de superceldas. c/b seria numero de columna de superceldas
-            if (salida.data().count(i) == 0 || salida.data()[i].count(auxiliar) == 0)
-                salida.data()[i][auxiliar] = 1;
-            else
-                salida.data()[i][auxiliar]++ ;
-        }
-    }
-
-}
 
 
