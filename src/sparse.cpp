@@ -186,6 +186,7 @@ DOK DOK::productoAtraspuestaPorA()
                     C._mat[i][j] = acum;
                 }
             }
+    mostrarMatriz(C);
     return C;
 }
 
@@ -201,6 +202,8 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
     // habiendo una fila menos
     n=_n;
     _n++;
+    
+    //mostrarMatriz(*this);
     for (int i=0; i < n; i++) //agregar b en la ultima columna
     {
         if (fabs(b[i]) > eps)
@@ -213,6 +216,8 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
         // TP3: Pivoteo parcial
         if (_mat.count(k) == 0 ||_mat[k].count(k) == 0)
         {
+            std::cout << "hay que pivotear: \n";
+            mostrarMatriz(*this);
             // recorrer las filas de abajo buscando un pivote y permutar
             for (int i = k+1 ; i < n ; i++) //filas a eliminar
             {
@@ -238,14 +243,23 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
                             auxiliar = 0.0;
                         }                            
                     }
+                    std::cout << "k, i: " << k << " " << i << "\n";
+                    mostrarMatriz(*this);
                     break;
                 }
-                else{
-                    //falla Gauss
-                }
+                // else{
+                //     //falla Gauss
+                // }
             }
-
+            // chequear si se encontro el pivote
         }
+        if (_mat.count(k) == 0 ||_mat[k].count(k) == 0){
+            std::cout << "fallo gauss?\n" ;
+            mostrarMatriz(*this);    
+            int z=0; // fallo gauss?
+        }
+
+
         for (int i = k+1 ; i < n ; i++) //filas a eliminar
         {
             // verificar que en la primera columna de la fila a eliminar no haya cero
@@ -253,6 +267,7 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
             if (_mat[i].count(k) != 0)
             {
                 mult = _mat[i][k] / _mat[k][k]; //calcular multiplicador
+                std::cout << "multiplicador, i, k: " << mult << " " << i << " " << k << "\n";
 
                     for (iter_col col = _mat[k].begin(); col != _mat[k].end(); col++)
                     {
@@ -282,16 +297,21 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
                             }
                         }
                     }
+                    std::cout << "resultado multiplicar fila: \n";
+                    mostrarMatriz(*this);
             } //fin no hay cero en la primera columna de la fila i
         } // fin filas a eliminar
+        std::cout << "paso k:" << k << "\n";
+        mostrarMatriz(*this);
     } // fin filas pivote
-
+    std::cout << "fin eliminacion gaussiana: \n"; 
+    mostrarMatriz(*this);
     return resolverSistema();
 }
 
 Vector DOK::resolverSistema()
 {
-    int n = n-2;
+    //mostrarMatriz(*this); //int n = n-2;
     Vector x(_n-1,0.0);
     for (int i = _n-2; i >= 0; i--)
     {
@@ -399,8 +419,8 @@ void DOK::distancia(int n, int m, int a, int b, info rayos)
             if (_mat.count(i) == 0 || _mat[i].count(auxiliar) == 0)
             {
                 _mat[i][auxiliar] = 1;
-                int asd = _mat[i][auxiliar];
-                bool a = true;
+                //int asd = _mat[i][auxiliar];
+                //bool a = true;
 
             }
             else
