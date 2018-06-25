@@ -35,7 +35,7 @@ int main (int argc, char** argv)
 
     // archivo ppm conteniendo la imagen reconstruida, se llama igual que la entrada con extension .ppm
     std::string archivoSalida = argv[1];
-    archivoSalida += ".ppm";
+    //archivoSalida += ".ppm";
 
     // nivel de ruido. Valor entre cero y uno
     float ruido = atof(argv[2]);
@@ -62,16 +62,10 @@ int main (int argc, char** argv)
     //levantar la imagen
     DOK Imagen(n);
     Imagen.cargarCsv(archivoEntrada, n);
-
-    // generar los rayos, guardar pto origen y angulo para cada rayo. Luis: 
-    //Vector<pair<int, int>, double> generarRayosVertices(int tam,int cantRayos)
-  
-  //vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int cantRayos){
-    //std::vector <pair<pair<double, double>, double>> rayos(cantRayos*cantEmisores);
-    std::vector <pair<pair<double, double>, double>> rayos;
+    //mostrarMatriz(Imagen);
+    // generar los rayos, guardar pto origen y angulo para cada rayo
+     std::vector <pair<pair<double, double>, double>> rayos;
     rayos = generarRayosVertices(n,cantRayos);
-
-    //vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int cantRayos){
 
 //    calcular la matriz de distancias
     
@@ -79,41 +73,32 @@ int main (int argc, char** argv)
    mDistancias.distancia(n, n, dimCelda, dimCelda, rayos);
 
 // calcular el vector de tiempos exactos de cada rayo
-    //Vector vtiempos(cantRayos*cantEmisores);
+
     std::vector<double> vtiempos(cantRayos*cantEmisores);
-    //std::vector<double> vtiempos;
     armarVectorTiempos(n, Imagen, rayos, vtiempos);
 
-    // Calcular las intensidades promedio de las celdas de la matriz discreta
-//Vector promediarIntensidadesXCelda(DOK I, int n, int d)
-    //Vector intensidadPromedioXCelda( (n/dimCelda)*(n/dimCelda));
+// Calcular las intensidades promedio de las celdas de la matriz discreta
     Vector intensidadPromedioXCelda;
-    // TODO
     intensidadPromedioXCelda = promediarIntensidadesXCelda(Imagen, dimCelda);
     
     // se agrega ruido al vector de tiempos de rayos
-    //void agregarRuidoRayo(std::vector<double> vectorRayo,float alpha){
-    //TODO
-   agregarRuidoRayo(vtiempos, ruido);
+    agregarRuidoRayo(vtiempos, ruido);
 
 // cuadrados minimos: se llama con el vector de tiempos con ruido y la matriz de distancias
-    //Vector resultadoCM ((n/dimCelda)*(n/dimCelda));
+    
     Vector resultadoCM;
     resultadoCM = mDistancias.CuadradosMinimos(vtiempos);
 
 // convertir los valores calculados en velocidades
-    //Vector intensidadCM (resultadoCM.size());
+    
     Vector intensidadCM;
     intensidadCM = calcularIntensidad (resultadoCM);
 
 //    error cuadratico reportar a la salida estandar
-    //std::cout << "ECM: " << ErrorCuadraticoMedio(intensidadPromedioXCelda, intensidadCM);
+    std::cout << "ECM: " << ErrorCuadraticoMedio(intensidadPromedioXCelda, intensidadCM) <<  "\n";
 
 //    convertir y grabar la imagen
     grabarPPM8Bits(archivoSalida, n/dimCelda, n/dimCelda, to8bits(intensidadCM));
     
     return 0;
 }
-
-
-
