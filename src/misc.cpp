@@ -185,11 +185,11 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	std::vector<pair<pair<double, double>, double>> resultado (4*cantRayos);
 
 	double aux = tam;
-	pair<double, double> SI;// = (tam -1, 0) Extremo Superior Izquierdo
+	pair<double, double> SI;// = (tam , 0) Extremo Superior Izquierdo
 	SI.first = aux;
 	SI.second = 0;
 
-	pair<double, double> SD;// = (tam -1, tam -1) Extremo Superior Derecho
+	pair<double, double> SD;// = (tam , tam ) Extremo Superior Derecho
 	SD.first = aux;
 	SD.second = aux;
 
@@ -197,18 +197,16 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	II.first = 0;
 	II.second = 0;
 
-	pair<double, double> ID;// = (0, tam -1) Extremo Inferior Derecho
+	pair<double, double> ID;// = (0, tam) Extremo Inferior Derecho
 	ID.first = 0;
 	ID.second = aux;
 
-	float cantRayosAux = cantRayos;
-	float pasoAux = 90/(cantRayosAux);
-	int paso = ceil(pasoAux);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
+	double paso = 90/(cantRayos+1);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
 	int i = 0;
 
 	//Armamos los ratos de la parte SI
-	int x = 270 + paso;
-	while(x <= 360){
+	double x = 270 + paso;
+	for (int j=0;j<cantRayos;j++){
 		resultado[i].first = SI;
 		resultado[i].second = x;
 		i++;
@@ -217,7 +215,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Armamos los ratos de la parte SD
 	x = 180 + paso;
-	while(x <= 270){
+	for (int j=0;j<cantRayos;j++){
 		resultado[i].first = SD;
 		resultado[i].second = x;
 		i++;
@@ -226,7 +224,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Armamos los ratos de la parte II
 	x = 0 + paso;
-	while(x <= 90){
+	for (int j=0;j<cantRayos;j++){
 		resultado[i].first = II;
 		resultado[i].second = x;
 		i++;
@@ -235,7 +233,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 
 	//Armamos los ratos de la parte ID
 	x = 90 + paso;
-	while(x <= 180){
+	for (int j=0;j<cantRayos;j++){
 		resultado[i].first = ID;
 		resultado[i].second = x;
 		i++;
@@ -266,7 +264,7 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	//Para que queden bien equidistantes tenemos que pasar (cantRayos+1) que divida a 512. Eso sería lo más recomendable
 	int x = paso;
 	int i = 0;
-	
+
 	pair<double, double> coordenadas;
 	coordenadas.first = 0;
 	coordenadas.second = 0;
@@ -275,12 +273,12 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	while(x < tam){
 		coordenadas.first = x;
 		resultado[i].first = coordenadas;//coordenadas = (x, 0)
-		resultado[i].second = 90;//El ángulo 
+		resultado[i].second = 90;//El ángulo
 
 		i++;
 		x = x + paso;
 	}
-	
+
 	x = paso;
 	coordenadas.first = 0;
 	coordenadas.second = 0;
