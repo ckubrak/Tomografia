@@ -270,7 +270,7 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	coordenadas.second = 0;
 
 	//Acá se generan los rayos del eje y
-	while(x < tam){
+	for (int j=0;j<cantRayos;j++){
 		coordenadas.first = x;
 		resultado[i].first = coordenadas;//coordenadas = (x, 0)
 		resultado[i].second = 90;//El ángulo
@@ -283,7 +283,7 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	coordenadas.first = 0;
 	coordenadas.second = 0;
 	//Acá se generan los rayos del eje x
-	while(x < tam){
+	for (int j=0;j<cantRayos;j++){
 		coordenadas.second = x;
 		resultado[i].first = coordenadas;//coordenadas = (0, x)
 		resultado[i].second = 0;//Sí, es medio redundante pero lo dejo para que quede claro que estamos haciendo
