@@ -206,7 +206,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	int i = 0;
 
 	//Armamos los ratos de la parte SI
-	double x = 270 + paso;
+	double x = 90 + paso;
 	for (int j=0;j<cantRayos;j++){
 		resultado[i].first = SI;
 		resultado[i].second = x;
@@ -233,7 +233,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	}
 
 	//Armamos los ratos de la parte ID
-	x = 90 + paso;
+	x = 270 + paso;
 	for (int j=0;j<cantRayos;j++){
 		resultado[i].first = ID;
 		resultado[i].second = x;
