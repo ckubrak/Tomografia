@@ -71,7 +71,8 @@ Vector to8bits(Vector &I)
     double max_val, min_val;
 
 
-    max_val =I[0]; min_val = I[0];
+    max_val =I[0];
+    min_val = I[0];
     for (int i=0; i<cant_elem; ++i)
     {
         if (max_val < I[i])
@@ -201,7 +202,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	ID.first = 0;
 	ID.second = aux;
 
-	double paso = 90/(cantRayos+1);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
+	double paso = 90/(cantRayos+1.0);//Cada vertice tiene 90̣̣̣̣̣° Esto son las particiones que tenemos en cada vertice
 	int i = 0;
 
 	//Armamos los ratos de la parte SI
