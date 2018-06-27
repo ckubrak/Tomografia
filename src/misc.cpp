@@ -255,14 +255,14 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 
 	//Hago esto para tener los decimales y hacer el ceil. Si no, puede calcular más rayos de los pedidos.
 	float tamAux = tam;
-	float cantRayosAux = cantRayos;
-	float pasoAux = tamAux/(cantRayosAux+1);
+	double cantRayosAux = cantRayos;
+	double paso = tamAux/(cantRayosAux+1);
 
-	int paso = ceil(pasoAux);
+	//double paso = ceil(pasoAux);
 
 	//El paso es la cantidad de celdas que hay entre cada rayo. Están más o menos equidistantes
 	//Para que queden bien equidistantes tenemos que pasar (cantRayos+1) que divida a 512. Eso sería lo más recomendable
-	int x = paso;
+	double x = paso;
 	int i = 0;
 
 	pair<double, double> coordenadas;
@@ -270,7 +270,7 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	coordenadas.second = 0;
 
 	//Acá se generan los rayos del eje y
-	while(x < tam){
+	while(x <= tam){
 		coordenadas.first = x;
 		resultado[i].first = coordenadas;//coordenadas = (x, 0)
 		resultado[i].second = 90;//El ángulo
@@ -283,7 +283,7 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	coordenadas.first = 0;
 	coordenadas.second = 0;
 	//Acá se generan los rayos del eje x
-	while(x < tam){
+	while(x <= tam){
 		coordenadas.second = x;
 		resultado[i].first = coordenadas;//coordenadas = (0, x)
 		resultado[i].second = 0;//Sí, es medio redundante pero lo dejo para que quede claro que estamos haciendo
