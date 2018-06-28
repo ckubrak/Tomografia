@@ -91,14 +91,14 @@ int main (int argc, char** argv)
 
 // convertir los valores calculados en velocidades
     
-    Vector intensidadCM;
-    intensidadCM = calcularIntensidad (resultadoCM);
+    // Vector intensidadCM;
+    // intensidadCM = calcularIntensidad (resultadoCM);
 
 //    error cuadratico reportar a la salida estandar
-    std::cout << "ECM: " << ErrorCuadraticoMedio(intensidadPromedioXCelda, intensidadCM) <<  "\n";
+    std::cout << "ECM: " << ErrorCuadraticoMedio(intensidadPromedioXCelda, resultadoCM) <<  "\n";
 
 //    convertir y grabar la imagen
-    grabarPPM8Bits(archivoSalida, n/dimCelda, n/dimCelda, to8bits(intensidadCM));
+    grabarPPM8Bits(archivoSalida, n/dimCelda, n/dimCelda, to8bits(resultadoCM));
     
     return 0;
 }
