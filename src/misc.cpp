@@ -294,3 +294,18 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	}
 	return resultado;
 }
+
+
+
+void printVector(Vector v)
+{
+  int filas = v.size();
+  //imprimir vector
+    for (int i=0;i<filas;i++){
+
+        std::cout << v[i] << " ";
+
+      std::cout << "\n";
+    }
+
+}
