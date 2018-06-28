@@ -57,7 +57,7 @@ void agregarRuidoImagen(DOK& imag,float alpha){
 //Asumo que el vectorRayo tiene esa forma
 //El vector<pair<int, double>> guardamos el tiempo de recorrido. El int es la celda y el double es el tiempo
 //alpha debería ir entre 0 y 1 por cómo lo dijo la catedra. Regula cuanto ruido agregamos
-void agregarRuidoRayo(std::vector<double> vectorRayo,float alpha){
+void agregarRuidoRayo(std::vector<double> &vectorRayo,float alpha){
 	int tam = vectorRayo.size();
 	std::vector<double> ruido (tam);
 	srand (time(NULL));
