@@ -267,7 +267,7 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
             if (_mat[i].count(k) != 0)
             {
                 mult = _mat[i][k] / _mat[k][k]; //calcular multiplicador
-                std::cout << "multiplicador, i, k: " << mult << " " << i << " " << k << "\n";
+                //std::cout << "multiplicador, i, k: " << mult << " " << i << " " << k << "\n";
 
                 for (iter_col col = _mat[k].begin(); col != _mat[k].end(); col++)
                 {
