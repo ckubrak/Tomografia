@@ -186,7 +186,7 @@ DOK DOK::productoAtraspuestaPorA()
                     C._mat[i][j] = acum;
                 }
             }
-    mostrarMatriz(C);
+    //mostrarMatriz(C);
     return C;
 }
 
@@ -216,8 +216,8 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
         // TP3: Pivoteo parcial
         if (_mat.count(k) == 0 ||_mat[k].count(k) == 0)
         {
-            std::cout << "hay que pivotear: \n";
-            mostrarMatriz(*this);
+            // std::cout << "hay que pivotear: \n";
+            // mostrarMatriz(*this);
             // recorrer las filas de abajo buscando un pivote y permutar
             for (int i = k+1 ; i < n ; i++) //filas a eliminar
             {
@@ -243,8 +243,8 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
                             auxiliar = 0.0;
                         }                            
                     }
-                    std::cout << "k, i: " << k << " " << i << "\n";
-                    mostrarMatriz(*this);
+                    // std::cout << "k, i: " << k << " " << i << "\n";
+                    // mostrarMatriz(*this);
                     break;
                 }
                 // else{
@@ -254,7 +254,7 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
             // chequear si se encontro el pivote
         }
         if (_mat.count(k) == 0 ||_mat[k].count(k) == 0){
-            std::cout << "fallo gauss?\n" ;
+            std::cout << "fallo gauss\n" ;
             mostrarMatriz(*this);    
             int z=0; // fallo gauss?
         }
@@ -269,43 +269,43 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
                 mult = _mat[i][k] / _mat[k][k]; //calcular multiplicador
                 std::cout << "multiplicador, i, k: " << mult << " " << i << " " << k << "\n";
 
-                    for (iter_col col = _mat[k].begin(); col != _mat[k].end(); col++)
+                for (iter_col col = _mat[k].begin(); col != _mat[k].end(); col++)
+                {
+                    int j = (*col).first;
+                    if (j < k)
+                        continue;
+                    if (_mat[k].count(j) != 0)
                     {
-                        int j = (*col).first;
-                        if (j < k)
-                            continue;
-                        if (_mat[k].count(j) != 0)
+                        matkj=_mat[k][j];
+                        if (_mat[i].count(j) == 0)
                         {
-                            matkj=_mat[k][j];
-                            if (_mat[i].count(j) == 0)
-                            {
-                                matij=0;
-                            }
-                            else
-                            {
-                                matij=_mat[i][j];
-                            }
+                            matij=0;
+                        }
+                        else
+                        {
+                            matij=_mat[i][j];
+                        }
 
-                            double ij = matij - mult * matkj;
-                            if (fabs(ij) < eps)
-                            {
-                                _mat[i].erase(j);
-                            }
-                            else
-                            {
-                                _mat[i][j] = ij;
-                            }
+                        double ij = matij - mult * matkj;
+                        if (fabs(ij) < eps)
+                        {
+                            _mat[i].erase(j);
+                        }
+                        else
+                        {
+                            _mat[i][j] = ij;
                         }
                     }
-                    std::cout << "resultado multiplicar fila: \n";
-                    mostrarMatriz(*this);
+                }
+                // std::cout << "resultado multiplicar fila: \n";
+                // mostrarMatriz(*this);
             } //fin no hay cero en la primera columna de la fila i
         } // fin filas a eliminar
-        std::cout << "paso k:" << k << "\n";
-        mostrarMatriz(*this);
+        // std::cout << "paso k:" << k << "\n";
+        // mostrarMatriz(*this);
     } // fin filas pivote
-    std::cout << "fin eliminacion gaussiana: \n"; 
-    mostrarMatriz(*this);
+    // std::cout << "fin eliminacion gaussiana: \n"; 
+    // mostrarMatriz(*this);
     return resolverSistema();
 }
 
