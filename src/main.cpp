@@ -94,6 +94,14 @@ int main (int argc, char** argv)
     // Vector intensidadCM;
     // intensidadCM = calcularIntensidad (resultadoCM);
 
+// Resultado de CM
+// promedios de intensidad
+    std::cout << "Intensidad Promedio X Celda: \n";
+    printVector(intensidadPromedioXCelda);
+
+    std::cout << "Resultado Calculado X Cuadrados Minimos: \n";
+    printVector(resultadoCM);
+
 //    error cuadratico reportar a la salida estandar
     std::cout << "ECM: " << ErrorCuadraticoMedio(intensidadPromedioXCelda, resultadoCM) <<  "\n";
 
