@@ -56,65 +56,73 @@ void agregarRuidoImagen(DOK& imag,float alpha){
 //El vector<pair<int, double>> guardamos el tiempo de recorrido. El int es la celda y el double es el tiempo
 //alpha debería ir entre 0 y 1 por cómo lo dijo la catedra. Regula cuanto ruido agregamos
 void agregarRuidoRayo(std::vector<double> &vectorRayo,float alpha){
-	int tam = vectorRayo.size();
-	std::vector<double> ruido (tam);
-	srand (time(NULL));
-
-	//Calculamos el mayor tiempo, lo vamos a usar para el rango de ruido. ELECCION NUESTRA
-	// double maxVal; 
-	// for (int m = 0; m < tam; m++){
-	// 	if(vectorRayo[m] > maxVal){
-	// 		maxVal = vectorRayo[m];
-	// 	}
-	// }
 
 
+	if (alpha != 0)
+	{
+		
+		int tam = vectorRayo.size();
+		std::vector<double> ruido (tam);
+		srand (time(NULL));
+
+		//Calculamos el mayor tiempo, lo vamos a usar para el rango de ruido. ELECCION NUESTRA
+		// double maxVal; 
+		// for (int m = 0; m < tam; m++){
+		// 	if(vectorRayo[m] > maxVal){
+		// 		maxVal = vectorRayo[m];
+		// 	}
+		// }
 
 
-	// int hasta = 2*(maxVal) - 1;
-	// int desde;
-	// //Esto es solo en caso de que la imagen esté completamente en blanco.
-	// //No es un caso muy probable pero lo cubro para que no rompa
-	// if(maxVal == 0){
-	// 	desde = 0;
-	// } else{
-	// 	desde = -(maxVal-1);
-	// }
-
-	// //Creo el vector con ruido que voy a sumar a la entrada
-	// for(int j = 0; j < tam; j++){
-	// 	double randomNum = rand() % hasta + (desde);
-	// 	ruido[j] = randomNum;
-	// }
 
 
-	// construct a trivial random generator engine from a time-based seed:
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	std::default_random_engine generator (seed);
+		// int hasta = 2*(maxVal) - 1;
+		// int desde;
+		// //Esto es solo en caso de que la imagen esté completamente en blanco.
+		// //No es un caso muy probable pero lo cubro para que no rompa
+		// if(maxVal == 0){
+		// 	desde = 0;
+		// } else{
+		// 	desde = -(maxVal-1);
+		// }
 
-	std::normal_distribution<double> distribution (0.0,1.0);
+		// //Creo el vector con ruido que voy a sumar a la entrada
+		// for(int j = 0; j < tam; j++){
+		// 	double randomNum = rand() % hasta + (desde);
+		// 	ruido[j] = randomNum;
+		// }
 
-	for (int i=0; i < tam; ++i){
-	  ruido[i] = distribution(generator);
-	}
 
-	//Multiplico el vector ruido por el alpha para regular la cantidad de ruido
-	for(int j = 0; j < tam; j++){
-	double aux = ruido[j];
-	ruido[j] = floor(aux*alpha*1000);//Uso floor para sacarnos los decimales
-	}//y multiplico por 1000 para que el alpha este entre 0 y 1, solo por eso.
-	//Los valores del vectorRuido van a ser chicos por que es una normal(0,1)
+		// construct a trivial random generator engine from a time-based seed:
+		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+		std::default_random_engine generator (seed);
 
-	//Ahora los sumamos
-	for(int i = 0; i < tam; i++){
-		if(vectorRayo[i] + ruido[i] > 65535){
-			vectorRayo[i] = 65535;
-		} else if(vectorRayo[i] + ruido[i] < 0){
-			vectorRayo[i] = 0;
-		} else {
-			double aux1 = vectorRayo[i] + ruido[i];
-			vectorRayo[i] = aux1;
+		std::normal_distribution<double> distribution (0.0,1.0);
+
+		for (int i=0; i < tam; ++i){
+		ruido[i] = distribution(generator);
 		}
-	}
 
+		//Multiplico el vector ruido por el alpha para regular la cantidad de ruido
+		for(int j = 0; j < tam; j++){
+		double aux = ruido[j];
+		ruido[j] = floor(aux*alpha*1000);//Uso floor para sacarnos los decimales
+		}//y multiplico por 1000 para que el alpha este entre 0 y 1, solo por eso.
+		//Los valores del vectorRuido van a ser chicos por que es una normal(0,1)
+
+		//Ahora los sumamos
+		for(int i = 0; i < tam; i++){
+			// if(vectorRayo[i] + ruido[i] > 65535){ // SE COMENTA PORQUE LA TRAYECTORIA DE LOS RAYOS PUEDE SUMAR MUCHO MAS
+			// 	vectorRayo[i] = 65535;
+			// } else 
+			if(vectorRayo[i] + ruido[i] < 0)
+			{
+				vectorRayo[i] = 0;
+			} else
+			{
+				double aux1 = vectorRayo[i] + ruido[i];
+				vectorRayo[i] = aux1;
+			}
+		}
+	} // alpha != 0
 }
