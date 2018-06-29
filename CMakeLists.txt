@@ -5,12 +5,11 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -ggdb3 -g -O0")
 set(SOURCE_FILES
-        ppmloader/ppmloader.cpp
-        ppmloader/ppmloader.h
 	src/main.cpp        
 	src/sparse.cpp
 	src/sparse.h
-	src/rayos.hpp
+	src/rayos.h
+	src/rayos.cpp
 	src/misc.h
 	src/misc.cpp
 	src/ruido.h
