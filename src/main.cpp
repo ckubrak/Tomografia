@@ -1,7 +1,7 @@
 #include "sparse.h"
 #include <stdlib.h>
 #include <chrono>
-#include "rayos.hpp"
+#include "rayos.h"
 #include "misc.h"
 #include "ruido.h"
 
@@ -9,7 +9,8 @@
 //armar vector con los tiempos de todos los rayos
 // una posicion por rayo
 // para cada rayo llamar a tiemporayo y cargar una posicion del vector tiempos
-void armarVectorTiempos(int n, DOK &Imagen, std::vector <pair<pair<double, double>, double>> &rayos, Vector &tiempos)
+//void armarVectorTiempos(int n, DOK &Imagen, std::vector <pair<pair<double, double>, double>> &rayos, Vector &tiempos)
+void armarVectorTiempos(int n, DOK &Imagen, info &rayos, Vector &tiempos)
 {
 
     for (int i=0; i<rayos.size(); ++i)
@@ -64,13 +65,14 @@ int main (int argc, char** argv)
     Imagen.cargarCsv(archivoEntrada, n);
     //mostrarMatriz(Imagen);
     // generar los rayos, guardar pto origen y angulo para cada rayo
-     std::vector <pair<pair<double, double>, double>> rayos;
+    //std::vector <pair<pair<double, double>, double>> rayos;
+    info rayos;
     rayos = generarRayosVertices(n,cantRayos);
 
 //    calcular la matriz de distancias
     
     DOK mDistancias( (cantRayos*cantEmisores), int ( (n/dimCelda)*(n/dimCelda)) ) ;
-   mDistancias.distancia(n, n, dimCelda, dimCelda, rayos);
+    mDistancias.distancia(n, n, dimCelda, dimCelda, rayos);
 
 // calcular el vector de tiempos exactos de cada rayo
 

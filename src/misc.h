@@ -2,14 +2,15 @@
 #define _MISC_H_
 
 #include "imagen.h"
-#include "kfold.h"
-#include "pca.h"
-#include "knn.h"
+//#include "kfold.h"
 #include "sparse.h"
 
 #define SIN_INFORMACION_PPM_16 -2000
 #define MAX_PPM_16 2^15
 #define CERO_PPM_16 0
+
+typedef std::vector<double> doubleVector;
+typedef std::vector<doubleVector> doubleMatrix; //matriz para deflacion
 
 int main_kfold(int pca, int k, int alfa, int kknn);
 double ErrorCuadraticoMedio(Vector &b, Vector &bcalculado);
@@ -19,5 +20,7 @@ Vector calcularIntensidad (Vector &v);
 Vector promediarIntensidadesXCelda(DOK &I, int d);
 vector<pair<pair<double, double>, double>> generarRayosVertices(int tam,int cantRayos);
 vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int cantRayos);
+void printVector(doubleVector v);
+void printMatrix(doubleMatrix M);
 
 #endif

@@ -94,6 +94,7 @@ Vector to8bits(Vector &I)
             I8[i]=255;
         }
     }
+    printVector(I8);
     return I8;
 
 }

@@ -13,107 +13,6 @@ DOK::DOK(size_t n, size_t c)
     _m = 0;
 }
 
-
-/*
-// crea e inicializa una matriz diagonal
-DOK::DOK(size_t n, double val)
-{
-    _n = n;
-    _c = n;
-    for (int i = 0; i < _n; i++)
-    {
-        _mat[i][i] = val;
-        _m ++;
-    }
-}
-*/
-
-/*
-// Producto de matrices (pueden ser rectangulares)
-DOK DOK::multiplicarMatriz(DOK &B)
-{
-    size_t filasA = this->_n;
-    size_t columnasA = this->_c;
-    size_t columnasB = B._c;
-    double acum=0.0; //acumulador de fila x columna
-
-    DOK C(filasA, columnasB);
-    for (size_t i=0; i < filasA; ++i)
-            for (size_t j=0; j < columnasB; ++j)
-            {
-                // inicializar el acumulador en cero
-                acum = 0.0;
-                for (size_t k=0; k < columnasA; ++k)
-                {
-                    // si los elementos de A[i][k] y B[k][j] no son cero multiplicarlos y acumular el resultado
-                    if ( (_mat[i].count(k) > 0) && (B._mat[k].count(j) > 0) )
-                    {
-                        acum += _mat[i][k] * B._mat[k][j];
-                    }
-                }
-                // si el acumulador es mayor a cero agregamos el elemento en la matriz resultado
-                if (acum != 0)
-                {
-                    C._mat[i][j] = acum;
-                }
-            }
-    return C;
-}
-*/
-/*
-void DOK::restarMatrices(DOK& m)
-{
-    m.multiplicarConstante(-1.0);
-    sumarMatrices(m);
-}
-
-void DOK::sumarMatrices(DOK& m)
-{
-    for (int i = 0; i < _n; i++)
-    {
-        for (int j = 0; j < _c; j++)
-        {
-            if (_mat[i].count(j) > 0)
-            {
-                if(m._mat[i].count(j) > 0)
-                {
-                    _mat[i][j] += m._mat[i][j];
-                }
-            }
-            else
-            {
-                if( m._mat[i].count(j) > 0)
-                {
-                    _mat[i][j] = m._mat[i][j];
-                }
-            }
-        }
-    }
-}
-*/
-
-void DOK::multiplicarConstante(double c)
-{
-
-    for (int i = 0; i <size(); i++)
-    {
-            for (int j = 0; j < _c; j++)
-            {
-                if (_mat[i].count(j) > 0){
-                    _mat[i][j] = c * _mat[i][j];
-                }
-            }
-    }
-}
-
-/* 
-Cuadrados Minimos:
-Parametros de entrada:
-- Matriz esparza sobredeterminada de _n x _m (matriz de rayos una fila x rayo, una columna por celda, al inicio contiene unos y ceros)
-- Vector b (contiene los tiempos totales de cada rayo: _n (cantidad de rayos))
-- Salida: Vector de tiempos de cada celda (_m cantidad de celdas)
-LLama: funcion productoAtraspuestaPorA, eliminacionGauss
-*/
 Vector DOK::CuadradosMinimos(Vector b)
 {
     Vector x(_c - 1, 0.0);
@@ -227,12 +126,12 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
                     double auxiliar = 0.0;
                     for (int c = 0 ; c <= n ; ++c)  // OJO c <= n para incluir el termino independiente
                     {
-                        if (_mat[k].count(c) != 0.0)
+                        if (_mat[k].count(c) != 0)
                         {
                             auxiliar = _mat[k][c];
                             _mat[k].erase(c);
                         }
-                        if (_mat[i].count(c) != 0.0)
+                        if (_mat[i].count(c) != 0)
                         {
                             _mat[k][c]=_mat[i][c];
                             _mat[i].erase(c);
@@ -255,7 +154,7 @@ Vector DOK::eliminacionGauss(Vector& b, double eps)
         }
         if (_mat.count(k) == 0 ||_mat[k].count(k) == 0){
             std::cout << "fallo gauss\n" ;
-            mostrarMatriz(*this);    
+            //mostrarMatriz(*this);    
             int z=0; // fallo gauss?
         }
 

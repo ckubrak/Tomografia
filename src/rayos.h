@@ -14,8 +14,6 @@ using namespace std;
 typedef std::vector <std::pair<std::pair<double,double>,double>> info;
 
 void pasa(int n, int m, double x, double y, double angulo, vector<pair<int, int>> &solucion);
-
-
 typedef map<size_t, map<size_t , double> > matriz;
 double tiemporayo(int n, int m , matriz velocidad, double x, double y, double angulo);
 

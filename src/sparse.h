@@ -11,13 +11,12 @@
 #include <iterator>
 #include <fstream>
 #include <unordered_map>
-
 #include "rayos.h"
 
 #define EPSILON_EG 0.00001
 typedef std::vector<double > Vector;
 
-typedef std::vector <std::pair<std::pair<double,double>,double>> info;
+//typedef std::vector <std::pair<std::pair<double,double>,double>> info;
 class DOK
 {
 public:
