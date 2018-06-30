@@ -3,7 +3,7 @@ project(TP3-Metodos)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -ggdb3 -g -O0")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -ggdb3 -g -O2")
 set(SOURCE_FILES
 	src/main.cpp        
 	src/sparse.cpp
