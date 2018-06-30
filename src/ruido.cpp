@@ -97,7 +97,7 @@ void agregarRuidoRayo(std::vector<double> &vectorRayo,float alpha){
 		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 		std::default_random_engine generator (seed);
 
-		std::normal_distribution<double> distribution (0.0,1.0);
+		std::normal_distribution<double> distribution (10.0,1.0);
 
 		for (int i=0; i < tam; ++i){
 		ruido[i] = distribution(generator);
@@ -106,7 +106,7 @@ void agregarRuidoRayo(std::vector<double> &vectorRayo,float alpha){
 		//Multiplico el vector ruido por el alpha para regular la cantidad de ruido
 		for(int j = 0; j < tam; j++){
 		double aux = ruido[j];
-		ruido[j] = floor(aux*alpha*1000);//Uso floor para sacarnos los decimales
+		ruido[j] = floor(aux*alpha*vectorRayo[j]);//Uso floor para sacarnos los decimales
 		}//y multiplico por 1000 para que el alpha este entre 0 y 1, solo por eso.
 		//Los valores del vectorRuido van a ser chicos por que es una normal(0,1)
 

@@ -67,7 +67,17 @@ int main (int argc, char** argv)
     // generar los rayos, guardar pto origen y angulo para cada rayo
     //std::vector <pair<pair<double, double>, double>> rayos;
     info rayos;
-    rayos = generarRayosVertices(n,cantRayos);
+    //rayos = generarRayosVertices(n,cantRayos);
+
+    //std::vector <pair<pair<double, double>, double>> rayosCuadricula;
+    //info rayosCuadricula;
+    //rayos = generarRayosCuadricula(n, cantRayos);
+    cantEmisores = 4*n - 8;
+    cantRayos = n;
+    rayos = generarRayosEjeY(n, cantEmisores, cantRayos);
+    
+
+
 
 //    calcular la matriz de distancias
     

@@ -251,6 +251,7 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 //Esta función lo que hace es generar cantRayos paralelos y equidistantes, tanto en el eje x como en el eje y
 vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int cantRayos){
 
+    cantRayos = tam;
 	std::vector<pair<pair<double, double>, double>> resultado (2*cantRayos);
 
 	double aux = tam;
@@ -259,6 +260,8 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	float tamAux = tam;
 	double cantRayosAux = cantRayos;
 	double paso = tamAux/cantRayosAux;
+
+    paso = 1;
 
 	//double paso = ceil(pasoAux);
 
@@ -295,6 +298,51 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	}
 	return resultado;
 }
+
+//Esta funcion genera puntos aleatorios uniformes en el eje Y desde donde parten 
+//cantRayosPorEmisor desde cada uno de esos puntos.
+//Acá el ángulo va a ir desde 270 a 90
+vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmisores, int cantRayosPorEmisor){
+    std::vector<pair<pair<double, double>, double>> resultado;
+    pair<double, double> coordenadas;
+
+    std::random_device rd;  //Will be used to obtain a seed for the random number engine
+    std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+    std::uniform_int_distribution<> dis(1, 510);//No agarro 0 y 511 para excluir vertices
+
+    pair<pair<double, double>, double> parAux;
+    for(int i = 0; i < cantEmisores; i++){//Para cada emisor
+    coordenadas.first = 0;//Eje x
+    coordenadas.second =  dis(gen);//Eje y. Numero aleatorio entre 1 y 510
+        for(int j = 0; j < cantRayosPorEmisor; j++){//Para cada rayo desde ese emisor
+            std::uniform_int_distribution<> disAUX(-90, 90);
+            int k = disAUX(gen);
+            if(k < 0){
+                k = k + 360;
+            }
+            parAux.first = coordenadas;
+            parAux.second = k;
+            resultado.push_back(parAux);
+
+        }
+    }
+
+    for(int i = 0; i < cantEmisores; i++){//Para cada emisor
+    coordenadas.first = dis(gen);//Eje x
+    coordenadas.second =  0;//Eje y. Numero aleatorio entre 1 y 510
+        for(int j = 0; j < cantRayosPorEmisor; j++){//Para cada rayo desde ese emisor
+            std::uniform_int_distribution<> disAUX(0, 180);
+            int k = disAUX(gen);
+            parAux.first = coordenadas;
+            parAux.second = k;
+            resultado.push_back(parAux);
+
+        }
+    }
+    
+    return resultado;
+}
+
 
 
 
