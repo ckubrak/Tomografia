@@ -358,3 +358,19 @@ void printVector(Vector v)
     }
 
 }
+
+
+pair<pair<double, double>, double> generarUnRayo(double x, double y, double k)
+{
+    pair<pair<double, double>, double> resultado;
+    pair<double, double> coordenadas;
+    
+    pair<pair<double, double>, double> parAux;
+    
+    coordenadas.first = x;//Eje x
+    coordenadas.second = y;//Eje y. Numero aleatorio entre 1 y 510
+    resultado.first = coordenadas;
+    resultado.second = k;
+
+    return resultado;
+}
