@@ -24,6 +24,5 @@ void printVector(doubleVector v);
 void printMatrix(doubleMatrix M);
 
 vector<pair<pair<double, double>, double>> generarRayosUniformes(int tam, int cantEmisores, int cantRayosPorEmisor);
-
-
+void grabarRayos(std::string nombre_archivo, int n, info rayos);
 #endif

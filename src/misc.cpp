@@ -403,3 +403,24 @@ pair<pair<double, double>, double> generarUnRayo(double x, double y, double k)
 
     return resultado;
 }
+
+
+
+void grabarRayos(std::string nombre_archivo, int n, info rayos)
+{
+    size_t cantRayos = rayos.size();
+
+    std::ofstream output(nombre_archivo += "_rayos.csv" );
+    
+    // escribir de corrido los unsigned char que representan los valores de intensidad de c/pixel de la imagen
+    for (int i=0; i<cantRayos; ++i)
+    {
+        //output << (n-1)-rayos[i].first.second; // fila del pixel
+        output << rayos[i].first.second << ","; // fila del pixel
+        output << rayos[i].first.first << ","; // columna del pixel
+        output << rayos[i].second << "\n"; // angulo
+    }
+    output.close();
+    return;
+}
+
