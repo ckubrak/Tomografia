@@ -72,7 +72,7 @@ int main (int argc, char** argv)
     //std::vector <pair<pair<double, double>, double>> rayosCuadricula;
     //info rayosCuadricula;
     //rayos = generarRayosCuadricula(n, cantRayos);
-    cantEmisores = 2*(n/dimCelda);
+    cantEmisores = 4*(n/dimCelda);
     cantRayos = n;
     //Cuidado que cantEmisores son los emisores de cada eje, o sea, vamos a tener el doble en realidad
     rayos = generarRayosEjeY(n, cantEmisores, cantRayos);
