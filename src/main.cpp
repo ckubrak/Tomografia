@@ -73,10 +73,12 @@ int main (int argc, char** argv)
     //info rayosCuadricula;
     //rayos = generarRayosCuadricula(n, cantRayos);
     cantEmisores = 2*(n/dimCelda);
-    cantRayos = n/dimCelda;
+    cantRayos = n;
     //Cuidado que cantEmisores son los emisores de cada eje, o sea, vamos a tener el doble en realidad
     rayos = generarRayosEjeY(n, cantEmisores, cantRayos);
     
+
+    std::cout << "rayos" << std::endl;
 
 
 
@@ -85,15 +87,17 @@ int main (int argc, char** argv)
     DOK mDistancias( (cantRayos*cantEmisores), int ( (n/dimCelda)*(n/dimCelda)) ) ;
     mDistancias.distancia(n, n, dimCelda, dimCelda, rayos);
 
+    std::cout << "distancia" << std::endl;
 // calcular el vector de tiempos exactos de cada rayo
 
     std::vector<double> vtiempos(cantRayos*cantEmisores);
     armarVectorTiempos(n, Imagen, rayos, vtiempos);
 
+    std::cout << "Vector tiempos" << std::endl;
 // Calcular las intensidades promedio de las celdas de la matriz discreta
     Vector intensidadPromedioXCelda;
     intensidadPromedioXCelda = promediarIntensidadesXCelda(Imagen, dimCelda);
-    
+    std::cout << "Intensidad Celda" << std::endl;
     // se agrega ruido al vector de tiempos de rayos
     agregarRuidoRayo(vtiempos, ruido);
 
