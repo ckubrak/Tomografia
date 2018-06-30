@@ -311,7 +311,7 @@ vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmi
     std::uniform_int_distribution<> dis(1, 510);//No agarro 0 y 511 para excluir vertices
 
     pair<pair<double, double>, double> parAux;
-    for(int i = 0; i < cantEmisores; i++){//Para cada emisor
+    for(int i = 0; i < cantEmisores/2; i++){//Para cada emisor
     coordenadas.first = 0;//Eje x
     coordenadas.second =  dis(gen);//Eje y. Numero aleatorio entre 1 y 510
         for(int j = 0; j < cantRayosPorEmisor; j++){//Para cada rayo desde ese emisor
@@ -327,7 +327,7 @@ vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmi
         }
     }
 
-    for(int i = 0; i < cantEmisores; i++){//Para cada emisor
+    for(int i = cantEmisores/2; i < cantEmisores; i++){//Para cada emisor
     coordenadas.first = dis(gen);//Eje x
     coordenadas.second =  0;//Eje y. Numero aleatorio entre 1 y 510
         for(int j = 0; j < cantRayosPorEmisor; j++){//Para cada rayo desde ese emisor
@@ -339,7 +339,7 @@ vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmi
 
         }
     }
-    
+
     return resultado;
 }
 
