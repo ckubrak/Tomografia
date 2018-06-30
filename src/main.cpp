@@ -74,8 +74,8 @@ int main (int argc, char** argv)
     //rayos = generarRayosCuadricula(n, cantRayos);
     cantEmisores = 4*(n/dimCelda);
     cantRayos = n;
-    //Cuidado que cantEmisores son los emisores de cada eje, o sea, vamos a tener el doble en realidad
-    rayos = generarRayosEjeY(n, cantEmisores, cantRayos);
+    //Cuidado que cantEmisores son los emisores de cada eje, o sea, vamos a tener el cuadruple en realidad
+    rayos = generarRayosUniformes(n, cantEmisores, cantRayos);
     
 
     std::cout << "rayos" << std::endl;

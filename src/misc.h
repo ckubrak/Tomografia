@@ -23,7 +23,7 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 void printVector(doubleVector v);
 void printMatrix(doubleMatrix M);
 
-vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmisores, int cantRayosPorEmisor);
+vector<pair<pair<double, double>, double>> generarRayosUniformes(int tam, int cantEmisores, int cantRayosPorEmisor);
 
 
 #endif

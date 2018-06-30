@@ -299,10 +299,10 @@ vector<pair<pair<double, double>, double>> generarRayosCuadricula(int tam, int c
 	return resultado;
 }
 
-//Esta funcion genera puntos aleatorios uniformes en el eje Y desde donde parten 
+//Esta funcion genera rayos que salen de emisores uniformemente distribuidos en cada lado de la matriz 
 //cantRayosPorEmisor desde cada uno de esos puntos.
 //Acá el ángulo va a ir desde 270 a 90
-vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmisores, int cantRayosPorEmisor){
+vector<pair<pair<double, double>, double>> generarRayosUniformes(int tam, int cantEmisores, int cantRayosPorEmisor){
     std::vector<pair<pair<double, double>, double>> resultado;
     pair<double, double> coordenadas;
 
@@ -311,7 +311,7 @@ vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmi
     std::uniform_int_distribution<> dis(1, tam-2);//No agarro 0 y 511 para excluir vertices
 
     pair<pair<double, double>, double> parAux;
-    for(int i = 0; i < cantEmisores/2; i++){//Para cada emisor
+    for(int i = 0; i < cantEmisores/4; i++){//Para cada emisor
     coordenadas.first = 0;//Eje x
     coordenadas.second =  dis(gen);//Eje y. Numero aleatorio entre 1 y 510
         for(int j = 0; j < cantRayosPorEmisor; j++){//Para cada rayo desde ese emisor
@@ -327,7 +327,7 @@ vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmi
         }
     }
 
-    for(int i = cantEmisores/2; i < cantEmisores; i++){//Para cada emisor
+    for(int i = cantEmisores/4; i < cantEmisores/2; i++){//Para cada emisor
     coordenadas.first = dis(gen);//Eje x
     coordenadas.second =  0;//Eje y. Numero aleatorio entre 1 y 510
         for(int j = 0; j < cantRayosPorEmisor; j++){//Para cada rayo desde ese emisor
@@ -339,6 +339,35 @@ vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmi
 
         }
     }
+
+    //Acá vamos con el lado superior
+    for(int i = cantEmisores/2; i < 3*(cantEmisores/4); i++){//Para cada emisor
+    coordenadas.first = dis(gen);
+    coordenadas.second =  tam-1;//El ultimo lugar de la matriz en el eje y
+        for(int j = 0; j < cantRayosPorEmisor; j++){//Para cada rayo desde ese emisor
+            std::uniform_int_distribution<> disAUX(180, 360);
+            int k = disAUX(gen);
+            parAux.first = coordenadas;
+            parAux.second = k;
+            resultado.push_back(parAux);
+
+        }
+    }
+
+    //Y por último el lado derecho
+    for(int i = 3*(cantEmisores/4); i < cantEmisores; i++){//Para cada emisor
+    coordenadas.first =  tam-1;//El último lugar de la matriz en eje x
+    coordenadas.second = dis(gen);
+        for(int j = 0; j < cantRayosPorEmisor; j++){//Para cada rayo desde ese emisor
+            std::uniform_int_distribution<> disAUX(90, 270);
+            int k = disAUX(gen);
+            parAux.first = coordenadas;
+            parAux.second = k;
+            resultado.push_back(parAux);
+
+        }
+    }
+
 
     return resultado;
 }
