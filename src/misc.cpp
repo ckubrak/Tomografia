@@ -308,7 +308,7 @@ vector<pair<pair<double, double>, double>> generarRayosEjeY(int tam, int cantEmi
 
     std::random_device rd;  //Will be used to obtain a seed for the random number engine
     std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
-    std::uniform_int_distribution<> dis(1, 510);//No agarro 0 y 511 para excluir vertices
+    std::uniform_int_distribution<> dis(1, tam-2);//No agarro 0 y 511 para excluir vertices
 
     pair<pair<double, double>, double> parAux;
     for(int i = 0; i < cantEmisores/2; i++){//Para cada emisor
