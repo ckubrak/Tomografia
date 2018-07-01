@@ -1,5 +1,28 @@
 \subsubsection*{Desarrollo}
 
+\title {Imágenes}
+
+\par Para realizar la experimentación utilizamos la imagen tomo.png provista por la cátedra, con una resolución de 100 x 100 pixeles.
+La imagen la trabajamos en formato .csv para la entrada con una profundidad de 16 bits y luego de la reconstrucción la guardamos en formato pgm de 8 bits.
+Para la conversión de la imagen de 16 a 8 bits implementamos una función (to8bits) que identifica los valores de intensidad máximo y mínimo de la imagen a guardar. Al valor mínimo se le asocia el valor de salida 0 y al máximo el valor de salida 255. Los valores de intensidades intermedias se distribuyen de forma proporcional.
+
+\par En un principio comenzamos utilizando los archivos .csv provistos por la cátedra de 512 x 512 pixeles, con estas imágenes realizamos varias pruebas fallidas que se explican más detalladamente en el apartado Generación de rayos. Debido a diversas dificultades que se nos presentaron con la elección de la estrategia para trazar los rayos, se demoró el inicio de las pruebas y optamos por utilizar imágenes más chicas para poder realizarlas en el tiempo de que disponíamos.
+
+\title {Discretización} Para discretizar la imagen utilizamos valores divisores de 100. En los tests de granularidad, variamos el tamaño de las celdas tomando los valores $4x4$, $5x5$, $10x10$, $20x20$, $25x25$ y $50x50$ pixeles.
+
+\title {Cálculo de la distancia decorrida por cada rayo} 
+Implementamos una funcion ''pasa'' que se encarga de identificar por qué pixeles pasa un rayo (los rayos son considerados como rectas en el plano, caracterizados por un punto de origen que llamamos $(x,y)$ y un ángulo $\{alpha}$).
+
+\par Para poder describir esta funcion adecuadamente imaginamos la imagen ubicada en un eje de coordenadas de modo tal que su vertice inferior izquierdo se encuentre en la coordenada (0,0). Pensamos a la imagen como un subconjunto de puntos del plano.
+
+\par Utilizando la tangente de $\{alpha}$ (que es la pendiente de la recta asociada al rayo), se busca la interseccion con la recta $y=0$ la cual sería el punto $(x-y/tangent(\{alpha}),0)$.  De ahi en mas se utiliza la función de la recta, variando el valor de $x$ para calcular los puntos del plano (siempre hablando del plano en un sentido general) por los que pasa la recta. Si el punto hallado pertenece a la imagen se guardan las coordenadas del pixel correspondiente en un vector, para ser usadas posteriormente para el cálculo de distancias y de tiempos.
+
+\par Esta función se usa para calcular el tiempo que le toma a un rayo atravesar al sujerto. Para esp se hace la suma de las intensidades de los pixeles por las que pasa el rayo ya que la intensidad de los mismos la asociamos al tiempo que le toma a un rayo atravesar el mismo.
+
+\par Finalmente se la reutilizará por ultima vez para calcular la cantidad de pixeles en cada celda por las que pasa el rayo. Para hacer esto se calcula para cada pixel por los que pasa el rayo a qué celda pertenece. Para esto es necesario realizar una conversión en las coordenadas, ya que las celdas de la imagen se identifican desde la esquina superior izquierda.
+
+\par Debido a que los rayos pasan solamente por algunas celdas del total (Se puede ver gráficamente que si la grilla es de n celdas, a lo sumo serán $2*n-1$), para la matriz de distancias reutilizamos la estructura de matriz esparza del TP1.
+
 \title{Generación de rayos}
 
 \par Una de las decisiones que tuvimos que tomar fue de qué forma trazar los rayos simulados que íbamos a aplicar a la imagen.
@@ -9,7 +32,7 @@
 \par En cuanto a la ubicación de los emisores, inicialmente pensamos en dos opciones que resultaron fallidas:
 \begin{enumerate}
 \item Trazar rayos horizontales y verticales, formando una cuadrícula.
-\item Trazar rayos saliendo de los cuatro vértices de la imagen en distintos direcciones para barrer los 90^{°} de cada ángulo.
+\item Trazar rayos saliendo de los cuatro vértices de la imagen en distintos direcciones para barrer los $90^{\circ}$ de cada ángulo.
 \end{enumerate}
 
 \par En ambos casos, al comenzar la experimentación nos encontramos con dificultades.
@@ -33,3 +56,18 @@ Al realizar un análisis de estos resultados nos dimos cuenta que los rayos traz
 \item Sobre la cantidad de emisores, variando entre 20 y 140, aumentando de a 20 ($2*n$ hasta $7*2*n$). Sin aplicar ruido y manteniendo constante la cantidad de rayos por emisor en 100.
 \item Sobre la cantidad de rayos por emisor, variando desde 50 hasta 150, aumentando de a 10.  Sin aplicar ruido y manteniendo constante la cantidad de emisores en 100.
 \end{enumerate}
+
+\par En la fig. se puede ver el trazado de rayos resultante tomando como base la imagen tomo.png en un tamaño de 25 x 25 pixeles, con una discretización en celdas de 5 x 5 pixeles, usando 25 emisores y 25 rayos por emisor.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=1\textwidth]{img/rayos_tomo25x25px.png}
+\caption{Trazado aleatorio de rayos}
+\label{fig:rayos aleatorios}
+\end{figure}
+
+\title{Cuadrados mínimos} Para resolver el sistema de ecuaciones de cuadrados mínimos utilizamos las ecuaciones normales. Para esto reutilizamos la estructura de matriz esparza y el algoritmo de eliminación gaussiana del TP1, al cual modificamos para utilizar pivoteo de filas.
+
+\Durante el testeo implementamos la eliminación gaussiana utilizando una matriz completa pero no reportó ningún beneficio en el tiempo de procesamiento por lo cual descartamos la idea.
+
+\title{Ruido}
