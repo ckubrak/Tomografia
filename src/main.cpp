@@ -64,6 +64,10 @@ int main (int argc, char** argv)
         clave = argv[7];
         archivoSalida += clave;
     }
+    else 
+    {
+        clave = "";
+    }
 
     //levantar la imagen
     DOK Imagen(n);

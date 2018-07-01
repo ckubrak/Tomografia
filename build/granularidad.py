@@ -3,12 +3,12 @@ import os
 
 def granu():
     clave = "granu"
-    for i in [1, 2, 4, 5, 10, 20, 25, 50]:
+    for i in [4, 5, 10, 20, 25, 50]:
     # for i in [25, 50]:
         clavei = "_" + clave + "_" + str(i)
         # print(clavei)
         # call(["./tp3","~/3TPMetodos/imgs_TC/atomo", "0", "100",str(i), "100", "100", clavei])
-        os.system("./tp3 ~/3TPMetodos/imgs_TC/tomo 0 100 "+ str(i) +" 100 100 "+ str(clavei))
+        os.system("./tp3 ~/3TPMetodos/imgs_TC/tomo 0 100 "+ str(i) +" 90 90 "+ str(clavei))
         # print("")
 
 def ruido():
@@ -41,11 +41,11 @@ def rayos():
         # print("")
 
 
+# emisores()
+# print("\n")
+# rayos()
+# print("\n")
+# ruido()
+# print("\n")
 granu()
-print("\n")
-emisores()
-print("\n")
-rayos()
-print("\n")
-ruido()
 print("\n")
