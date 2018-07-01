@@ -6,4 +6,6 @@
 
 void agregarRuidoImagen(DOK&,float alpha);
 void agregarRuidoRayo(std::vector<double> &vectorRayo,float alpha);
+void agregarRuidoRayoAditivo(std::vector<double> &vectorRayo,float alpha);
+
 #endif
