@@ -1,17 +1,23 @@
 \subsubsection*{Apendices}
 
-\textbf{}Parámetros de entrada:} Para correr el programa se deben utilizar los siguientes parámetros:
+\textbf{Parámetros de entrada:} Para correr el programa se deben utilizar los siguientes parámetros:
 \begin{enumerate}
 \item Nombre del archivo de entrada sin extensión. Se asume que el archivo es de tipo csv conteniendo imágenes de 16 bits.
 \item Nivel de ruido: valor entre 0 y 1.
 \item Dimension de la imagen: cantidad de pixeles por fila. Asumimos que la imagen es cuadrada.
-\item Dimensión de celda. Número entero que debe ser divisor de la cantidad de pixeles por fila de la imagen. Se asume que las celdas van a ser cuadradas.
+\item Dimensión de celda. Número entero que debe s.er divisor de la cantidad de pixeles por fila de la imagen. Se asume que las celdas van a ser cuadradas.
 \item Cantidad de Emisores. Cantidad total de emisores.
 \item Cantidad de rayos. Cantidad de rayos que se van a trazar desde cada emisor.
 \end{enumerate}
-\par Ejemplo: ./tp3 ./imgs_TC/tomo 0.1 100 5 20 120
+\par Ejemplo: $./tp3 ./imgs_TC/tomo 0.1 100 5 20 120$
 \par Con estos parámetros se toma el archivo tomo.csv, nivel de ruido 0.1, dimension de la imagen 100x100 pixeles, dimensión de la celda 5x5 pixeles, 20 emisores, 120 rayos por emisor.
 
 \par En el mismo directorio en que se encuentran las imágenes de entrada se genera el archivo que contiene la imagen reconstruida en format pgm de 8 bits. Tiene el mismo nombre que el archivo de entrada y extensión '.pgm'.
 
+Analisis de las imágenes reconstruídas.
 
+En el caso de las imágenes correspondientes a las pruebas que se realizaron variando la cantidad de emisores a simple vista se puede observar que los mejores resultados se dan con 60, 120 y 140 emisores mientras que valores intermedios producen resultados menos definidos. En el caso de los 60 emisores este resultado además es consistente con un menor valor del ECM pero en el caso de 120 y 140 emisores esa relación no es clara, incluso el error con 140 es más grande que con 80 emisores sin embargo la imagen resulta más nítida. Nos cuesta establecer una relación entre la cantidad de emisores y la definición de la imagen. Es posible que al elegir los ángulos de los rayos de forma aleatoria se pueda estar generando rayos muy parecidos que no aportan información relevante.
+
+Algo similar ocurre con las pruebas hechas variando la cntidad de rayos, en las cuales podemos observar mejores resultados con una cantidad de 60 o de 100 rayos mientras que con 140 es practicamente irreconocible.
+
+En el caso de las imágenes correspondientes a las pruebas que se realizaron variando la granularidad se puede ver que a una granularidad más fina se observan imágenes más definidas. Esto está además en correlación con los resultados obtenidos en el cálculo del ECM.
