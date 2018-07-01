@@ -8,14 +8,14 @@
 
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/sinRuido.png}
+	\centering	\includegraphics[width=0.7\textwidth]{img/sinRuido.png}
 	\caption{Vector de tiempos de rayos sin ruido}
 	\label{fig:etiqueta}
 \end{figure}
 \par Acá podemos observar que efectivamente, el ruido aditivo modifíca mucho más algunas partes del vector mientras que otras no se aprecian muchos cambios. En este caso el histograma de ruido aditivo sufre cambios notorios respecto del vector sin ruido, mientras que en los valores más grandes casi que no notamos se notan diferencias.
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/ruidoAditivo.png}
+	\centering	\includegraphics[width=0.7\textwidth]{img/ruidoAditivo.png}
 	\caption{Vector de tiempos de rayos con ruido aditivo}
 	\label{fig:etiqueta}
 \end{figure}
@@ -23,7 +23,7 @@
 \par En este otro caso en cambio, vemos que las diferencias entre el histograma de ruido multiplicativo y sin ruido existen pero están más uniformemente distribuídas. La única anormalidad que observamos es un incremento en los valores máximos, no obstante se trata de unos pocos casos aislados.
 Esto se parece más a lo que esperabamos que hiciera nuestro ruido, por eso fue que elegimos usar este método en nuestra implementación.
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/ruidoMultiplicativo.png}
+	\centering	\includegraphics[width=0.7\textwidth]{img/ruidoMultiplicativo.png}
 	\caption{Vector de tiempos de rayos con ruido multiplicativo}
 	\label{fig:etiqueta}
 \end{figure}
@@ -31,55 +31,57 @@ Esto se parece más a lo que esperabamos que hiciera nuestro ruido, por eso fue 
 
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/cantrayos_tiempo}
-	\caption{Tiempo en funcion de la Cantidad de rayos}
+	\centering	\includegraphics[width=0.7\textwidth]{img/cantrayos_tiempo}
+	\caption{Tiempo en funcion de la Cantidad de rayos con granularidad, cantidad de emisores y ruido fijos}
 	\label{fig:cantrayos_tiempo}
 \end{figure}
+\par Tal como se puede apreciar en esta imagen la cantidad de rayos que parten de cada emisor afectan de manera importante el tiempo de ejecuci\'on.
 
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/cantrayos_ecm}
-	\caption{ECM en funcion de la Cantidad de rayos}
+	\centering	\includegraphics[width=0.7\textwidth]{img/cantrayos_ecm}
+	\caption{ECM en funcion de la Cantidad de rayos con granularidad, cantidad de emisores y ruido fijos}
 	\label{fig:cantrayos_eps}
 \end{figure}
 
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/emi_tiempo}
-	\caption{Tiempo en funcion de la Cantidad de emisores}
+	\centering	\includegraphics[width=0.7\textwidth]{img/emi_tiempo}
+	\caption{Tiempo en funcion de la Cantidad de emisores con granularidad, cantidad de rayos por emisor y ruido fijos}
 	\label{fig:emi_tiempo}
 \end{figure}
-
+\par Tal como se puede observar en este gr\'afico la cantidad de emisores de rayos afecta de manera directa en el tiempo de ejecuci\'on.
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/emi_ecm}
-	\caption{ECM en funcion de la Cantidad de emisores}
+	\centering	\includegraphics[width=0.7\textwidth]{img/emi_ecm}
+	\caption{ECM en funcion de la Cantidad de emisores con granularidad, cantidad de rayos por emisor y ruido fijos}
 	\label{fig:emi_ecm}
 \end{figure}
 
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/granu_tiempo}
-	\caption{Tiempo en funcion de la Granularidad}
+	\centering	\includegraphics[width=0.7\textwidth]{img/granu_tiempo}
+	\caption{Tiempo en funcion de la Granularidad con cantidad de rayos, cantidad de emisores y ruido fijos}
 	\label{fig:granu_tiempo}
 \end{figure}
-
+\par A mayor granularidad, menor resulta el tiempo de ejecuci\'on debido a que casos de granularidad se reduce el tamaño de la matriz imagen.
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/granu_ecm}
-	\caption{ECM en funcion de la Granularidad}
+	\centering	\includegraphics[width=0.7\textwidth]{img/granu_ecm}
+	\caption{ECM en funcion de la Granularidad con cantidad de rayos, cantidad de emisores y ruido fijos}
 	\label{fig:granu_ecm}
 \end{figure}
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/ruido_tiempo}
-	\caption{Tiempo en funcion del ruido}
+	\centering	\includegraphics[width=0.7\textwidth]{img/ruido_tiempo}
+	\caption{Tiempo en funcion del ruido con cantidad de rayos, cantidad de emisores y granularidad fijos}
 	\label{fig:ruido_tiempo}
 \end{figure}
 
+\par Tal como esperabamos, el ruido que se le agrega a la imagen no afecta de manera significativa el tiempo de ejecuci\'on.
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.8\textwidth]{img/ruido_ecm}
-	\caption{ECM en funcion del ruido}
+	\centering	\includegraphics[width=0.7\textwidth]{img/ruido_ecm}
+	\caption{ECM en funcion del ruido con cantidad de rayos, cantidad de emisores y granularidad fijos}
 	\label{fig:ruido_ecm}
 \end{figure}
