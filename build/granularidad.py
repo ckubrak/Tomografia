@@ -41,11 +41,11 @@ def rayos():
         # print("")
 
 
-# granu()
-# print("\n")
-# emisores()
-# print("\n")
-# rayos()
-# print("\n")
+granu()
+print("\n")
+emisores()
+print("\n")
+rayos()
+print("\n")
 ruido()
 print("\n")
