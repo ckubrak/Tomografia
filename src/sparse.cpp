@@ -254,16 +254,20 @@ std::vector<Vector> DOK::matrizCompleta()
 // TODO borrar antes de entregar mostrarMatriz
 void mostrarMatriz(DOK& dok)
 {
+    std::ofstream output("inputmatriks.txt"); 
     std::vector<Vector> vectorDeVectores = dok.matrizCompleta();
     for (int i = 0; i < vectorDeVectores[0].size(); i++)
     {
         for (int j = 0; j < vectorDeVectores[0].size(); j++)
         {
-            std::cout << vectorDeVectores[i][j] << "\t";
+            output << vectorDeVectores[i][j] << "\t";
+            // std::cout << vectorDeVectores[i][j] << "\t";
+
         }
-        std::cout << "\n";
+        output << "\n";
+        // std::cout << "\n";
     }
-    std::cout << "\n";
+    // std::cout << "\n";
 }
 
 // carga en una matriz esparza una imagen cuadrada de nxn pixeles desde un archivo csv
