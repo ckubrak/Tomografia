@@ -1,1 +1,35 @@
 \subsubsection*{Desarrollo}
+
+\title{Generación de rayos}
+
+\par Una de las decisiones que tuvimos que tomar fue de qué forma trazar los rayos simulados que íbamos a aplicar a la imagen.
+
+\par En cuanto a la cantidad de rayos, la misma debe ser mayor que $n^{2}$, siendo $n$ la cantidad de celdas de la discretización, ya que con una cantidad menor habría celdas que no son atravesadas por ningún rayo. En ese caso, hay columnas completas de ceros en la matriz de distancias, lo cual se traduce en filas de ceros en la matriz del sistema a resolver que como ya explicamos en la introducción se obtiene como $D^{t}D t = D^{t} v$. Esta situación se corresponde con un sistema con infinitas soluciones.
+
+\par En cuanto a la ubicación de los emisores, inicialmente pensamos en dos opciones que resultaron fallidas:
+\begin{enumerate}
+\item Trazar rayos horizontales y verticales, formando una cuadrícula.
+\item Trazar rayos saliendo de los cuatro vértices de la imagen en distintos direcciones para barrer los 90^{°} de cada ángulo.
+\end{enumerate}
+
+\par En ambos casos, al comenzar la experimentación nos encontramos con dificultades.
+
+\par En el primer caso al realizar la eliminación gaussiana nos encontrábamos con que la matriz tenía filas completas en cero (matriz no inversible).
+
+\par En el segundo caso, si bien se ejecutaban todos los pasos del programa las imágenes reconstruídas no eran reconocibles.
+
+Al realizar un análisis de estos resultados nos dimos cuenta que los rayos trazados de estas formas eran muy similares entre sí y en consecuencia no suministraban información sufuciente para realizar una buena aproximación a la verdadera solución del sistema. Igualmente adjuntamos la implementación en el código a título informativo.
+
+\par Finalmente decidimos trazar rayos desde los cuatro laterales de la imagen. Los emisores se ubican en igual cantidad sobre los lados de la imagen, la ubicación de los emisores se selecciona aleatoriamente en base a una distribución uniforme entre $0$ y $k$, siendo $k$ la cantidad de pixeles por lado de la imagen (es decir suponiendo que la imagen tiene $k*k$ pixeles).
+
+\par De cada uno de estos emisores salen igual cantidad de rayos en ángulos que van entre $0^{\circ}$ a $180^{\circ}$. Los valores de los ángulos también se seleccionan aleatoriamente con distribución uniforme.
+
+\par Si bien este método es aleatorio -con lo que los resultados difícilmente se repitan en corridas sucesivas- utilizando una cantidad suficientemente grande de rayos (como en este caso) por consecuencia de la Ley de los Grandes Números, en general los rayos quedan bien distribuídos a lo largo (y ancho) de la imagen, pudiendo obtener así resultados consistentes en varias corridas.
+
+\par De los tres métodos este fue el que nos dio mejores resultados y el que terminamos eligiendo para realizar la experimentación.
+
+\par Durante la experimentación, para una discretización de imagen de 10 celdas por lado (100 celdas en total), realizamos dos tipos de pruebas:
+\begin{enumerate}
+\item Sobre la cantidad de emisores, variando entre 20 y 140, aumentando de a 20 ($2*n$ hasta $7*2*n$). Sin aplicar ruido y manteniendo constante la cantidad de rayos por emisor en 100.
+\item Sobre la cantidad de rayos por emisor, variando desde 50 hasta 150, aumentando de a 10.  Sin aplicar ruido y manteniendo constante la cantidad de emisores en 100.
+\end{enumerate}
