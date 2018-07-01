@@ -8,7 +8,7 @@ def granu():
         clavei = "_" + clave + "_" + str(i)
         # print(clavei)
         # call(["./tp3","~/3TPMetodos/imgs_TC/atomo", "0", "100",str(i), "100", "100", clavei])
-        os.system("./tp3 ~/3TPMetodos/imgs_TC/atomo 0 100 "+ str(i) +" 100 100 "+ str(clavei))
+        os.system("./tp3 ~/3TPMetodos/imgs_TC/tomo 0 100 "+ str(i) +" 100 100 "+ str(clavei))
         # print("")
 
 def ruido():
@@ -17,7 +17,7 @@ def ruido():
     # for i in [x * 0.01 for x in [1,10]]:
         clavei = "_" + clave + "_" + str(i)
         # print(clavei)
-        os.system("./tp3 ~/3TPMetodos/imgs_TC/atomo "+ str(i) +" 100 10 50 50 "+ str(clavei))
+        os.system("./tp3 ~/3TPMetodos/imgs_TC/tomo "+ str(i) +" 100 10 50 50 "+ str(clavei))
         # call(["./tp3","~/3TPMetodos/imgs_TC/atomo", str(i), "100","10", "100", "100", clavei])
         # print("")
 
@@ -26,7 +26,7 @@ def emisores():
     for i in range(20,150,20):
         clavei = "_" + clave + "_" + str(i)
         # print(clavei)
-        os.system("./tp3 ~/3TPMetodos/imgs_TC/atomo 0 100 10 "+ str(i) +" 100 "+ str(clavei))
+        os.system("./tp3 ~/3TPMetodos/imgs_TC/tomo 0 100 10 "+ str(i) +" 100 "+ str(clavei))
         # call(["./tp3","~/3TPMetodos/imgs_TC/atomo", "0", "100","10", str(i), "100", clavei])
         # print("")
 
@@ -36,7 +36,7 @@ def rayos():
     for i in range(50,150,10):
         clavei = "_" + clave + "_" + str(i)
         # print(clavei)
-        os.system("./tp3 ~/3TPMetodos/imgs_TC/atomo 0 100 10 100 "+ str(i) +" "+ str(clavei))
+        os.system("./tp3 ~/3TPMetodos/imgs_TC/tomo 0 100 10 100 "+ str(i) +" "+ str(clavei))
         # call(["./tp3","~/3TPMetodos/imgs_TC/atomo", "0", "100","10", "100", str(i), clavei])
         # print("")
 
