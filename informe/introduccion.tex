@@ -1,24 +1,48 @@
 \subsubsection*{Introducción}
 \par El objetivo del trabajo práctico es evaluar un método para reconstruir imágenes tomográficas sujetas a ruido, utilizando el método de aproximación por cuadrados mínimos.
 
-\par En la toma de una tomografía se emiten rayos X que atraviesan al sujeto en estudio y se realizan múltiples mediciones sobre los mismos para compensar los errores de medición que pudieran producirse. Este proceso conduce a un sistema de ecuaciones lineales sobredeterminado que en general no tiene solución, razón por la cual se utiliza el método de cuadrados mínimos para aproximar una solución.
+\par En la toma de una tomografía se emiten rayos X que atraviesan al sujeto en estudio y se realizan numerosas mediciones sobre los mismos para compensar los errores de medición que pudieran producirse. Este proceso conduce a un sistema de ecuaciones lineales sobredeterminado que en general no tiene solución, razón por la cual se utiliza el método de cuadrados mínimos para obtener una aproximada.
 En nuestro caso para simplificar el problema suponemos que las mediciones que se realizan son de los tiempos que les lleva a los rayos X atravesar el sujeto.
 
-\par Los rayos se emiten de tal forma que atraviesan al sujeto en un plano dado y en distintos ángulos y con diferentes direcciones sobre ese plano.
-\par En nuestro caso para simplificar el problema suponemos que las mediciones que se realizan son de los tiempos que les lleva a los rayos X atravesar el sujeto.
+\par Los rayos se emiten de tal forma que atraviesan al sujeto en un plano dado tomando distintos ángulos y diferentes direcciones sobre ese plano.
+
 \par La superficie del corte a estudiar se discretiza dividiéndola en celdas de acuerdo a una cuadrícula de $n*n$, donde $n$ es un número entero. Cada celda puede ser atravesada por múltiples rayos, de hecho esto es recomendable para poder recolectar una cantidad de datos representativa que permita compensar errores numéricos.
-Con los datos recolectados se plantea un sistema de ecuaciones lineales donde los coeficientes están dados por la distancia que recorre cada rayo dentro de cada una de las celdas de la cuadrícula, el vector independiente viene dado por los tiempos que demora de cada rayo en atravesar al sujeto y las incógnitas son las velocidades de los rayos dentro de cada celda. Estas velocidades son una propiedad de la materia atravesada.
+Con los datos recolectados se plantea un sistema de ecuaciones lineales donde los coeficientes están dados por la distancia que recorre cada rayo dentro de cada una de las celdas de la cuadrícula, el vector independiente viene dado por los tiempos que demora cada rayo en atravesar al sujeto y las incógnitas son las velocidades de los rayos dentro de cada celda. Estas velocidades son una propiedad de la materia atravesada.
 
-\par Para evaluar la calidad de la reconstrucción de la imagen tomográfica utilizamos como métrica el cálculo del Error Cuadrático Medio, el cual va a comparar las velocidades de cada celda obtenidas a partir de las imágenes sin ruido contra las velocidades calculadas por medio de cuadrados mínimos.
+\par Si llamamos $D$ a la matriz de distancias por celda, $t$ al vector de tiempos y $v$ al vector incógnita, el sistema a resolver sería:
+\begin{displaymath}
+D t = v
+\end{displaymath}
 
-\par Utilizamos la técnica de k-fold a la base de imágenes para generamos un conjunto de datos de entrenamiento y otro de datos de testing a fines de elegir los mejores valores para el $n$ de la discretización, el nivel de ruido y la cantidad y distribución de los rayos.
+\par Luego como este sistema en general es incompatible, para resolver por cuadrados mínimos se utilizan las ecuaciones normales:
+\begin{displaymath}
+D^{t}D t = D^{t} v
+\end{displaymath}
 
-\par Centrándonos en nuestro caso, debido a que no es posible la utilización de un tomógrafo real para recolectar los datos, utilizamos imágenes de una base de datos de imágenes tomográficas (http://www.via.cornelledu/databases/). A partir de estas imágenes generamos las instancias de prueba que se van a convertir en nuestro "sujeto" en estudio tal como se detalla más abajo.
+\par Centrándonos en nuestro caso, debido a que no es posible la utilización de un tomógrafo real para recolectar los datos, utilizamos imágenes tomográficas preexistentes (provistas por la cátedra). A partir de estas imágenes generamos las instancias de prueba que se convierten en nuestro ''sujeto'' en estudio tal como se detalla más abajo.
 
-\par Usamos las imágenes de partida como si fuera el sujeto al que necesitamos estudiar y simulamos matemáticamente los rayos X, agregando ruido aleatorio para simular los errores de medición. Decidimos utilizar dos formas de manejar el ruido:
+\par Usamos las imágenes de partida como si fuera el sujeto al que necesitamos estudiar y simulamos matemáticamente los rayos X, agregando ruido aleatorio para simular los errores de medición. Para manejar el ruido decidimos calcular los tiempos de recorrida de cada rayo simulado a través de la imagen sin ruido (vector $v$), y luego perturbar los valores obtenidos aplicando ruido gaussiano multiplicativo, de modo que para cada elemento de $v$ obtenemos un valor $v{1}=v * \alpha * x$ con $x$ un valor aleatorio entre 0 y 1 con distribución normal.
+
+\par Para evaluar la calidad de la reconstrucción de la imagen tomográfica utilizamos como métrica el cálculo del Error Cuadrático Medio, el cual compara las velocidades de cada celda obtenidas a partir de las imágenes sin ruido contra las velocidades calculadas por medio de cuadrados mínimos. Como velocidad ''verdadera'' de cada celda se toma un promedio de la suma de los valores de intensidad de los pixeles pertenecientes a esa celda. De esta forma el error cuadrático medio se calcula según la fórmula:
+
+\begin{displaymath}
+ECM =(\sum_{k=1}^{n*n} (v^{1}[i] - v[i])^{2})/n*n
+\end{displaymath}
+
+
+\par La granularidad de la discretización (o sea la cantidad de pixeles por celda), la cantidad, puntos de partida y dirección de los rayos así como el nivel de ruido utilizado son parámetros de experimentación. En su determinación tenemos en cuenta un compromiso entre la calidad de la imagen reconstruída y los tiempos de ejecución, principalmente dominados por la resolución del sistema por cuadrados mínimos. Respecto de este último punto, a menor tamaño de celda se corresponde un mayor tamaño de la matriz. Por ejemplo una discretización de $n*n$ celdas, genera un sistema de ecuaciones de dimensión $n^{2}*n^{2}$. Resolver el sistema, en  nuestro caso utilizando eliminación gaussiana, nos conduce a una complejidad del orden de $(n^{2}*n^{2})^3 = n^{6}$, con lo cual el tiempo de procesamiento se vuelve crítico para las pruebas.
+
+
+
+
+%TODO PASAR A OTRAS PARTES DEL INFORME
+
+\par Para la resolución del sistema utilizamos las ecuaciones normales y en este caso el aumento en la dimensión de la matriz generadas está íntimamente relacionada con el tiempo de procesamiento.
+
+
+
+(http://www.via.cornelledu/databases/)
 a) modificando la intensidad de los pixeles de la imagen elegida como sujeto, utilizando valores aleatorios con distribución gaussiana, para luego hacer la simulación de los rayos X sobre la imagen ruidosa.
-b) Calculando los tiempos de recorrida de cada rayo simulado, a través de la imagen sin ruido, y luego perturbando los valores obtenidos.
 
-\par La granularidad de la discretización, la cantidad y dirección de los rayos y el nivel de ruido utilizado son parámetros de experimentación. En su determinación tenemos en cuenta un compromiso entre la calidad de la imagen reconstruída y los tiempos de ejecución (principalmente en la resolución del sistema por cuadrados mínimos). Para la resolución del sistema utilizamos las ecuaciones normales y en este caso el aumento en la dimensión de la matriz generadas está íntimamente relacionada con el tiempo de procesamiento.
 
 \subsubsection*{nombre}
