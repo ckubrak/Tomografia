@@ -65,39 +65,11 @@ void agregarRuidoRayo(std::vector<double> &vectorRayo,float alpha){
 		std::vector<double> ruido (tam);
 		srand (time(NULL));
 
-		//Calculamos el mayor tiempo, lo vamos a usar para el rango de ruido. ELECCION NUESTRA
-		// double maxVal; 
-		// for (int m = 0; m < tam; m++){
-		// 	if(vectorRayo[m] > maxVal){
-		// 		maxVal = vectorRayo[m];
-		// 	}
-		// }
-
-
-
-
-		// int hasta = 2*(maxVal) - 1;
-		// int desde;
-		// //Esto es solo en caso de que la imagen esté completamente en blanco.
-		// //No es un caso muy probable pero lo cubro para que no rompa
-		// if(maxVal == 0){
-		// 	desde = 0;
-		// } else{
-		// 	desde = -(maxVal-1);
-		// }
-
-		// //Creo el vector con ruido que voy a sumar a la entrada
-		// for(int j = 0; j < tam; j++){
-		// 	double randomNum = rand() % hasta + (desde);
-		// 	ruido[j] = randomNum;
-		// }
-
-
 		// construct a trivial random generator engine from a time-based seed:
 		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 		std::default_random_engine generator (seed);
 
-		std::normal_distribution<double> distribution (10.0,1.0);
+		std::normal_distribution<double> distribution (0,1);
 
 		for (int i=0; i < tam; ++i){
 		ruido[i] = distribution(generator);
@@ -125,4 +97,43 @@ void agregarRuidoRayo(std::vector<double> &vectorRayo,float alpha){
 			}
 		}
 	} // alpha != 0
+}
+
+
+
+void agregarRuidoRayoAditivo(std::vector<double> &vectorRayo,float alpha){
+
+	if (alpha != 0)
+	{	
+		int tam = vectorRayo.size();
+		std::vector<double> ruido (tam);
+		srand (time(NULL));
+
+		// construct a trivial random generator engine from a time-based seed:
+		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+		std::default_random_engine generator (seed);
+		std::normal_distribution<double> distribution (0,1.0);
+
+		for (int i=0; i < tam; ++i){
+		ruido[i] = distribution(generator);
+		}
+		//Multiplico el vector ruido por el alpha para regular la cantidad de ruido
+		for(int j = 0; j < tam; j++){
+		double aux = ruido[j];
+		ruido[j] = floor(aux*alpha*5000);//Uso floor para sacarnos los decimales
+		}//y multiplico por 1000 para que el alpha este entre 0 y 1, solo por eso.
+		//Los valores del vectorRuido van a ser chicos por que es una normal(0,1)
+
+		//Ahora los sumamos
+		for(int i = 0; i < tam; i++){
+			if(vectorRayo[i] + ruido[i] < 0)
+			{
+				vectorRayo[i] = 0;
+			} else
+			{
+				double aux1 = vectorRayo[i] + ruido[i];
+				vectorRayo[i] = aux1;
+			}
+		}
+	}
 }
