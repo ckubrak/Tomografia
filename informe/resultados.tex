@@ -36,7 +36,8 @@ Esto se parece más a lo que esperabamos que hiciera nuestro ruido, por eso fue 
 	\caption{Tiempo en funcion de la Cantidad de rayos con granularidad, cantidad de emisores y ruido fijos}
 	\label{fig:cantrayos_tiempo}
 \end{figure}
-\par Tal como se puede apreciar en esta imagen la cantidad de rayos que parten de cada emisor afectan de manera importante el tiempo de ejecuci\'on.
+\par Tal como se puede apreciar en esta imagen la cantidad de rayos que parten de cada emisor afectan de manera importante el tiempo de ejecuci\'on, lo cual consideramos que se debe a que a medida que crece la cantidad de rayos, crece el 
+tamaño de las matrices con las cuales operamos por lo que la eliminaci\'on Gaussiana requiere m\'as operaciones.
 
 
 \begin{figure}[H]
@@ -51,7 +52,8 @@ Esto se parece más a lo que esperabamos que hiciera nuestro ruido, por eso fue 
 	\caption{Tiempo en funcion de la Cantidad de emisores con granularidad, cantidad de rayos por emisor y ruido fijos}
 	\label{fig:emi_tiempo}
 \end{figure}
-\par Tal como se puede observar en este gr\'afico la cantidad de emisores de rayos afecta de manera directa en el tiempo de ejecuci\'on.
+\par Tal como se puede observar en este gr\'afico la cantidad de emisores de rayos afecta de manera directa en el tiempo de ejecuci\'on. Esto se debe a que nosotros mantuvimos fijos la cantidad de rayos por emisor, con lo cual, al aumentar
+la cantidad de emisores estamos tambi\'en aumentando la cantidad total de rayos utilizados.
 
 \begin{figure}[H]
 	\centering	\includegraphics[width=0.7\textwidth]{img/emi_ecm}
