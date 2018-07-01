@@ -119,7 +119,11 @@ int main (int argc, char** argv)
     // printVector(resultadoCM);
 
 //    error cuadratico reportar a la salida estandar
-    std::cout << "ECM: " << ErrorCuadraticoMedio(intensidadPromedioXCelda, resultadoCM) <<  "\n";
+
+    //TODO BORRAR
+    std::cout << clave;
+
+    std::cout << " " << ErrorCuadraticoMedio(intensidadPromedioXCelda, resultadoCM);
 
 //    convertir y grabar la imagen
     grabarPPM8Bits(archivoSalida, n/dimCelda, n/dimCelda, to8bits(resultadoCM));
@@ -127,7 +131,7 @@ int main (int argc, char** argv)
 
     // grabarRayos(archivoSalida + ".txt", n, rayos);
     int stop_s=clock();
-    cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
+    cout << " " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
 
 
     return 0;
