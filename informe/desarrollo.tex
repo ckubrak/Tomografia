@@ -3,19 +3,19 @@
 \title {Imágenes}
 
 \par Para realizar la experimentación utilizamos la imagen tomo.png provista por la cátedra, con una resolución de 100 x 100 pixeles.
-La imagen la trabajamos en formato .csv para la entrada con una profundidad de 16 bits y luego de la reconstrucción la guardamos en formato pgm de 8 bits.
-Para la conversión de la imagen de 16 a 8 bits implementamos una función (to8bits) que identifica los valores de intensidad máximo y mínimo de la imagen a guardar. Al valor mínimo se le asocia el valor de salida 0 y al máximo el valor de salida 255. Los valores de intensidades intermedias se distribuyen de forma proporcional.
+\par La imagen la trabajamos en formato .csv para la entrada con una profundidad de 16 bits y luego de la reconstrucción la guardamos en formato pgm de 8 bits.
+\par Para la conversión de la imagen de 16 a 8 bits implementamos una función (to8bits) que identifica los valores de intensidad máximo y mínimo de la imagen a guardar. Al valor mínimo se le asocia el valor de salida 0 y al máximo el valor de salida 255. Los valores de intensidades intermedias se distribuyen de forma proporcional. Este procedimiento permite salvar el inconveniente de que como resultado de la eliminación gaussiana se pueden obtener valores negativos, los cuales no tienen sentido en este contexto ya que representan intensidades que siempre son valores mayores o iguales a cero, o valores mayores al máximo valor permitido para una imagen de 16 bits. Esto es posible porque estamos encontrando una solución aproximada y además estamos trabajando con ruido.
 
-\par En un principio comenzamos utilizando los archivos .csv provistos por la cátedra de 512 x 512 pixeles, con estas imágenes realizamos varias pruebas fallidas que se explican más detalladamente en el apartado Generación de rayos. Debido a diversas dificultades que se nos presentaron con la elección de la estrategia para trazar los rayos, se demoró el inicio de las pruebas y optamos por utilizar imágenes más chicas para poder realizarlas en el tiempo de que disponíamos.
+\par En un principio comenzamos utilizando los archivos .csv provistos por la cátedra de 512 x 512 pixeles, con estas imágenes realizamos varias pruebas fallidas que se explican más detalladamente en el apartado Generación de rayos. Debido a diversas dificultades que se nos presentaron con la elección de la estrategia para trazar los rayos, se demoró el inicio de las pruebas y optamos por utilizar imágenes más chicas para poder realizarlas en el tiempo de que disponíamos. Aunque hubiera sido interesante poder trabajar con un conjunto mayor de imágenes.
 
-\title {Discretización} Para discretizar la imagen utilizamos valores divisores de 100. En los tests de granularidad, variamos el tamaño de las celdas tomando los valores $4x4$, $5x5$, $10x10$, $20x20$, $25x25$ y $50x50$ pixeles.
+\title {Discretización} Para discretizar la imagen utilizamos valores divisores de 100. En los tests de granularidad, variamos el tamaño de las celdas tomando los valores 4x4, 5x5, 10x10, 20x20, 25x25 y 50x50 pixeles. Como ya se analizó a medida que se achica el tamaño de las celdas crece el tiempo de procesamiento, lo cual condicionó la elección de los parámetros.
 
-\title {Cálculo de la distancia decorrida por cada rayo} 
-Implementamos una funcion ''pasa'' que se encarga de identificar por qué pixeles pasa un rayo (los rayos son considerados como rectas en el plano, caracterizados por un punto de origen que llamamos $(x,y)$ y un ángulo $\{alpha}$).
+\title {Cálculo de la distancia recorrida por cada rayo} 
+Implementamos una función ''pasa'' que se encarga de identificar por qué pixeles pasa un rayo (los rayos son considerados como rectas en el plano, caracterizados por un punto de origen que llamamos $(x_{0},y_{0})$ y un ángulo $\alpha$ ).
 
-\par Para poder describir esta funcion adecuadamente imaginamos la imagen ubicada en un eje de coordenadas de modo tal que su vertice inferior izquierdo se encuentre en la coordenada (0,0). Pensamos a la imagen como un subconjunto de puntos del plano.
+\par Para poder describir esta función adecuadamente imaginamos la imagen ubicada en un eje de coordenadas de modo tal que su vértice inferior izquierdo se encuentre en la coordenada (0,0). Pensamos a la imagen como un subconjunto de puntos del plano.
 
-\par Utilizando la tangente de $\{alpha}$ (que es la pendiente de la recta asociada al rayo), se busca la interseccion con la recta $y=0$ la cual sería el punto $(x-y/tangent(\{alpha}),0)$.  De ahi en mas se utiliza la función de la recta, variando el valor de $x$ para calcular los puntos del plano (siempre hablando del plano en un sentido general) por los que pasa la recta. Si el punto hallado pertenece a la imagen se guardan las coordenadas del pixel correspondiente en un vector, para ser usadas posteriormente para el cálculo de distancias y de tiempos.
+\par Utilizando la tangente de $\alpha$ (que es la pendiente de la recta asociada al rayo), se busca la intersección con la recta $y=0$ la cual es el punto $(x-y/tangent(\alpha),0)$.  De ahi en mas se utiliza la ecuación de la recta $y=tan(\alpha)*x+y_{0}$, variando el valor de $x$ para calcular los puntos del plano (siempre hablando del plano en un sentido general) por los que pasa la recta. Si el punto hallado pertenece a la imagen se guardan las coordenadas del pixel correspondiente en un vector, para ser usadas posteriormente para el cálculo de distancias y de tiempos.
 
 \par Esta función se usa para calcular el tiempo que le toma a un rayo atravesar al sujerto. Para esp se hace la suma de las intensidades de los pixeles por las que pasa el rayo ya que la intensidad de los mismos la asociamos al tiempo que le toma a un rayo atravesar el mismo.
 
@@ -68,6 +68,21 @@ Al realizar un análisis de estos resultados nos dimos cuenta que los rayos traz
 
 \title{Cuadrados mínimos} Para resolver el sistema de ecuaciones de cuadrados mínimos utilizamos las ecuaciones normales. Para esto reutilizamos la estructura de matriz esparza y el algoritmo de eliminación gaussiana del TP1, al cual modificamos para utilizar pivoteo de filas.
 
-\Durante el testeo implementamos la eliminación gaussiana utilizando una matriz completa pero no reportó ningún beneficio en el tiempo de procesamiento por lo cual descartamos la idea.
+\par Durante el testeo implementamos la eliminación gaussiana utilizando una matriz completa pero no reportó ningún beneficio en el tiempo de procesamiento por lo cual descartamos la idea.
 
-\title{Ruido}
+\title{Ruido} Como explicamos en la introducción utilizamos ruido gaussiano aleatorio multiplicativo sobre el vector de tiempos de recorrida de los rayos de manera que para cada elemento, el resultado luego de aplicar el ruido es $v{1}= v + v * \alpha * x$ con $x$ un valor aleatorio entre 0 y 1 con distribución normal.
+Durante la experimentación usamos como parámetro los valores
+$x * \alpha$ para $\alpha$ = 0.001 y $x$ tomando valores del conjunto en $\{1,2,3,4,5,6,10,20,50\}$
+\par El $\alpha$ actúa como un regulador de ruido. Elegimos que sea multiplicativo (es decir, multiplicando el número aleatorio por el del vector en lugar de por una constante) para que sea consistente la aplicación del ruido. De otra forma, al tener valores en el vector al cuál le vamos a aplicar el ruido que se encuentran comprendidos en un rango muy amplio, si multiplicaramos por una constante estaríamos aplicando proporcionalmente demasiado ruido en algunos valores y muy poco en otros, lo que resultaría en un ruido que deformaría completamente algunas partes de la imagen y dejaría casi intactas otras, cosa que no nos es útil.
+
+\par Otra alternativa que analizamos es aplicar el ruido directamente sobre los pixeles de la imagen, después de calcular los vectores de tiempos de recorrida y de velocidades exactos. Pero finalmente nos decidimos por la utilización del ruido sobre el vector de tiempos. 
+
+%\begin{figure}[H] 
+%\centering
+%\includegraphics[width=1\textwidth]{img/rayos_tomo25x25px.png}
+%\caption{Trazado aleatorio de rayos}
+%\label{fig:rayos aleatorios}
+%\end{figure}
+
+
+

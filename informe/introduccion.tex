@@ -21,7 +21,7 @@ D^{t}D t = D^{t} v
 
 \par Centrándonos en nuestro caso, debido a que no es posible la utilización de un tomógrafo real para recolectar los datos, utilizamos imágenes tomográficas preexistentes (provistas por la cátedra). A partir de estas imágenes generamos las instancias de prueba que se convierten en nuestro ''sujeto'' en estudio tal como se detalla más abajo.
 
-\par Usamos las imágenes de partida como si fuera el sujeto al que necesitamos estudiar y simulamos matemáticamente los rayos X, agregando ruido aleatorio para simular los errores de medición. Para manejar el ruido decidimos calcular los tiempos de recorrida de cada rayo simulado a través de la imagen sin ruido (vector $v$), y luego perturbar los valores obtenidos aplicando ruido gaussiano multiplicativo, de modo que para cada elemento de $v$ obtenemos un valor $v{1}=v * \alpha * x$ con $x$ un valor aleatorio entre 0 y 1 con distribución normal.
+\par Usamos las imágenes de partida como si fuera el sujeto al que necesitamos estudiar y simulamos matemáticamente los rayos X, agregando ruido aleatorio para simular los errores de medición. Para manejar el ruido decidimos calcular los tiempos de recorrida de cada rayo simulado a través de la imagen sin ruido (vector $v$), y luego perturbar los valores obtenidos aplicando ruido gaussiano multiplicativo, de modo que para cada elemento de $v$ obtenemos un valor $v{1}= v + v * \alpha * x$ con $x$ un valor aleatorio entre 0 y 1 con distribución normal.
 
 \par Para evaluar la calidad de la reconstrucción de la imagen tomográfica utilizamos como métrica el cálculo del Error Cuadrático Medio, el cual compara las velocidades de cada celda obtenidas a partir de las imágenes sin ruido contra las velocidades calculadas por medio de cuadrados mínimos. Como velocidad ''verdadera'' de cada celda se toma un promedio de la suma de los valores de intensidad de los pixeles pertenecientes a esa celda. De esta forma el error cuadrático medio se calcula según la fórmula:
 
@@ -31,18 +31,3 @@ ECM =(\sum_{k=1}^{n*n} (v^{1}[i] - v[i])^{2})/n*n
 
 
 \par La granularidad de la discretización (o sea la cantidad de pixeles por celda), la cantidad, puntos de partida y dirección de los rayos así como el nivel de ruido utilizado son parámetros de experimentación. En su determinación tenemos en cuenta un compromiso entre la calidad de la imagen reconstruída y los tiempos de ejecución, principalmente dominados por la resolución del sistema por cuadrados mínimos. Respecto de este último punto, a menor tamaño de celda se corresponde un mayor tamaño de la matriz. Por ejemplo una discretización de $n*n$ celdas, genera un sistema de ecuaciones de dimensión $n^{2}*n^{2}$. Resolver el sistema, en  nuestro caso utilizando eliminación gaussiana, nos conduce a una complejidad del orden de $(n^{2}*n^{2})^3 = n^{6}$, con lo cual el tiempo de procesamiento se vuelve crítico para las pruebas.
-
-
-
-
-%TODO PASAR A OTRAS PARTES DEL INFORME
-
-\par Para la resolución del sistema utilizamos las ecuaciones normales y en este caso el aumento en la dimensión de la matriz generadas está íntimamente relacionada con el tiempo de procesamiento.
-
-
-
-(http://www.via.cornelledu/databases/)
-a) modificando la intensidad de los pixeles de la imagen elegida como sujeto, utilizando valores aleatorios con distribución gaussiana, para luego hacer la simulación de los rayos X sobre la imagen ruidosa.
-
-
-\subsubsection*{nombre}
