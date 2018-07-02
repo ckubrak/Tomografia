@@ -84,9 +84,6 @@ void agregarRuidoRayo(std::vector<double> &vectorRayo,float alpha){
 
 		//Ahora los sumamos
 		for(int i = 0; i < tam; i++){
-			// if(vectorRayo[i] + ruido[i] > 65535){ // SE COMENTA PORQUE LA TRAYECTORIA DE LOS RAYOS PUEDE SUMAR MUCHO MAS
-			// 	vectorRayo[i] = 65535;
-			// } else 
 			if(vectorRayo[i] + ruido[i] < 0)
 			{
 				vectorRayo[i] = 0;

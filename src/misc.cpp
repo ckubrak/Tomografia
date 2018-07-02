@@ -243,8 +243,6 @@ vector<pair<pair<double, double>, double>> generarRayosVertices(int tam, int can
 	}
 	return resultado;
 
-	//Para debuggear
-	//Assert( i = tam-1);
 
 }
 

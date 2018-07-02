@@ -31,15 +31,10 @@ int main (int argc, char** argv)
     leer los nombres de archivos de archivos de E y S
     */
 
-   // archivo csv conteniendo la imagen de entrada
-    //char* archivoEntrada = argv[1];
     std::string archivoEntrada = argv[1];
-    //std::string in = argv[1];
     archivoEntrada += ".csv";
 
-    // archivo ppm conteniendo la imagen reconstruida, se llama igual que la entrada con extension .ppm
     std::string archivoSalida = argv[1];
-    //archivoSalida += ".ppm";
 
     // nivel de ruido. Valor entre cero y uno
     float ruido = atof(argv[2]);
@@ -57,7 +52,7 @@ int main (int argc, char** argv)
     double eps;
     eps = 0.00001;
     
-    // opcionalmente el epsilon se puede recibir como parametro    
+    // opcionalmente la clave (ver script de python para testear) se puede recibir como parametro    
     std::string clave;
     if (argc > 7)
     {
@@ -72,18 +67,8 @@ int main (int argc, char** argv)
     //levantar la imagen
     DOK Imagen(n);
     Imagen.cargarCsv(archivoEntrada, n);
-    //mostrarMatriz(Imagen);
-    // generar los rayos, guardar pto origen y angulo para cada rayo
-    //std::vector <pair<pair<double, double>, double>> rayos;
     info rayos;
-    //rayos = generarRayosVertices(n,cantRayos);
 
-    //std::vector <pair<pair<double, double>, double>> rayosCuadricula;
-    //info rayosCuadricula;
-    //rayos = generarRayosCuadricula(n, cantRayos);
-    // cantEmisores = 4*(n/dimCelda);
-    // cantRayos =n;
-    //Cuidado que cantEmisores son los emisores de cada eje, o sea, vamos a tener el cuadruple en realidad
     rayos = generarRayosUniformes(n, cantEmisores, cantRayos);
     
 
@@ -111,29 +96,12 @@ int main (int argc, char** argv)
     Vector resultadoCM;
     resultadoCM = mDistancias.CuadradosMinimos(vtiempos);
 
-// convertir los valores calculados en velocidades
-    
-    // Vector intensidadCM;
-    // intensidadCM = calcularIntensidad (resultadoCM);
-
-// Resultado de CM
-// promedios de intensidad
-    // printVector(intensidadPromedioXCelda);
-
-    // printVector(resultadoCM);
-
-//    error cuadratico reportar a la salida estandar
-
-    //TODO BORRAR
-    std::cout << clave;
 
     std::cout << " " << ErrorCuadraticoMedio(intensidadPromedioXCelda, resultadoCM);
 
 //    convertir y grabar la imagen
     grabarPPM8Bits(archivoSalida, n/dimCelda, n/dimCelda, to8bits(resultadoCM));
-    // printVector(to8bits(resultadoCM));
 
-    // grabarRayos(archivoSalida + ".txt", n, rayos);
     int stop_s=clock();
     cout << " " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
 
