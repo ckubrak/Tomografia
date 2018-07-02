@@ -2,7 +2,17 @@
 
 
 \par El método utilizado para la generación de rayos permitió realizar una reconstrucción aceptable de las imágenes, no obstante, nos parece pertinente mencionar que si llegásemos a necesitar una implementación real de un tomógrafo la elección aleatoria de las ubicaciones de emisores y de los ángulos podría no ser la mejor. En este sentido sería superador a futuro encarar otra implementación que permita parámetros no aleatorios.
+
 \par En este caso encontramos un buen comportamiento de nuestro sistema en relación al ruido gaussiano, nos parece interesante a futuro pensar cómo puede verse afectado por otros tipos de ruido tal vez menos comunes pero que igualmente pueden presentarse en algunas ocasiones. 
+
+\par La cantidad de rayos emitidos no evidenció ser un factor determinante en la calidad de la imagen reconstruída dada la forma de trazarlos usada en este trabajo ya que mientras que el método se complete la calidad de la imagen es alta en la mayoría de los casos. En cambio la granularidad elegida juega un papel clave ya que a menor tamaño de celda los cálculos permiten una mejor aproximación de los valores de intensidad a calcular. Tomando un tamaño de celda mayor se termina aproximando por un valor ''promedio'' de los valores de los pixeles de la celda con lo cual se pierde información particular de los mismos.
+
+\par En cambio la localizacion de los emisores si parecio tener una influencioa importante en la mejora de los resultados respecto de los primeros intentos fallidos que realizamos usando la grilla y los rayos trazados desde los vértices.
+
+\par Tampoco pudimos establecer una relación directa entre el error cuadrático medio y la resolución final de la imagen observada a simple vista. No nos pareció una métrica que funcionara de manera muy apropiada en este caso.
+
+\par Con respecto a los tiempos de procesamiento lo que más influye en los mismos es el tiempo de resolución del sistema de ecuaciones de cuadrados mínimos el cual crece mucho de tamaño al disminuir la granularidad (como se explicó en mayor detalle en la Introducción).
+Esto condiciono la eleccion de las imagenes y de la granularidad.
 
 
 
