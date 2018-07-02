@@ -1,11 +1,11 @@
 #include "sparse.h"
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <chrono>
 #include "rayos.h"
 #include "misc.h"
 #include "ruido.h"
 #include <ctime>
-
+#include <cstdlib>
 
 //
 //armar vector con los tiempos de todos los rayos
