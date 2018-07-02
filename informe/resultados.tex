@@ -68,14 +68,14 @@ De forma similar al ECM en funcion de la cantidad de rayos por emisor esperábam
 	\caption{Tiempo en función de la Granularidad con cantidad de rayos, cantidad de emisores y ruido fijos}
 	\label{fig:granu_tiempo}
 \end{figure}
-\par A mayor granularidad, menor resulta el tiempo de ejecuci\'on debido a que casos de granularidad se reduce el tamaño de la matriz imagen.
+\par A mayor granularidad, menor resulta el tiempo de ejecuci\'on debido a que se reduce el tamaño de la matriz.
 
 \begin{figure}[H]
 	\centering	\includegraphics[width=0.7\textwidth]{img/granu_ecm}
 	\caption{ECM en función de la Granularidad con cantidad de rayos, cantidad de emisores y ruido fijos}
 	\label{fig:granu_ecm}
 \end{figure}
-Se espera que el error cuadrático medio aumente a medida que el número de celdas aumenta, ya que a mayor cantidad de celdas habrá un menor número de rayos que pase por cada una de ellas. Como se puede ver se confirma nuestra hipótesis y de hecho se puede ver que hay una relación lineal entre la granularidad y el ECM.
+Se espera que el error cuadrático medio aumente a medida que el número de celdas disminuye, ya que a menor cantidad de celdas la aproximación de la intensidad de la misma se realiza tomando una suerte de promedio de las intensidades de todos los pixeles de dicha celda, tomándose un valor uniforme para la celda y perdiendo los posibles contrastes existentes entre distintos pixeles. Como se puede ver se confirma nuestra hipótesis y de hecho se puede ver que hay una relación lineal entre la granularidad y el ECM.
 
 \begin{figure}[H]
 	\centering	\includegraphics[width=0.7\textwidth]{img/ruido_tiempo}
