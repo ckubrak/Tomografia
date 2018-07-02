@@ -46,6 +46,7 @@ tamaño de las matrices con las cuales operamos por lo que la eliminaci\'on Gaus
 	\label{fig:cantrayos_eps}
 \end{figure}
 
+En este gráfico, esperamos que a medida que aumente la cantidad de informacion de la imagen, al incrementar el número de rayos por emisor, suba la calidad de la misma (baje el error cuadratico medio).  Sin embargo, en el gráfico podemos ver que la cantidad de rayos no aparenta tener ninguna relación con el ECM dentro de este rango (el programa no corre adecuadamente con menor cantidad de rayos por emisor porque se presentan celdas por las que no pasa ningun rayo con una alta probabilidad). Una posible explicación para ese fenomeno es  que la naturaleza aleatoria de la forma en que se construyen estos rayos lleva a que, cuando el número de rayos es suficiente para pasar por todos los pixeles de la imagen, ya se tiene suficiente información para que un incremento del número de rayos no cree una mejoría notable.
 
 \begin{figure}[H]
 	\centering	\includegraphics[width=0.7\textwidth]{img/emi_tiempo}
@@ -60,7 +61,7 @@ la cantidad de emisores estamos tambi\'en aumentando la cantidad total de rayos 
 	\caption{ECM en funcion de la Cantidad de emisores con granularidad, cantidad de rayos por emisor y ruido fijos}
 	\label{fig:emi_ecm}
 \end{figure}
-
+De forma similar al ECM en funcion de la cantidad de rayos por emisor esperabamos que baje el error cuadratico a medida que aumenta el número de de emisores. Sin embargo, como se  puede ver que no hay una relación real entre la cantidad de emisores y el ECM dentro de este rango (el programa no corre con menor cantidad de emisores porque de hacerlo habría una muy alta probabilidad de que se presenten celdas por las que no pasa ningun rayo). La explicación para este fenómeno es la misma que en el caso previamente mencionado.
 
 \begin{figure}[H]
 	\centering	\includegraphics[width=0.7\textwidth]{img/granu_tiempo}
@@ -74,6 +75,7 @@ la cantidad de emisores estamos tambi\'en aumentando la cantidad total de rayos 
 	\caption{ECM en funcion de la Granularidad con cantidad de rayos, cantidad de emisores y ruido fijos}
 	\label{fig:granu_ecm}
 \end{figure}
+Se espera que el error cuadrático medio aumente a medida que el número de celdas aumenta, ya que a mayor cantidad de celdas habrá un menor número de rayos que pase por cada una de ellas. Como se puede ver se confirma nuestra hipótesis y de hecho se puede ver que hay una relación lineal entre la granularidad y el ECM.
 
 \begin{figure}[H]
 	\centering	\includegraphics[width=0.7\textwidth]{img/ruido_tiempo}
@@ -88,3 +90,4 @@ la cantidad de emisores estamos tambi\'en aumentando la cantidad total de rayos 
 	\caption{ECM en funcion del ruido con cantidad de rayos, cantidad de emisores y granularidad fijos}
 	\label{fig:ruido_ecm}
 \end{figure}
+
