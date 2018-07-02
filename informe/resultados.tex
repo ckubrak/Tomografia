@@ -91,3 +91,10 @@ Se espera que el error cuadrático medio aumente a medida que el número de celd
 	\label{fig:ruido_ecm}
 \end{figure}
 
+\par En los test que realizamos, también evaluamos distintas la robustez del sistema respecto al ruido gaussiano. Es decir, que tan buenos eran los resultados en relación al nivel de ruido que agregamos.
+Lo probamos con valores chicos hasta llegar al $\alpha$ = 0.5, dado que por la forma en la que implementamos el ruido esto ya es un nivel alto, y de ser más alto todavía deformaría la imagen.
+
+\par En los resultados de estos tests esperábamos encontrar diferencia notable entre los diferentes resultados de las diferentes ejecuciones. Sin embargo, no nos encontramos con la diferencia que esperábamos, tanto el valor más chico ($\alpha$ = 0.1) como el más grande ($\alpha$ = 0.5) nos parecen una reconstrucción aceptable de la imagen.
+Para verificar que nuestra implementación de ruido no tuviera ningún problema corrimos un nuevo test con un $\alpha$ aún mayor (0.8), ahora sí dando como resultado una imagen en la que no pudimos distinguir ningún objeto.
+Luego, pensamos que esto puede deberse a que estamos experimentando con imágenes pequeñas, o bien a que realmente nuestro sistema sea muy robusto respecto al ruido. También creemos que puede tener algo de injerencia el hecho de que el ruido que estamos agregando tenga media en cero. 
+%Estas imágenes se encuentran en el apéndice, sin embargo por su reducido tamaño puede dificultarse su análisis. De cualquier manera las adjuntamos también en los archivos.
