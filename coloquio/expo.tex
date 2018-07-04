@@ -32,7 +32,7 @@
 
 \begin{frame}{PREMISAS}
 \begin{itemize}
-\item Nuestro sujeto es una imagen de $n$x$n$ pixeles discretizada en celdas de $d$x$d$ pixeles.
+\item Nuestro sujeto es una imagen de $n$x$n$ pixeles discretizada en celdas de $k$x$k$ pixeles.
 \item La intensidad de un pixel se asocia al tiempo que demora un rayo en atravesar ese pixel.
 \item La distancia que recorre un rayo que atraviesa al sujeto es igual a la cantidad de pixeles por los que pasa.
 \item En cinemática $Velocidad = Espacio/Tiempo$. En este caso la ''velocidad'' promedio dentro de la celda $k$ es:
@@ -47,7 +47,7 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \begin{frame}{DESARROLLO}
 \frametitle {Discretización}
 \begin{itemize}
-\item Utilizamos valores divisores de la dimensión de la limagen (100 x 100 pixeles).
+\item Utilizamos valores divisores de la dimensión de la imagen (100 x 100 pixeles).
 \item En los tests de granularidad, variamos el tamaño de las celdas tomando los valores 4x4, 5x5, 10x10, 20x20, 25x25 y 50x50 pixeles.
 \item A medida que se achica el tamaño de las celdas crece el tiempo de procesamiento, lo cual condicionó la elección de los parámetros.
 \end{itemize}
@@ -89,7 +89,7 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 
 
 \begin{frame}
-\frametitle{Velocidad de un rayo}
+\frametitle{Tiempo de recorrida de un rayo}
 \begin{itemize}
 \item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de ''tiempos''. (un elemento por rayo).
 \end{itemize}
@@ -102,6 +102,11 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \end{frame}
 
 
+
+
+
+
+
 \begin{frame}
 \frametitle{Generación de rayos}
 \framesubtitle{Cantidad y ubicación de los emisores}
@@ -109,6 +114,25 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 % SI SE PUEDE GRAFICARLAS
 % DESCRIBIR SELECCION DE UBICACIONES Y CANTIDAD DE EMISORES Y DE RAYOS
 % MENCIONAR LOS VALORES UTILIZADOS EN LA EXPERIMENTACION
+
+\begin{enumerate}
+    \item Primeras opciones:
+    \begin{itemize}
+        \item Trazar rayos horizontales y verticales, formando una cuadrícula $\Rightarrow$ Filas de ceros.
+        \item Trazar rayos saliendo de los cuatro vértices de la imagen en distintos direcciones para barrer los $90^{\circ}$ de cada ángulo $\Rightarrow$ Información similar, imágenes irreconocibles.
+    \end{itemize}
+    \item Elección final:
+    \begin{itemize}
+        
+    \item Trazar rayos desde los cuatro laterales de la imagen.
+    \item Los emisores se ubican en igual cantidad sobre los lados de la imagen.
+    \item La ubicación de los emisores se selecciona aleatoriamente con distribución uniforme entre $0$ y $k$ ($k$ cantidad de pixeles por lado de la imagen.
+    \item Igual cantidad de rayos en ángulos que van entre $0^{\circ}$ a $180^{\circ}$.
+    \item Ángulos seleccionados aleatoriamente con distribución uniforme.
+    \end{itemize}
+
+\end{enumerate}
+
 \end{frame}
 
 
