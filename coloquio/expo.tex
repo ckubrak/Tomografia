@@ -6,6 +6,10 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
 \author{Luis Greco - Marcela Herrera - Cristian Kubrak - Alejo Salvador }
 \title{Trabajo Práctico 3}
 \subtitle{Tomografía computada}
@@ -32,7 +36,7 @@
 
 \begin{frame}{PREMISAS}
 \begin{itemize}
-\item Nuestro sujeto es una imagen de $n$x$n$ pixeles discretizada en celdas de $k$x$k$ pixeles.
+\item Nuestro ''sujeto'' es una imagen de $n$x$n$ pixeles discretizada en celdas de $k$x$k$ pixeles.
 \item La intensidad de un pixel se asocia al tiempo que demora un rayo en atravesar ese pixel.
 \item La distancia que recorre un rayo que atraviesa al sujeto es igual a la cantidad de pixeles por los que pasa.
 \item En cinemática $Velocidad = Espacio/Tiempo$. En este caso la ''velocidad'' promedio dentro de la celda $k$ es:
@@ -60,7 +64,7 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \item Los rayos son considerados como rectas en el plano, caracterizados por un punto de origen que llamamos $(x_{0},y_{0})$ y un ángulo $\alpha$.
 \item Se busca la intersección con la recta $y=0$ la cual es el punto $(x-y/tangent(\alpha),0)$.
 \item Usando la ecuación de la recta $y=tan(\alpha)*x+y_{0}$ y variando el valor de $x$, se calculan los puntos del plano por los que pasa el rayo.
-\item Si el punto hallado pertenece a la imagen se guardan las coordenadas del pixel correspondiente en un vector
+\item Si el punto hallado pertenece a la imagen se guardan las coordenadas del pixel correspondiente en un vector.
 \item Se usa el vector para el cálculo de distancias y de tiempos.
 % agregar grafico
 \end{itemize}
@@ -91,7 +95,7 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \begin{frame}
 \frametitle{Tiempo de recorrida de un rayo}
 \begin{itemize}
-\item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de ''tiempos''. (un elemento por rayo).
+\item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de ''tiempos'' (un elemento por rayo).
 \end{itemize}
 \end{frame}
 
@@ -155,21 +159,133 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 % MENCIONAR VALORES UTILIZADOS EN LA EXPERIMENTACION
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{RESULTADOS}
 \frametitle{ECM vs. tamaño de la celda}
 % incluir graficos e imagenes reconstruidas
+\begin{figure}
+\centering
+        \includegraphics[scale=0.4]{img/granu_ecm-eps-converted-to.pdf}
+        \caption{Error cuadratico medio versus granularidad}
+        \label{fig:ECM vs granularidad}
+\end{figure}
 \end{frame}
 
 
-
+\begin{frame}
+    \frametitle{ECM vs. tamaño de la celda}
+    % incluir graficos e imagenes reconstruidas
+    \begin{figure}[H]
+    \centering
+    \begin{subfigure}[h]{0.30\textwidth}
+        \includegraphics[width=\textwidth]{img/tomo_granu_4.png}
+        \caption{4x4px por celda}
+        \label{fig:reconstruccion 4 px}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[h]{0.30\textwidth}
+            \includegraphics[width=\textwidth]{img/tomo_granu_10.png}
+            \caption{4x4px por celda}
+            \label{fig:reconstruccion 10 px}
+        \end{subfigure}%
+    \hfill
+        \begin{subfigure}[h]{0.30\textwidth} 
+            \includegraphics[width=\textwidth]{img/tomo_granu_20.png}
+            \caption{10x10px por celda}
+            \label{fig:reconstruccion 20 px}
+        \end{subfigure}
+        
+        \caption{Reconstruccion variando granularidad, sin ruido}
+    \end{figure}
+\end{frame}
+    
 \begin{frame}
 \frametitle{ECM vs. cantidad de emisores}
+
+\begin{figure}[H]
+    \centering
+        
+            \includegraphics[scale=0.4]{img/emi_ecm-eps-converted-to.pdf}
+            \caption{ECM versus cantidad de emisores}
+            \label{fig:ECM versus emisores}
+        
+    \end{figure}
 \end{frame}
 
+
 \begin{frame}
-\frametitle{ECM vs. cantidad de rayos por emisor}
+    \frametitle{ECM vs. cantidad de emisores}
+    
+    \begin{figure}[H]
+        \centering
+    
+        \begin{subfigure}[h]{0.3\textwidth} 
+            \includegraphics[width=\textwidth]{img/tomo_emisores_20.png}
+            \caption{reconstruccion 20 emisores}
+            \label{fig:reconstruccion 20 emisores}
+        \end{subfigure}%
+        \hfill
+        \begin{subfigure}[h]{0.3\textwidth}
+            \includegraphics[width=\textwidth]{img/tomo_emisores_60.png}
+            \caption{reconstruccion 60 emisores}
+            \label{fig:reconstruccion 60 emisores}
+        \end{subfigure}%
+        \hfill
+        \begin{subfigure}[h]{0.3\textwidth} 
+            \includegraphics[width=\textwidth]{img/tomo_emisores_140.png}
+            \caption{reconstruccion 140 emisores}
+            \label{fig:reconstruccion 140 emisores}
+        \end{subfigure}
+        
+        \caption{Reconstruccion variando cantidad de emisores, sin ruido}
+    \end{figure}
 \end{frame}
+    
+
+
+\begin{frame}
+    \frametitle{ECM vs. cantidad de rayos por emisor}
+    
+    \begin{figure}[H]
+        \centering
+            
+                \includegraphics[scale=0.4]{img/cantrayos_ecm-eps-converted-to.pdf}
+                \caption{ECM versus cantidad de rayos por emisor}
+                \label{fig:ECM versus rayos por emisor}
+            
+        \end{figure}
+\end{frame}
+    
+
+
+\begin{frame}
+    \frametitle{ECM vs. cantidad de rayos por emisor}
+    
+    \begin{figure}[H]
+        \centering
+    
+        \begin{subfigure}[h]{0.3\textwidth} 
+            \includegraphics[width=\textwidth]{img/tomo_rayos_50.png}
+            \caption{reconstruccion 50 rayos}
+            \label{fig:reconstruccion 50 rayos}
+        \end{subfigure}%
+        \hfill
+        \begin{subfigure}[h]{0.3\textwidth}
+            \includegraphics[width=\textwidth]{img/tomo_rayos_100.png}
+            \caption{reconstruccion 100 rayos}
+            \label{fig:reconstruccion 100 rayos}
+        \end{subfigure}%
+        \hfill
+        \begin{subfigure}[h]{0.3\textwidth} 
+            \includegraphics[width=\textwidth]{img/tomo_rayos_140.png}
+            \caption{reconstruccion 140 rayos}
+            \label{fig:reconstruccion 140 rayos}
+        \end{subfigure}
+        \caption{Reconstruccion variando cantidad de rayos, sin ruido}
+    \end{figure}
+\end{frame}
+
 
 
 \begin{frame}
