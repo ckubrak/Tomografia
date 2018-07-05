@@ -151,6 +151,29 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \end{figure}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Generación de rayos}
+    \framesubtitle{Casos fallidos}
+    % incluir graficos e imagenes reconstruidas
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[h]{0.4\textwidth}
+            \includegraphics[width=\textwidth]{img/rayosCuadricula.png}
+            \caption{Cuadrícula}
+            \label{fig:rayoscuadricula}
+        \end{subfigure}%
+        \hfill
+        \begin{subfigure}[h]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{img/rayos_vertices.png}
+                \caption{Desde los vértices}
+                \label{fig:reconstruccion 10 px}
+        \end{subfigure}
+            
+        \caption{Casos fallidos de distribucion de emisores, sin ruido}
+    \end{figure}
+\end{frame}
+
+
 
 \begin{frame}
 \frametitle{Ruido}
@@ -222,23 +245,23 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
     
         \begin{subfigure}[h]{0.3\textwidth} 
             \includegraphics[width=\textwidth]{img/tomo_emisores_20.png}
-            \caption{reconstruccion 20 emisores}
+            \caption{reconstrucción 20 emisores}
             \label{fig:reconstruccion 20 emisores}
         \end{subfigure}%
         \hfill
         \begin{subfigure}[h]{0.3\textwidth}
             \includegraphics[width=\textwidth]{img/tomo_emisores_60.png}
-            \caption{reconstruccion 60 emisores}
+            \caption{reconstrucción 60 emisores}
             \label{fig:reconstruccion 60 emisores}
         \end{subfigure}%
         \hfill
         \begin{subfigure}[h]{0.3\textwidth} 
             \includegraphics[width=\textwidth]{img/tomo_emisores_140.png}
-            \caption{reconstruccion 140 emisores}
+            \caption{reconstrucción 140 emisores}
             \label{fig:reconstruccion 140 emisores}
         \end{subfigure}
         
-        \caption{Reconstruccion variando cantidad de emisores, sin ruido}
+        \caption{Reconstrucción variando cantidad de emisores, sin ruido}
     \end{figure}
 \end{frame}
     
@@ -250,7 +273,7 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
     \begin{figure}[H]
         \centering
             
-                \includegraphics[scale=0.4]{img/cantrayos_ecm-eps-converted-to.pdf}
+                \includegraphics[scale=0.45]{img/cantrayos_ecm-eps-converted-to.pdf}
                 \caption{ECM versus cantidad de rayos por emisor}
                 \label{fig:ECM versus rayos por emisor}
             
@@ -267,39 +290,94 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
     
         \begin{subfigure}[h]{0.3\textwidth} 
             \includegraphics[width=\textwidth]{img/tomo_rayos_50.png}
-            \caption{reconstruccion 50 rayos}
+            \caption{reconstrucción 50 rayos}
             \label{fig:reconstruccion 50 rayos}
         \end{subfigure}%
         \hfill
         \begin{subfigure}[h]{0.3\textwidth}
             \includegraphics[width=\textwidth]{img/tomo_rayos_100.png}
-            \caption{reconstruccion 100 rayos}
+            \caption{reconstrucción 100 rayos}
             \label{fig:reconstruccion 100 rayos}
         \end{subfigure}%
         \hfill
         \begin{subfigure}[h]{0.3\textwidth} 
             \includegraphics[width=\textwidth]{img/tomo_rayos_140.png}
-            \caption{reconstruccion 140 rayos}
+            \caption{reconstrucción 140 rayos}
             \label{fig:reconstruccion 140 rayos}
         \end{subfigure}
-        \caption{Reconstruccion variando cantidad de rayos, sin ruido}
+        \caption{Reconstrucción variando cantidad de rayos, sin ruido}
     \end{figure}
 \end{frame}
 
 
 
 \begin{frame}
-\frametitle{Tiempo vs. ???}
+\frametitle{Tiempo vs. granularidad}
+\begin{figure}[H]
+    \centering
+        
+            \includegraphics[scale=0.45]{img/granu_tiempo-eps-converted-to.pdf}
+            \caption{Tiempo versus granularidad}
+            \label{fig:tiempo versus granularidad}
+        
+    \end{figure}
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Comparacion de resultados}
-% comparatica de imagenes con rayos de las esquinas y de la forma que %usanmos finalmente
+    \frametitle{Tiempo vs. cantidad de emisores}
+    \begin{figure}[H]
+        \centering
+            
+                \includegraphics[scale=0.45]{img/emi_tiempo-eps-converted-to.pdf}
+                \caption{Tiempo versus cantidad de emisores}
+                \label{fig:tiempo versus emisores}
+            
+    \end{figure}
 \end{frame}
+    
+
+\begin{frame}
+    \frametitle{Tiempo vs. cantidad de rayos por emisor}
+    \begin{figure}[H]
+        \centering
+            
+                \includegraphics[scale=0.45]{img/cantrayos_tiempo-eps-converted-to.pdf}
+                \caption{Tiempo versus cantidad de rayos por emisor}
+                \label{fig:tiempo versus cantrayos}
+            
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Comparación de resultados}
+% comparatica de imagenes con rayos de las esquinas y de la forma que %usanmos finalmente
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[h]{0.3\textwidth} 
+        \includegraphics[width=\textwidth]{img/tomovertices.png}
+        \caption{Vértices}
+        \label{fig:vertices}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.3\textwidth} 
+        \includegraphics[width=\textwidth]{img/tomovertices.png}
+        \caption{Vértices2}
+        \label{fig:vertices2}
+    \end{subfigure}
+
+
+\end{figure}
+\end{frame}
+
 
 \begin{frame}{CONCLUSIONES}
 \end{frame}
+
+\begin{frame}{REFERENCIAS}
+\end{frame}
+
 
 \begin{frame}{FIN}
 \end{frame}
