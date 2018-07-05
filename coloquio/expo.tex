@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{enumitem}
 
 
 \author{Luis Greco - Marcela Herrera - Cristian Kubrak - Alejo Salvador }
@@ -171,10 +172,90 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 
 \begin{frame}
 \frametitle{Ruido}
-% DESCRIBIR COMO SE ELIGIO  PONERLO EN EL VECTOR INDEP
-% DESCRIBIR ELECCION DEL CALCULO DEL RUIDO
-% MENCIONAR VALORES UTILIZADOS EN LA EXPERIMENTACION
+
+\begin{itemize}
+\item Lo que buscamos fue perturbar los datos con los que trabajamos a modo de probar qué tan robusto es nuestro sistema
+
+\item Para eso utilizamos ruido gaussiano con distribución $\mathcal{N}$ ~ (0, 1), el más usual. 
+
+\item Lo aplicamos al vector que contiene los tiempos del recorrido de cada rayo
+
+\item ¿Por qué lo aplicamos ahora y antes sobre la imagen original?
+
+\end{itemize}
+
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Ruido multiplicativo vs aditivo}
+	\begin{itemize}
+	\item Una decisión a la hora de aplicar el ruido fue si tenía que ser aditivo (es decir, sumando una constante por un número aleatorio) o multiplicativo (proporcional al número al que le vamos a agregar ruido).
+
+	\item Siendo $a_i$ un elemento del vector de tiempos, $r_i$ un elemento del vector de ruidos, $k$ una constante y $\alpha$ el paramentro de entrada:\newline $a_i + (a_i * r_i * \alpha)$ vs $a_i + (a_i * k * \alpha)$
+	
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Ruido multiplicativo vs aditivo}
+    % incluir graficos e imagenes reconstruidas
+    \begin{figure}[H]
+    \centering
+    \begin{subfigure}[h]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{img/sinRuido.png}
+        \caption{Tiempos originales}
+        \label{fig:Tiempos originales}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[h]{0.45\textwidth}
+            \includegraphics[width=\textwidth]{img/ruidoMultiplicativo.png}
+            \caption{Tiempos con ruido multiplicativo}
+            \label{fig:Tiempos con ruido multiplicativo}
+        \end{subfigure}%
+    \hfill
+        \begin{subfigure}[h]{0.45\textwidth} 
+            \includegraphics[width=\textwidth]{img/ruidoAditivo.png}
+            \caption{Tiempos con ruido aditivo}
+            \label{fig:Tiempos con ruido aditivo}
+        \end{subfigure}
+        
+        \caption{Histogramas de tiempos de rayos comparando ruidos con el original}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Comparación de resultados}
+% comparatica de imagenes con rayos de las esquinas y de la forma que %usanmos finalmente
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[h]{0.3\textwidth} 
+        \includegraphics[width=\textwidth]{img/tomo_ruido001.png}
+        \caption{$\alpha$ = 0.001}
+        \label{fig: alpha = 0.001}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[h]{0.30\textwidth}
+        \includegraphics[width=\textwidth]{img/tomo_ruido005.png}
+        \caption{$\alpha$ = 0.005}
+        \label{fig:alpha = 0.005}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[h]{0.3\textwidth} 
+        \includegraphics[width=\textwidth]{img/tomo_ruido_01.png}
+        \caption{$\alpha$ = 0.01}
+        \label{fig: alpha = 0.01}
+    \end{subfigure}
+
+
+	\end{figure}
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -356,36 +437,17 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \end{frame}
 
 
-\begin{frame}
-\frametitle{Comparación de resultados}
-% comparatica de imagenes con rayos de las esquinas y de la forma que %usanmos finalmente
+\begin{frame}{Conclusiones e ideas a futuro}
 
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[h]{0.3\textwidth} 
-        \includegraphics[width=\textwidth]{img/tomo.png}
-        \caption{Original}
-        \label{fig:original1}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}[h]{0.30\textwidth}
-        \includegraphics[width=\textwidth]{img/tomo_granu_4.png}
-        \caption{Aleatoria}
-        \label{fig:comp4px}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}[h]{0.3\textwidth} 
-        \includegraphics[width=\textwidth]{img/tomovertices.png}
-        \caption{Vértices2}
-        \label{fig:vertices2}
-    \end{subfigure}
+\begin{itemize}
+\item {¿Qué nos hubiera gustado mejorar?}
+	\begin{itemize}
+	\item Minimizar la cantidad de rayos necesarios para lograr una reconstrucción aceptable
+	\item Otra mejora sería una implementación que no utilice elementos aleatorios, esto haría que sea más plausible una implementación real de este sistema.
+	\item Sería interesante analizar qué otros tipos de ruido pueden presentarse en este tipo de trabajos y analizar la robustez del sistema en esos casos (por ejemplo sal y pimienta, ruido periorico, etc). 
+	\end{itemize}
+\end{itemize}
 
-
-\end{figure}
-\end{frame}
-
-
-\begin{frame}{CONCLUSIONES}
 \end{frame}
 
 \begin{frame}{REFERENCIAS}

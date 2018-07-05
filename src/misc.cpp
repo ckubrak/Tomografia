@@ -1,5 +1,6 @@
 #include "misc.h"
 #include <math.h>       /* ceil */
+#include <random>
 
 double ErrorCuadraticoMedio(Vector &b, Vector &bcalculado)
 {
