@@ -133,12 +133,12 @@ $$
 $$
 v^t=\left[
 \begin{array}{c}
-v^1 
-v^2 
+v_1 
+v_2 
 ... 
-v^i 
+v_i 
 ... 
-v^{m} 
+v_{m} 
 \end{array}
 \right]
 $$
@@ -274,6 +274,22 @@ $$
 \end{frame}
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{RESULTADOS}
+    \frametitle{Imagen original}
+    % incluir graficos e imagenes reconstruidas
+    \begin{figure}
+    \centering
+            \includegraphics[scale=1]{img/tomo.png}
+            \caption{Imagen original}
+            \label{fig:original}
+    \end{figure}
+\end{frame}
+
+
 \begin{frame}
 \frametitle{Comparación de resultados}
 % comparatica de imagenes con rayos de las esquinas y de la forma que %usanmos finalmente
@@ -302,20 +318,6 @@ $$
 	\end{figure}
 \end{frame}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{RESULTADOS}
-    \frametitle{Imagen original}
-    % incluir graficos e imagenes reconstruidas
-    \begin{figure}
-    \centering
-            \includegraphics[scale=1]{img/tomo.png}
-            \caption{Imagen original}
-            \label{fig:original}
-    \end{figure}
-\end{frame}
     
 
 \begin{frame}
@@ -331,7 +333,7 @@ $$
 
 
 \begin{frame}
-    \frametitle{Reconstrucción según el tamaño de la celda}
+    \frametitle{Reconstrucción variando granularidad}
     % incluir graficos e imagenes reconstruidas
     \begin{figure}[H]
     \centering
@@ -372,7 +374,7 @@ $$
 
 
 \begin{frame}
-    \frametitle{Reconstrucción según cantidad de emisores}
+    \frametitle{Reconstrucción variando cantidad de emisores}
     
     \begin{figure}[H]
         \centering
@@ -417,7 +419,7 @@ $$
 
 
 \begin{frame}
-    \frametitle{Reconstrucción según cantidad de rayos por emisor}
+    \frametitle{Reconstrucción variando cantidad de rayos por emisor}
     
     \begin{figure}[H]
         \centering
