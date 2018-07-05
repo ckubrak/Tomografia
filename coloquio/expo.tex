@@ -8,7 +8,6 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{enumitem}
 
 
 \author{Luis Greco - Marcela Herrera - Cristian Kubrak - Alejo Salvador }
@@ -144,7 +143,7 @@ v^{m}
 \right]
 $$
 \par El tiempo que tarda el rayo $k$ en atravesar al sujeto es:
-$$t[k]=\sum_{j=1}^{nxn}t^k_{j} = \sum_{j=1}^{nxn} \dfrac{d^k_j}{v[j]} \Rightarrow Dv=t
+$$t_{k}=\sum_{j=1}^{nxn}t^k_{j} = \sum_{j=1}^{nxn} \dfrac{d^k_j}{v_{j}} \Rightarrow Dv=t
 $$
 \par Como la matriz D es rectangular con m$>>$nxn, se resuelve por cuadrados mínimos usando las ecuaciones normales:
 $$
@@ -221,13 +220,13 @@ $$
 \frametitle{Ruido}
 
 \begin{itemize}
-\item Lo que buscamos fue perturbar los datos con los que trabajamos a modo de probar qué tan robusto es nuestro sistema
+\item Buscamos perturbar los datos con los que trabajamos a modo de probar qué tan robusto es nuestro sistema
 
-\item Para eso utilizamos ruido gaussiano con distribución $\mathcal{N}$ ~ (0, 1), el más usual. 
+\item Utilizamos ruido gaussiano con distribución $\mathcal{N}$ ~ (0, 1), el más usual. 
 
-\item Lo aplicamos al vector que contiene los tiempos del recorrido de cada rayo
+\item Lo aplicamos al vector $t$ que contiene los tiempos del recorrido de cada rayo.
 
-\item ¿Por qué lo aplicamos ahora y antes sobre la imagen original?
+\item ¿Por qué lo aplicamos ahora y no antes sobre la imagen original?
 
 \end{itemize}
 
@@ -237,9 +236,9 @@ $$
 \begin{frame}
     \frametitle{Ruido multiplicativo vs aditivo}
 	\begin{itemize}
-	\item Una decisión a la hora de aplicar el ruido fue si tenía que ser aditivo (es decir, sumando una constante por un número aleatorio) o multiplicativo (proporcional al número al que le vamos a agregar ruido).
+	\item Debimos decidir entre aplicar ruido aditivo (es decir, sumando una constante por un número aleatorio) o multiplicativo (proporcional al número al que se le agrega el ruido).
 
-	\item Siendo $a_i$ un elemento del vector de tiempos, $r_i$ un elemento del vector de ruidos, $k$ una constante y $\alpha$ el paramentro de entrada:\newline $a_i + (a_i * r_i * \alpha)$ vs $a_i + (a_i * k * \alpha)$
+	\item Siendo $t_i$ un elemento del vector de tiempos, $r_i$ un elemento del vector de ruidos, $c$ una constante y $\alpha$ el parámetro de entrada:\newline $t_i + (t_i * r_i * \alpha)$ vs $t_i + (t_i * c * \alpha)$
 	
 	\end{itemize}
 
@@ -294,7 +293,7 @@ $$
     \end{subfigure}%
     \hfill
     \begin{subfigure}[h]{0.3\textwidth} 
-        \includegraphics[width=\textwidth]{img/tomo_ruido_01.png}
+        \includegraphics[width=\textwidth]{img/tomo_ruido01.png}
         \caption{$\alpha$ = 0.01}
         \label{fig: alpha = 0.01}
     \end{subfigure}
@@ -302,6 +301,7 @@ $$
 
 	\end{figure}
 \end{frame}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -331,7 +331,7 @@ $$
 
 
 \begin{frame}
-    \frametitle{ECM vs. tamaño de la celda}
+    \frametitle{Reconstrucción según el tamaño de la celda}
     % incluir graficos e imagenes reconstruidas
     \begin{figure}[H]
     \centering
@@ -372,7 +372,7 @@ $$
 
 
 \begin{frame}
-    \frametitle{ECM vs. cantidad de emisores}
+    \frametitle{Reconstrucción según cantidad de emisores}
     
     \begin{figure}[H]
         \centering
@@ -417,7 +417,7 @@ $$
 
 
 \begin{frame}
-    \frametitle{ECM vs. cantidad de rayos por emisor}
+    \frametitle{Reconstrucción según cantidad de rayos por emisor}
     
     \begin{figure}[H]
         \centering
@@ -484,24 +484,59 @@ $$
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Comparación de resultados}
+% comparatica de imagenes con rayos de las esquinas y de la forma que %usanmos finalmente
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[h]{0.3\textwidth} 
+        \includegraphics[width=\textwidth]{img/tomo.png}
+        \caption{Original}
+        \label{fig:original1}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[h]{0.30\textwidth}
+        \includegraphics[width=\textwidth]{img/tomo_granu_4.png}
+        \caption{Aleatoria}
+        \label{fig:comp4px}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[h]{0.3\textwidth} 
+        \includegraphics[width=\textwidth]{img/tomovertices.png}
+        \caption{Vértices2}
+        \label{fig:vertices2}
+    \end{subfigure}
+
+
+\end{figure}
+\end{frame}
+
+
 \begin{frame}{Conclusiones e ideas a futuro}
 
 \begin{itemize}
+\item Se logró realizar una reconstrucción aceptable de las imágenes.
+\item La cantidad de emisores y de rayos no evidenció ser un factor determinante en la calidad de la imagen reconstruída dada la forma de trazarlos usada en este trabajo.
+\item Sí lo fue la localizacion de los emisores.
+\item Los tiempos de resolución del sistema de ecuaciones es un condicionante en la elección de los parámetros, principalmente la granularidad.
 \item {¿Qué nos hubiera gustado mejorar?}
 	\begin{itemize}
-	\item Minimizar la cantidad de rayos necesarios para lograr una reconstrucción aceptable
-	\item Otra mejora sería una implementación que no utilice elementos aleatorios, esto haría que sea más plausible una implementación real de este sistema.
-	\item Sería interesante analizar qué otros tipos de ruido pueden presentarse en este tipo de trabajos y analizar la robustez del sistema en esos casos (por ejemplo sal y pimienta, ruido periorico, etc). 
+	\item Minimizar la cantidad de rayos necesarios para lograr una reconstrucción aceptable.
+	\item Lograr una implementación que no utilice elementos aleatorios, esto haría que sea más plausible una implementación real de este sistema.
+	\item Analizar qué otros tipos de ruido pueden presentarse en este tipo de trabajos y analizar la robustez del sistema en esos casos (por ejemplo sal y pimienta, ruido periódico, etc). 
 	\end{itemize}
 \end{itemize}
-
 \end{frame}
 
-\begin{frame}{REFERENCIAS}
-\end{frame}
+%\begin{frame}{REFERENCIAS}
+%\end{frame}
 
 
-\begin{frame}{FIN}
+\begin{frame}
+\par \begin{center}
+\textbf{FIN}
+\end{center}
 \end{frame}
 
 
