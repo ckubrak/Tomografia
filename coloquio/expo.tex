@@ -32,6 +32,11 @@
 \begin{itemize}
 \item El objetivo de este trabajo práctico es evaluar un método para reconstruir imágenes tomográficas sujetas a ruido, utilizando el método de aproximación por cuadrados mínimos.
 \end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/photo_2018-07-05_14-34-53.jpg}
+    \label{fig:homero}
+\end{figure}
 \end{frame}
 
 \begin{frame}{PREMISAS}
@@ -39,9 +44,9 @@
 \item Nuestro ''sujeto'' es una imagen de $n$x$n$ pixeles discretizada en celdas de $k$x$k$ pixeles.
 \item La intensidad de un pixel se asocia al tiempo que demora un rayo en atravesar ese pixel.
 \item La distancia que recorre un rayo que atraviesa al sujeto es igual a la cantidad de pixeles por los que pasa.
-\item En cinemática $Velocidad = Espacio/Tiempo$. En este caso la ''velocidad'' promedio dentro de la celda $k$ es:
+\item En cinemática $Velocidad = \dfrac{Espacio}{Tiempo}$. En este caso la ''velocidad'' promedio dentro de la celda $k$ es:
 \begin{displaymath}
-v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
+v_{k} =\dfrac{\sum_{i=1}^{n}\sum_{j=1}^{n} I_{ij}}{n*n}
 \end{displaymath}
 \item Los rayos están sujetos a ruido.
 \end{itemize}
@@ -70,15 +75,6 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Distancia y tiempo de recorrida de un rayo}
-\begin{itemize}
-\item A partir del vector de pixeles por los que pasa un rayo, se averigua a qué celda pertenece. Se suma 1 unidad por pixel. El resultado se almacena en la matriz de distancias (una fila por rayos, una columna por celda numeradas de arriba hacia abajo y de izquierda a derecha).
-\item Cada rayo toca a lo sumo $2n-1$ celdas. Se usa la estructura de matriz esparza del TP1.
-\item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de ''tiempos'' (un elemento por rayo).
-\end{itemize}
-\end{frame}
-
 
 \begin{frame}
 \frametitle{Recorrido de un rayo}
@@ -88,6 +84,37 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
     \caption{Pixeles/Celdas por la que pasa un rayo}
     \label{fig:recorridorayo}
 \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Distancia y tiempo de recorrida de un rayo}
+\begin{itemize}
+\item A partir del vector de pixeles por los que pasa un rayo, se averigua a qué celda pertenece. Se suma 1 unidad por pixel. El resultado se almacena en la matriz de distancias D (una fila por rayo, una columna por celda numeradas de arriba hacia abajo y de izquierda a derecha).
+\item Cada rayo toca a lo sumo $2n-1$ celdas. Se usa la estructura de matriz esparza del TP1.
+\item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de ''tiempos'' (un elemento por rayo).
+\end{itemize}
+$$
+D = \left[
+\begin{array}{cccc}
+d^1_1 & d^1_2 & ... & d^1_{r^2} \\
+... & ... & ... & ... \\
+d^k_1 & d^k_2 & ... & d^k_{r^2} \\
+... & ... & ... & ... \\
+d^m_1 & d^m_2 & ... & d^m_{r^2} \\
+\end{array}
+\right]
+,
+t=\left[
+\begin{array}{c}
+t^1 \\
+t^2 \\
+... \\
+t^i \\
+... \\
+t^{nxn} \\
+\end{array}
+\right]
+$$
 \end{frame}
 
 
@@ -102,6 +129,26 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \frametitle{Sistema de ecuaciones}
 % TODO INCLUIR MATRIZ DE ECUACIONES REALES Y DE CUADRADOS MINIMOS
 % COMENTAR RELACION ENTER GRANULARIDAD, TAMAÑO DE LA MATRIZ Y CON EL TIEMPO DE PROCESAMIENTO
+\par Sea $v$ es el vector de la velocidades por celda. Tenemos que:
+$$
+v^t=\left[
+\begin{array}{c}
+v^1 
+v^2 
+... 
+v^i 
+... 
+v^{m} 
+\end{array}
+\right]
+$$
+\par El tiempo que tarda el rayo $k$ en atravesar al sujeto es:
+$$t[k]=\sum_{j=1}^{nxn}t^k_{j} = \sum_{j=1}^{nxn} \dfrac{d^k_j}{v[j]} \Rightarrow Dv=t
+$$
+\par Como la matriz D es rectangular con m$>>$nxn, se resuelve por cuadrados mínimos usando las ecuaciones normales:
+$$
+Dv=t \Rightarrow D^tDv=D^tt, D^tD \in R^{n^2 x n^2}
+$$
 \end{frame}
 
 
