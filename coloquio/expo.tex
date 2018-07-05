@@ -71,13 +71,6 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \end{frame}
 
 \begin{frame}
-\frametitle{Recorrido de un rayo}
-% TODO INCLUIR GRAFICO (VER SI SE PUEDE REUSAR EL SCRIPT DE MATLAB DE LOS % RAYOS ALEATORIOS)
-\end{frame}
-
-
-
-\begin{frame}
 \frametitle{Distancia recorrida por un rayo por celda}
 \begin{itemize}
 \item A partir del vector de pixeles por los que pasa un rayo, se averigua a qué celda pertenece. Se suma 1 unidad por pixel. El resultado se almacena en la matriz de distancias (una fila por rayos, una columna por celda numeradas de arriba hacia abajo y de izquierda a derecha).
@@ -87,8 +80,14 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 
 
 \begin{frame}
-\frametitle{Distancia recorrida por un rayo por celda}
+\frametitle{Recorrido de un rayo}
 % TODO INCLUIR GRAFICO
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{img/recorridorayo.png}
+    \caption{Celdas por la que pasa un rayo}
+    \label{fig:recorridorayo}
+\end{figure}
 \end{frame}
 
 
@@ -157,19 +156,19 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
     % incluir graficos e imagenes reconstruidas
     \begin{figure}[H]
         \centering
-        \begin{subfigure}[h]{0.4\textwidth}
+        \begin{subfigure}[h]{0.45\textwidth}
             \includegraphics[width=\textwidth]{img/rayosCuadricula.png}
             \caption{Cuadrícula}
             \label{fig:rayoscuadricula}
         \end{subfigure}%
         \hfill
-        \begin{subfigure}[h]{0.4\textwidth}
+        \begin{subfigure}[h]{0.45\textwidth}
                 \includegraphics[width=\textwidth]{img/rayos_vertices.png}
                 \caption{Desde los vértices}
                 \label{fig:reconstruccion 10 px}
         \end{subfigure}
             
-        \caption{Casos fallidos de distribucion de emisores, sin ruido}
+        \caption{Casos fallidos de distribución de emisores, sin ruido.}
     \end{figure}
 \end{frame}
 
@@ -185,12 +184,24 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{RESULTADOS}
+    \frametitle{Imagen original}
+    % incluir graficos e imagenes reconstruidas
+    \begin{figure}
+    \centering
+            \includegraphics[scale=1]{img/tomo.png}
+            \caption{Imagen original}
+            \label{fig:original}
+    \end{figure}
+\end{frame}
+    
+
+\begin{frame}
 \frametitle{ECM vs. tamaño de la celda}
 % incluir graficos e imagenes reconstruidas
 \begin{figure}
 \centering
         \includegraphics[scale=0.4]{img/granu_ecm-eps-converted-to.pdf}
-        \caption{Error cuadratico medio versus granularidad}
+        \caption{Error cuadrático medio versus granularidad}
         \label{fig:ECM vs granularidad}
 \end{figure}
 \end{frame}
@@ -219,7 +230,7 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
             \label{fig:reconstruccion 20 px}
         \end{subfigure}
         
-        \caption{Reconstruccion variando granularidad, sin ruido}
+        \caption{Reconstrucción variando granularidad, sin ruido}
     \end{figure}
 \end{frame}
     
