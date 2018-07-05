@@ -71,43 +71,38 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \end{frame}
 
 \begin{frame}
-\frametitle{Distancia recorrida por un rayo por celda}
+\frametitle{Distancia y tiempo de recorrida de un rayo}
 \begin{itemize}
 \item A partir del vector de pixeles por los que pasa un rayo, se averigua a qué celda pertenece. Se suma 1 unidad por pixel. El resultado se almacena en la matriz de distancias (una fila por rayos, una columna por celda numeradas de arriba hacia abajo y de izquierda a derecha).
 \item Cada rayo toca a lo sumo $2n-1$ celdas. Se usa la estructura de matriz esparza del TP1.
+\item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de ''tiempos'' (un elemento por rayo).
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Recorrido de un rayo}
-% TODO INCLUIR GRAFICO
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{img/recorridorayo.png}
-    \caption{Celdas por la que pasa un rayo}
+    \caption{Pixeles/Celdas por la que pasa un rayo}
     \label{fig:recorridorayo}
 \end{figure}
 \end{frame}
 
 
-\begin{frame}
-\frametitle{Tiempo de recorrida de un rayo}
-\begin{itemize}
-\item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de ''tiempos'' (un elemento por rayo).
-\end{itemize}
-\end{frame}
+% \begin{frame}
+% \frametitle{Tiempo de recorrida de un rayo}
+% \begin{itemize}
+% \item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de ''tiempos'' (un elemento por rayo).
+% \end{itemize}
+% \end{frame}
 
 \begin{frame}
 \frametitle{Sistema de ecuaciones}
 % TODO INCLUIR MATRIZ DE ECUACIONES REALES Y DE CUADRADOS MINIMOS
 % COMENTAR RELACION ENTER GRANULARIDAD, TAMAÑO DE LA MATRIZ Y CON EL TIEMPO DE PROCESAMIENTO
 \end{frame}
-
-
-
-
-
 
 
 \begin{frame}
@@ -220,13 +215,13 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
     \hfill
     \begin{subfigure}[h]{0.30\textwidth}
             \includegraphics[width=\textwidth]{img/tomo_granu_10.png}
-            \caption{4x4px por celda}
+            \caption{10x10px por celda}
             \label{fig:reconstruccion 10 px}
         \end{subfigure}%
     \hfill
         \begin{subfigure}[h]{0.30\textwidth} 
             \includegraphics[width=\textwidth]{img/tomo_granu_20.png}
-            \caption{10x10px por celda}
+            \caption{20x20px por celda}
             \label{fig:reconstruccion 20 px}
         \end{subfigure}
         
@@ -368,10 +363,17 @@ v_{k} =(\sum_{i=1}^{n}\sum_{j=1}^{n} I_{[i][j]})/n*n
 \begin{figure}[H]
     \centering
     \begin{subfigure}[h]{0.3\textwidth} 
-        \includegraphics[width=\textwidth]{img/tomovertices.png}
-        \caption{Vértices}
-        \label{fig:vertices}
-    \end{subfigure}
+        \includegraphics[width=\textwidth]{img/tomo.png}
+        \caption{Original}
+        \label{fig:original1}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[h]{0.30\textwidth}
+        \includegraphics[width=\textwidth]{img/tomo_granu_4.png}
+        \caption{Aleatoria}
+        \label{fig:comp4px}
+    \end{subfigure}%
+    \hfill
     \begin{subfigure}[h]{0.3\textwidth} 
         \includegraphics[width=\textwidth]{img/tomovertices.png}
         \caption{Vértices2}
