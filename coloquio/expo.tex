@@ -18,7 +18,11 @@
 %\logo{} 
 %\institute{} 
 %\date{} 
-%\subject{} 
+%\subject{}
+\setbeamertemplate{sidebar right}{}
+\setbeamertemplate{footline}{%
+\hfill\usebeamertemplate***{navigation symbols}
+\hspace{1cm}\insertframenumber{}/\inserttotalframenumber}
 \begin{document}
 
 
@@ -41,10 +45,10 @@
 
 \begin{frame}{PREMISAS}
 \begin{itemize}
-\item Nuestro ''sujeto'' es una imagen de $n$x$n$ pixeles discretizada en celdas de $k$x$k$ pixeles.
+\item Nuestro “sujeto” es una imagen de $n$x$n$ pixeles discretizada en celdas de $k$x$k$ pixeles.
 \item La intensidad de un pixel se asocia al tiempo que demora un rayo en atravesar ese pixel.
 \item La distancia que recorre un rayo que atraviesa al sujeto es igual a la cantidad de pixeles por los que pasa.
-\item En cinemática $Velocidad = \dfrac{Espacio}{Tiempo}$. En este caso la ''velocidad'' promedio dentro de la celda $x$ es:
+\item En cinemática $Velocidad = \dfrac{Espacio}{Tiempo}$. En este caso la “velocidad” promedio dentro de la celda $x$ es:
 \begin{displaymath}
 v_{x} =\dfrac{\sum_{i=1}^{k}\sum_{j=1}^{k} I_{ij}}{k*k}
 \end{displaymath}
@@ -91,7 +95,7 @@ v_{x} =\dfrac{\sum_{i=1}^{k}\sum_{j=1}^{k} I_{ij}}{k*k}
 \begin{itemize}
 \item A partir del vector de pixeles por los que pasa un rayo, se averigua a qué celda pertenece. Se suma 1 unidad por pixel. El resultado se almacena en la matriz de distancias D (una fila por rayo, una columna por celda numeradas de arriba hacia abajo y de izquierda a derecha).
 \item Cada rayo toca a lo sumo $2n-1$ celdas. Se usa la estructura de matriz esparza del TP1.
-\item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de ''tiempos'' (un elemento por rayo).
+\item A partir del vector de pixeles por los que pasa un rayo, se acumulan las intensidades de los mismos. Se almacenan los resultados en un vector de “tiempos” (un elemento por rayo).
 \end{itemize}
 $$
 D = \left[
