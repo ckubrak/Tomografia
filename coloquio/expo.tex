@@ -32,7 +32,7 @@
 \end{frame}
 
 
-\begin{frame}{INTRODUCCIÓN}
+\begin{frame}{Introducción}
 \begin{itemize}
 \item El objetivo de este trabajo práctico es evaluar un método para reconstruir imágenes tomográficas sujetas a ruido, utilizando el método de aproximación por cuadrados mínimos.
 \end{itemize}
@@ -43,7 +43,7 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}{PREMISAS}
+\begin{frame}{Premisas}
 \begin{itemize}
 \item Nuestro “sujeto” es una imagen de $n$x$n$ pixeles discretizada en celdas de $k$x$k$ pixeles.
 \item La intensidad de un pixel se asocia al tiempo que demora un rayo en atravesar ese pixel.
@@ -134,7 +134,7 @@ v_2
 ... 
 v_i 
 ... 
-v_{m} 
+v_{n^2} 
 \end{array}
 \right]
 $$
@@ -222,7 +222,7 @@ $$
 
 \item Lo aplicamos al vector $t$ que contiene los tiempos del recorrido de cada rayo.
 
-\item ¿Por qué lo aplicamos ahora y no antes sobre la imagen original?
+%\item ¿Por qué lo aplicamos ahora y no antes sobre la imagen original?
 
 \end{itemize}
 
@@ -283,6 +283,10 @@ $$
             \caption{Imagen original}
             \label{fig:original}
     \end{figure}
+    %ecm += pow((b[i]-bcalculado[i]),2);
+$$
+ECM = \sum_{j=1}^{nxn}\dfrac{(v_j-vc_{j})^2}{n*n}
+$$
 \end{frame}
 
 
