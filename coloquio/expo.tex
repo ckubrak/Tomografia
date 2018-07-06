@@ -44,9 +44,9 @@
 \item Nuestro ''sujeto'' es una imagen de $n$x$n$ pixeles discretizada en celdas de $k$x$k$ pixeles.
 \item La intensidad de un pixel se asocia al tiempo que demora un rayo en atravesar ese pixel.
 \item La distancia que recorre un rayo que atraviesa al sujeto es igual a la cantidad de pixeles por los que pasa.
-\item En cinemática $Velocidad = \dfrac{Espacio}{Tiempo}$. En este caso la ''velocidad'' promedio dentro de la celda $k$ es:
+\item En cinemática $Velocidad = \dfrac{Espacio}{Tiempo}$. En este caso la ''velocidad'' promedio dentro de la celda $x$ es:
 \begin{displaymath}
-v_{k} =\dfrac{\sum_{i=1}^{n}\sum_{j=1}^{n} I_{ij}}{n*n}
+v_{x} =\dfrac{\sum_{i=1}^{k}\sum_{j=1}^{k} I_{ij}}{k*k}
 \end{displaymath}
 \item Los rayos están sujetos a ruido.
 \end{itemize}
@@ -143,11 +143,11 @@ v_{m}
 \right]
 $$
 \par El tiempo que tarda el rayo $k$ en atravesar al sujeto es:
-$$t_{k}=\sum_{j=1}^{nxn}t^k_{j} = \sum_{j=1}^{nxn} \dfrac{d^k_j}{v_{j}} \Rightarrow Dv=t
+$$t_{k}=\sum_{j=1}^{nxn}t^k_{j} = \sum_{j=1}^{nxn} \dfrac{d^k_j}{v_{j}} \Rightarrow Dv^{-1}=t
 $$
 \par Como la matriz D es rectangular con m$>>$nxn, se resuelve por cuadrados mínimos usando las ecuaciones normales:
 $$
-Dv=t \Rightarrow D^tDv=D^tt, D^tD \in R^{n^2 x n^2}
+Dv^{-1}=t \Rightarrow D^tDv^{-1}=D^tt, D^tD \in R^{n^2 x n^2}
 $$
 \end{frame}
 
@@ -288,6 +288,18 @@ $$
             \label{fig:original}
     \end{figure}
 \end{frame}
+
+
+\begin{frame}
+\frametitle{ECM vs. ruido}
+\begin{figure}
+\centering
+        \includegraphics[scale=0.4]{img/ruido_ecm-eps-converted-to.pdf}
+        \caption{Error cuadrático medio versus ruido}
+        \label{fig:ECM vs ruido}
+\end{figure}
+\end{frame}
+
 
 
 \begin{frame}
