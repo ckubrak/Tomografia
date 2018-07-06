@@ -107,7 +107,7 @@ t^2 \\
 ... \\
 t^i \\
 ... \\
-t^{nxn} \\
+t^{m} \\
 \end{array}
 \right]
 $$
@@ -211,6 +211,35 @@ $$
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Comparación de resultados}
+\framesubtitle{Distribución de emisores}
+% comparatica de imagenes con rayos de las esquinas y de la forma que %usanmos finalmente
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[h]{0.3\textwidth} 
+        \includegraphics[width=\textwidth]{img/tomo.png}
+        \caption{Original}
+        \label{fig:original1}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[h]{0.30\textwidth}
+        \includegraphics[width=\textwidth]{img/tomo_granu_4.png}
+        \caption{Aleatoria}
+        \label{fig:comp4px}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[h]{0.3\textwidth} 
+        \includegraphics[width=\textwidth]{img/tomovertices.png}
+        \caption{Vértices2}
+        \label{fig:vertices2}
+    \end{subfigure}
+
+
+\end{figure}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Ruido}
@@ -234,7 +263,7 @@ $$
 	\begin{itemize}
 	\item Debimos decidir entre aplicar ruido aditivo (es decir, sumando una constante por un número aleatorio) o multiplicativo (proporcional al número al que se le agrega el ruido).
 
-	\item Siendo $t_i$ un elemento del vector de tiempos, $r_i$ un elemento del vector de ruidos, $c$ una constante y $\alpha$ el parámetro de entrada:\newline $t_i + (t_i * r_i * \alpha)$ vs $t_i + (t_i * c * \alpha)$
+	\item Siendo $t_i$ un elemento del vector de tiempos, $x_i$ ~ $ \mathcal{N}$(0, 1) un elemento del vector de ruidos, $c$ una constante y $\alpha$ el parámetro de entrada:\newline $t_i + (t_i * x_i * \alpha)$ vs $t_i + (x_i * c * \alpha)$
 	
 	\end{itemize}
 
@@ -497,35 +526,6 @@ $$
     \end{figure}
 \end{frame}
 
-
-\begin{frame}
-\frametitle{Comparación de resultados}
-\framesubtitle{Distribución de emisores}
-% comparatica de imagenes con rayos de las esquinas y de la forma que %usanmos finalmente
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[h]{0.3\textwidth} 
-        \includegraphics[width=\textwidth]{img/tomo.png}
-        \caption{Original}
-        \label{fig:original1}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}[h]{0.30\textwidth}
-        \includegraphics[width=\textwidth]{img/tomo_granu_4.png}
-        \caption{Aleatoria}
-        \label{fig:comp4px}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}[h]{0.3\textwidth} 
-        \includegraphics[width=\textwidth]{img/tomovertices.png}
-        \caption{Vértices2}
-        \label{fig:vertices2}
-    \end{subfigure}
-
-
-\end{figure}
-\end{frame}
 
 
 \begin{frame}{Conclusiones e ideas a futuro}
