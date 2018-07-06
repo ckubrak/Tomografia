@@ -70,18 +70,10 @@ v_{x} =\dfrac{\sum_{i=1}^{k}\sum_{j=1}^{k} I_{ij}}{k*k}
 \begin{frame}
 \frametitle{Recorrido de un rayo}
 \begin{itemize}
-\item Los rayos son considerados como rectas en el plano, caracterizados por un punto de origen que llamamos $(x_{0},y_{0})$ y un ángulo $\alpha$.
-\item Se busca la intersección con la recta $y=0$ la cual es el punto $(x-y/tangent(\alpha),0)$.
-\item Usando la ecuación de la recta $y=tan(\alpha)*x+y_{0}$ y variando el valor de $x$, se calculan los puntos del plano por los que pasa el rayo.
-\item Si el punto hallado pertenece a la imagen se guardan las coordenadas del pixel correspondiente en un vector.
-\item Se usa el vector para el cálculo de distancias y de tiempos.
-% agregar grafico
+\item Los rayos se consideran como rectas en el plano, caracterizados por un punto de origen y un ángulo.
+\item En un vector se guardan las coordenadas de los pixeles que pertenecen a la recta y a la imagen.
 \end{itemize}
-\end{frame}
 
-
-\begin{frame}
-\frametitle{Recorrido de un rayo}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{img/recorridorayo.png}
